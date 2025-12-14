@@ -9,7 +9,7 @@ The application generates professional invoices from Zoom meeting CSV data.
 ## Project Structure
 
 ```
-solazyinvoice/
+/
 ├── index.html      # Main HTML file with multi-step wizard interface
 ├── style.css       # Pastel-themed styling (cream, peach, mint, lavender)
 ├── script.js       # CSV parsing, billing calculations, PDF generation
@@ -42,13 +42,13 @@ The design matches the original application featuring:
 
 The project runs with a simple HTTP server on port 5000:
 ```bash
-cd solazyinvoice && python3 -m http.server 5000 --bind 0.0.0.0
+python3 -m http.server 5000 --bind 0.0.0.0
 ```
 
 ## Deployment
 
 For GitHub Pages deployment:
-1. Push the `solazyinvoice/` folder to a GitHub repository
+1. Push all files to a GitHub repository
 2. Enable GitHub Pages in repository settings
 3. The site will be accessible at the GitHub Pages URL
 
