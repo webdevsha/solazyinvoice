@@ -56,7 +56,6 @@ function setupEventListeners() {
     document.getElementById('nextToUpload').addEventListener('click', () => goToStep(2));
     document.getElementById('backToSettings').addEventListener('click', () => goToStep(1));
     document.getElementById('backToUpload').addEventListener('click', () => goToStep(2));
-    document.getElementById('backToConfig').addEventListener('click', () => goToStep(3));
     document.getElementById('startOver').addEventListener('click', startOver);
 
     const dropZone = document.getElementById('dropZone');
