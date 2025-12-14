@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Lazy Invoice - AI-Powered Invoice Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+<body>
+    <div class="min-h-screen">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-badge">
+                    <h1 class="header-title">🦥 Lazy Invoice</h1>
+                    <p class="header-subtitle">AI-Powered Invoice Generator</p>
+                </div>
+                <p class="header-description">
+                    Transform your Zoom meeting CSV files into beautiful, professional invoices with just a few clicks.
+                    Smart AI helps you manage billing effortlessly.
+                </p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="progress-indicator" id="progressIndicator">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-circle">
+                        <span class="step-icon">⚙️</span>
+                    </div>
+                    <span class="step-label">Settings</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-circle">
+                        <span class="step-icon">📄</span>
+                    </div>
+                    <span class="step-label">Upload</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-circle">
+                        <span class="step-icon">👥</span>
+                    </div>
+                    <span class="step-label">Review</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-circle">
+                        <span class="step-icon">📥</span>
+                    </div>
+                    <span class="step-label">Download</span>
+                </div>
+            </div>
+
+            <div class="wizard-container">
+                <section class="wizard-step active" id="step-1">
+                    <div class="floating-card">
+                        <div class="card-header">
+                            <div class="card-icon mint">⚙️</div>
+                            <h2 class="card-title">Invoice Settings</h2>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="hourlyRate" class="form-label">💰 Hourly Rate (RM)</label>
+                                <input type="number" id="hourlyRate" class="input-field" value="50" min="0" step="0.01">
+                                <p class="form-hint">Your standard billing rate per hour</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="minDuration" class="form-label">⏰ Minimum Billable Duration</label>
+                                <select id="minDuration" class="input-field">
+                                    <option value="0.25">15 minutes</option>
+                                    <option value="0.5">30 minutes</option>
+                                    <option value="0.75">45 minutes</option>
+                                    <option value="1">1 hour</option>
+                                </select>
+                                <p class="form-hint">Minimum time to charge for each session</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="invoiceDate" class="form-label">📅 Invoice Date</label>
+                                <input type="date" id="invoiceDate" class="input-field">
+                                <p class="form-hint">Date to appear on invoices</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="discount" class="form-label">🎟️ Discount (%)</label>
+                                <input type="number" id="discount" class="input-field" value="0" min="0" max="100">
+                                <p class="form-hint">Optional discount percentage</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tax" class="form-label">🧾 Tax (%)</label>
+                                <input type="number" id="tax" class="input-field" value="0" min="0" max="100">
+                                <p class="form-hint">Tax rate if applicable</p>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="businessDetails" class="form-label">🏢 Business Details</label>
+                                <textarea id="businessDetails" class="input-field textarea" rows="3" placeholder="Your business name, address, phone, etc."></textarea>
+                                <p class="form-hint">Your contact information for invoices</p>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-primary" id="nextToUpload">
+                                Continue to Upload →
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="wizard-step" id="step-2">
+                    <div class="floating-card">
+                        <div class="card-header">
+                            <div class="card-icon peach">📄</div>
+                            <h2 class="card-title">Upload Zoom CSV</h2>
+                        </div>
+
+                        <p class="card-description">
+                            Upload your Zoom meeting report CSV file. We'll automatically extract meeting sessions and calculate billing.
+                        </p>
+
+                        <div class="upload-area" id="dropZone">
+                            <div class="upload-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <p class="upload-text">Drop your CSV file here</p>
+                            <p class="upload-hint">or click to browse files</p>
+                            <input type="file" id="csvFile" accept=".csv" hidden>
+                        </div>
+
+                        <div class="file-info hidden" id="fileInfo">
+                            <div class="file-badge">
+                                <span class="file-icon">📄</span>
+                                <div class="file-details">
+                                    <span class="file-name" id="fileName"></span>
+                                    <span class="file-size" id="fileSize"></span>
+                                </div>
+                                <button class="btn-remove" id="removeFile">✕</button>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-secondary" id="backToSettings">← Back</button>
+                            <button class="btn-primary" id="processFile" disabled>Process File →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="wizard-step" id="step-3">
+                    <div class="floating-card">
+                        <div class="card-header">
+                            <div class="card-icon lavender">👥</div>
+                            <h2 class="card-title">Review Sessions</h2>
+                        </div>
+
+                        <div class="filter-feedback" id="filterFeedback"></div>
+
+                        <div class="client-list" id="clientList">
+                            <p class="loading">Processing CSV data...</p>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-secondary" id="backToUpload">← Back</button>
+                            <button class="btn-primary" id="generateInvoices">Generate Invoices →</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="wizard-step" id="step-4">
+                    <div class="floating-card">
+                        <div class="card-header">
+                            <div class="card-icon soft-yellow">📥</div>
+                            <h2 class="card-title">Download Invoices</h2>
+                        </div>
+
+                        <div class="tabs">
+                            <div class="tab-list" id="invoiceTabs"></div>
+                            <div class="tab-content" id="invoicePreview"></div>
+                        </div>
+
+                        <div class="card-actions">
+                            <button class="btn-secondary" id="startOver">← Start Over</button>
+                            <button class="btn-primary" id="downloadAll">Download All PDFs</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Made with 🦥 for tutors and consultants everywhere</p>
+        </footer>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
