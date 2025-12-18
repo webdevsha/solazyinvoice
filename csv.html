@@ -934,6 +934,10 @@
             const docNumber = document.getElementById('docNumber').value || 'SERIES-001';
             const previewContent = document.getElementById('invoicePreview').innerHTML;
             
+            // Generate a unique quote ID based on timestamp
+            const timestamp = new Date().getTime();
+            const quoteId = `quote${timestamp}`;
+            
             // Create a complete HTML document
             const htmlContent = `<!DOCTYPE html>
 <html lang="en">
@@ -966,29 +970,30 @@
         .qr-note { background: #ffe8d6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
-        @media print { body { padding: 0; background: white; } .container { box-shadow: none; padding: 0; margin: 0; } }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 2px solid #4854a6; margin-bottom: 2rem; }
+        .header-bar a { color: #4854a6; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border: 2px solid #4854a6; border-radius: 0.5rem; transition: all 0.3s; }
+        .header-bar a:hover { background: #4854a6; color: white; }
+        @media print { body { padding: 0; background: white; } .container { box-shadow: none; padding: 0; margin: 0; } .header-bar { display: none; } }
         @media screen { @media (max-width: 768px) { .parties-section { grid-template-columns: 1fr; } .amount-section { flex-direction: column; gap: 1rem; } } }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header-bar">
+            <a href="https://webdevsha.github.io/solazyinvoice/">← Back to Main</a>
+            <span style="color: #666; font-size: 0.9rem;">Quote ID: ${quoteId}</span>
+        </div>
         ${previewContent}
     </div>
 </body>
 </html>`;
             
-            // Create a blob and download
+            // Open in new tab using blob URL
             const blob = new Blob([htmlContent], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${docType}-${docNumber}.html`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            window.open(url, '_blank');
             
-            showSuccess('HTML file published successfully!');
+            showSuccess('HTML page opened in new tab!');
             setTimeout(() => {
                 document.getElementById('successMessage').style.display = 'none';
             }, 3000);
