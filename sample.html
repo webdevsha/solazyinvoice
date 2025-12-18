@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebut Harga: Permit Akaun (Phase 1 & 2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; }
+            .print-shadow-none { box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal p-4 md:p-10">
+
+    <div class="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-lg print-shadow-none">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between border-b pb-8 mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-blue-800 uppercase tracking-tight">Sebut Harga</h1>
+                <p class="text-gray-600 mt-1">Aplikasi Permit Akaun (kumim.my)</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+                    <p class="text-sm font-semibold text-blue-800">No. Dokumen: <span class="text-gray-800 font-normal">QTN-2024-001</span></p>
+                    <p class="text-sm font-semibold text-blue-800">Tarikh: <span class="text-gray-800 font-normal">18 Disember 2024</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div>
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Daripada:</h3>
+                <div class="text-gray-800">
+                    <p class="font-bold text-lg">[NAMA ANDA / SYARIKAT ANDA]</p>
+                    <p>[ALAMAT ANDA - BARIS 1]</p>
+                    <p>[ALAMAT ANDA - BARIS 2]</p>
+                    <p>Telefon: [NO TELEFON]</p>
+                    <p>Emel: [EMEL ANDA]</p>
+                </div>
+            </div>
+            <div class="md:text-right">
+                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Kepada:</h3>
+                <div class="text-gray-800">
+                    <p class="font-bold text-lg">Pihak Pengurusan Permit Akaun</p>
+                    <p>Domain: kumim.my</p>
+                    <p>Perhatian: Penganjur & Organizer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1 Table -->
+        <div class="mb-10">
+            <h2 class="text-lg font-bold text-white bg-blue-800 px-4 py-2 rounded-t-lg">Fasa 1: Pembangunan Teras (Kegunaan Internal)</h2>
+            <table class="w-full text-left border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-700 text-sm uppercase">
+                        <th class="p-4 border-b">Kod</th>
+                        <th class="p-4 border-b">Deskripsi Modul</th>
+                        <th class="p-4 border-b text-right">Kos (RM)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M1</td>
+                        <td class="p-4 border-b">
+                            <span class="font-bold">Pangkalan Data & Profil Peniaga (Ciri Utama)</span>
+                            <p class="text-xs text-gray-500">Pendaftaran penuh, upload media (SSM/IC/Gambar), & sejarah penyewa.</p>
+                        </td>
+                        <td class="p-4 border-b text-right font-semibold">500.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M2</td>
+                        <td class="p-4 border-b">Pengurusan Lokasi, Acara & Peta Kawasan</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M3</td>
+                        <td class="p-4 border-b text-bold font-bold">Modul Sewaan & Bayaran (Cash In)</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M4</td>
+                        <td class="p-4 border-b">Modul Belian & Rekod Resit (Cash Out)</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M5</td>
+                        <td class="p-4 border-b">Dashboard Pemantauan & Laporan Tunggakan</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">S1/S2</td>
+                        <td class="p-4 border-b italic text-gray-600">Konsultasi, Setup Awal & Ujian (Testing)</td>
+                        <td class="p-4 border-b text-right">500.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="bg-blue-50">
+                        <td colspan="2" class="p-4 text-right font-bold text-blue-800">Subjumlah Fasa 1:</td>
+                        <td class="p-4 text-right font-bold text-blue-800 text-lg">2,000.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Phase 2 Table -->
+        <div class="mb-10">
+            <h2 class="text-lg font-bold text-white bg-indigo-800 px-4 py-2 rounded-t-lg">Fasa 2: Langganan & Komersial (SaaS)</h2>
+            <table class="w-full text-left border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-700 text-sm uppercase">
+                        <th class="p-4 border-b">Kod</th>
+                        <th class="p-4 border-b">Deskripsi Modul</th>
+                        <th class="p-4 border-b text-right">Kos (RM)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M6</td>
+                        <td class="p-4 border-b">
+                            <span class="font-bold">Sistem Langganan & Payment Gateway</span>
+                            <p class="text-xs text-gray-500">Integrasi bayaran terus untuk pelan RM19/39/99.</p>
+                        </td>
+                        <td class="p-4 border-b text-right font-semibold">500.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M7</td>
+                        <td class="p-4 border-b">Kawalan Akses Berdasarkan Pelan (Tiered Plans)</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M8</td>
+                        <td class="p-4 border-b">Portal Organizer & Pengurusan Penyewa Luaran</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M9</td>
+                        <td class="p-4 border-b text-bold font-bold">Sistem Notifikasi Automatik (WhatsApp/App)</td>
+                        <td class="p-4 border-b text-right">500.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">M10</td>
+                        <td class="p-4 border-b">Sistem Akaun Berlapis (Split % Otomatik)</td>
+                        <td class="p-4 border-b text-right">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 border-b text-sm font-mono">S3/S4</td>
+                        <td class="p-4 border-b italic text-gray-600">Setup Cloud Hosting & Load Testing</td>
+                        <td class="p-4 border-b text-right">500.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="bg-indigo-50">
+                        <td colspan="2" class="p-4 text-right font-bold text-indigo-800">Subjumlah Fasa 2:</td>
+                        <td class="p-4 text-right font-bold text-indigo-800 text-lg">2,250.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Total Section -->
+        <div class="flex justify-end mb-10">
+            <div class="w-full md:w-1/2">
+                <div class="flex justify-between p-4 bg-gray-800 text-white rounded-lg shadow-md">
+                    <span class="text-xl font-bold uppercase">Jumlah Keseluruhan (Maks)</span>
+                    <span class="text-2xl font-black">RM 4,250.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment & Terms Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-200">
+            <div>
+                <h4 class="text-sm font-bold text-gray-800 uppercase mb-4">Informasi Pembayaran (Dummy)</h4>
+                <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700 leading-relaxed border border-dashed border-gray-300">
+                    <p class="font-bold text-gray-900">[NAMA PEMEGANG AKAUN]</p>
+                    <p>Bank: <span class="font-semibold text-blue-700">[NAMA BANK - CTH: MAYBANK]</span></p>
+                    <p>No. Akaun: <span class="font-bold tracking-widest">[NO AKAUN BANK]</span></p>
+                    <p class="mt-2 text-xs text-gray-500">*Sila hantar bukti pembayaran setelah transaksi selesai.</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-gray-800 uppercase mb-4">Terma & Syarat</h4>
+                <ul class="text-xs text-gray-600 list-disc pl-5 space-y-1">
+                    <li>Pembangunan bersifat <strong>Modular</strong>; setiap modul boleh dibangunkan satu per satu.</li>
+                    <li>Fasa 1 dimulakan sebaik sahaja deposit dipersetujui.</li>
+                    <li>Kos tidak termasuk yuran lesen platform bulanan atau caj transaksi <i>Payment Gateway</i>.</li>
+                    <li>Tempoh pembangunan dianggarkan berdasarkan maklum balas klien.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-10 text-center no-print">
+            <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                Cetak / Simpan PDF
+            </button>
+        </div>
+    </div>
+
+    <footer class="text-center mt-10 text-gray-500 text-xs no-print pb-10">
+        <p>&copy; 2024 Permit Akaun Pembangunan. Dibina untuk tujuan pengurusan vendor & akaun.</p>
+    </footer>
+
+</body>
+</html>
