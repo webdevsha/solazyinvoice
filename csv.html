@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>CSV to Invoice - Lazy Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+    <style>
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .csv-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .file-input-label {
+            display: block;
+            padding: 2rem;
+            border: 2px dashed var(--primary);
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            background: var(--peach);
+            transition: all 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background: hsl(15, 85%, 88%);
+            border-color: hsl(15, 85%, 50%);
+        }
+
+        .file-input-label.dragging {
+            background: var(--primary);
+            color: white;
+            border-color: white;
+        }
+
+        #csvFile {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .invoice-type-selector {
+            margin-bottom: 1.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .settings-group {
+            background: var(--muted);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-group h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .settings-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .settings-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--foreground);
+        }
+
+        .input-field {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(240, 106, 53, 0.1);
+        }
+
+        .preview-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .preview-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .preview-content {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            background: var(--soft-gray);
+            max-height: 600px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(240, 106, 53, 0.3);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Invoice Preview Styles */
+        #invoicePreview {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            padding: 0;
+        }
+
+        .quotation-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-left: 8px solid var(--invoice-blue);
+            padding-left: 1rem;
+        }
+
+        .quotation-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--invoice-blue);
+            letter-spacing: 0.1em;
+            margin: 0;
+        }
+
+        .quotation-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .meta-item {
+            text-align: right;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: var(--invoice-blue);
+            display: block;
+        }
+
+        .parties-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 0.5rem;
+        }
+
+        .party-info h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--invoice-blue);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .party-info p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .items-table thead {
+            background: var(--invoice-blue);
+            color: white;
+        }
+
+        .items-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .items-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        .items-table tbody tr:last-child td {
+            border-bottom: 2px solid var(--invoice-blue);
+        }
+
+        .items-table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .amount-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 2rem;
+            gap: 3rem;
+        }
+
+        .amount-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .amount-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .amount-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--invoice-blue);
+        }
+
+        .footer-section {
+            border-top: 2px solid var(--invoice-blue);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .qr-note {
+            background: var(--peach);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .error-message {
+            padding: 1rem;
+            background: #fee;
+            color: #c00;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #c00;
+        }
+
+        .success-message {
+            padding: 1rem;
+            background: #efe;
+            color: #060;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #060;
+        }
+
+        @media print {
+            .upload-section,
+            .download-btn,
+            .back-button {
+                display: none;
+            }
+
+            .preview-section {
+                position: static;
+                box-shadow: none;
+            }
+
+            .csv-container {
+                grid-template-columns: 1fr;
+            }
+
+            #invoicePreview {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .csv-container {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-section {
+                position: static;
+            }
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <header class="header">
+            <div class="header-content">
+                <button onclick="window.location.href='https://webdevsha.github.io/solazyinvoice/'" class="back-button">← Back</button>
+                <div class="header-badge">
+                    <h1 class="header-title">📊 CSV to Invoice</h1>
+                    <p class="header-subtitle">Transform your data into professional quotations and invoices</p>
+                </div>
+                <p class="header-description">
+                    Upload a CSV file and instantly generate beautiful, professionally formatted quotations or invoices based on your template.
+                    Download as PDF with just one click.
+                </p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="csv-container">
+                <!-- Upload & Settings Section -->
+                <div class="upload-section">
+                    <h2 class="form-section-title">📁 Step 1: Upload CSV</h2>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+                    <div id="successMessage" class="success-message" style="display: none;"></div>
+
+                    <div class="file-input-wrapper">
+                        <label for="csvFile" class="file-input-label" id="dropZone">
+                            <div class="upload-icon">📄</div>
+                            <div><strong>Click to upload</strong> or drag and drop</div>
+                            <div style="font-size: 0.85rem; color: #888;">CSV or Excel files (.csv, .xlsx, .xls)</div>
+                        </label>
+                        <input type="file" id="csvFile" accept=".csv,.xlsx,.xls" />
+                    </div>
+
+                    <div class="invoice-type-selector">
+                        <h3 style="margin-bottom: 1rem; font-weight: 600;">Document Type</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="docType" value="quotation" checked>
+                                <span>Quotation</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="docType" value="invoice">
+                                <span>Invoice</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>📋 Document Information</h3>
+                        <div class="settings-row">
+                            <div class="form-group">
+                                <label class="form-label">Document Number/Series</label>
+                                <input type="text" id="docNumber" class="input-field" placeholder="e.g., TTMESLO0125">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Date</label>
+                                <input type="date" id="docDate" class="input-field">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>🏢 Vendor Information</h3>
+                        <div class="settings-row full">
+                            <div class="form-group">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" id="vendorName" class="input-field" placeholder="e.g., Shafira Noh">
+                            </div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="form-group">
+                                <label class="form-label">Address Line 1</label>
+                                <input type="text" id="vendorAddr1" class="input-field" placeholder="Street address">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Address Line 2</label>
+                                <input type="text" id="vendorAddr2" class="input-field" placeholder="City, postal code">
+                            </div>
+                        </div>
+                        <div class="settings-row full">
+                            <div class="form-group">
+                                <label class="form-label">Country</label>
+                                <input type="text" id="vendorCountry" class="input-field" placeholder="e.g., MALAYSIA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>👤 Client Information</h3>
+                        <div class="settings-row full">
+                            <div class="form-group">
+                                <label class="form-label">Client Name</label>
+                                <input type="text" id="clientName" class="input-field" placeholder="e.g., Encik Syakir">
+                            </div>
+                        </div>
+                        <div class="settings-row full">
+                            <div class="form-group">
+                                <label class="form-label">Client Contact</label>
+                                <input type="text" id="clientContact" class="input-field" placeholder="Phone or contact info">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>💰 Currency & Notes</h3>
+                        <div class="settings-row">
+                            <div class="form-group">
+                                <label class="form-label">Currency Symbol</label>
+                                <input type="text" id="currencySymbol" class="input-field" value="RM" placeholder="e.g., RM, $, €">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tax Rate (%)</label>
+                                <input type="number" id="taxRate" class="input-field" value="0" min="0" max="100" step="0.01">
+                            </div>
+                        </div>
+                        <div class="settings-row">
+                            <div class="form-group">
+                                <label class="form-label">Deposit Rate (%)</label>
+                                <input type="number" id="depositRate" class="input-field" value="50" min="0" max="100" step="0.01">
+                                <p class="form-hint">Percentage of total as deposit (default: 50%)</p>
+                            </div>
+                        </div>
+                        <div class="settings-row full">
+                            <div class="form-group">
+                                <label class="form-label">Payment Terms / Additional Notes</label>
+                                <textarea id="paymentTerms" class="input-field" rows="3" placeholder="e.g., Payment details, bank info, or additional terms..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <div class="preview-title">👀 Live Preview</div>
+                    <div class="preview-content" id="invoicePreview">
+                        <p style="color: #999; text-align: center; padding: 2rem;">
+                            Upload a CSV file and fill in the details to see a preview here.
+                        </p>
+                    </div>
+                    <button class="download-btn" id="downloadBtn" onclick="downloadPDF()" disabled>
+                        📥 Download as PDF
+                    </button>
+                    <button class="download-btn" id="publishBtn" onclick="publishHTML()" disabled style="background: #52c41a; margin-top: 0.5rem;">
+                        🌐 Publish as HTML
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize date to today
+        document.getElementById('docDate').valueAsDate = new Date();
+
+        // Drag and drop functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('csvFile');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragging');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragging');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragging');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // CSV file handling
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (!file) return;
+
+            const fileName = file.name.toLowerCase();
+            
+            if (fileName.endsWith('.csv')) {
+                // Handle CSV
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const csv = e.target.result;
+                        // Parse with strict:false to handle varying field counts
+                        const data = Papa.parse(csv, { 
+                            header: true, 
+                            skipEmptyLines: true,
+                            dynamicTyping: false,
+                            strict: false
+                        });
+                        
+                        // Don't report Papa Parse warnings, just use the data
+                        if (data.data && data.data.length > 0) {
+                            parseData(data.data);
+                            showSuccess('CSV loaded successfully! Found ' + csvData.length + ' items.');
+                            generatePreview();
+                            document.getElementById('downloadBtn').disabled = false;
+                            document.getElementById('publishBtn').disabled = false;
+
+                            setTimeout(() => {
+                                document.getElementById('successMessage').style.display = 'none';
+                            }, 3000);
+                        } else {
+                            showError('No data found in CSV file');
+                        }
+                    } catch (error) {
+                        showError('Error processing CSV: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            } else if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
+                // Handle Excel
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        // Check if XLSX library is available
+                        if (typeof XLSX === 'undefined') {
+                            showError('Excel library not loaded. Please refresh the page and try again.');
+                            return;
+                        }
+                        
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        
+                        // Get all sheets
+                        let allRows = [];
+                        workbook.SheetNames.forEach(sheetName => {
+                            const worksheet = workbook.Sheets[sheetName];
+                            const sheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                            allRows = allRows.concat(sheetData);
+                        });
+                        
+                        // Convert to objects with headers from first row
+                        if (allRows.length < 1) {
+                            showError('Excel file is empty');
+                            return;
+                        }
+                        
+                        const headers = allRows[0];
+                        const dataRows = allRows.slice(1).map(row => {
+                            const obj = {};
+                            headers.forEach((header, index) => {
+                                obj[header] = row[index] || '';
+                            });
+                            return obj;
+                        });
+                        
+                        parseData(dataRows);
+                        showSuccess('Excel file loaded successfully! Found ' + csvData.length + ' items.');
+                        generatePreview();
+                        document.getElementById('downloadBtn').disabled = false;
+                        document.getElementById('publishBtn').disabled = false;
+
+                        setTimeout(() => {
+                            document.getElementById('successMessage').style.display = 'none';
+                        }, 3000);
+                    } catch (error) {
+                        showError('Error processing Excel: ' + error.message);
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            } else {
+                showError('Please upload a CSV or Excel file');
+            }
+        });
+
+        // Store parsed CSV data
+        let csvData = [];
+        let csvHeaders = [];
+
+        function parseData(data) {
+            csvHeaders = Object.keys(data[0] || {});
+            // Filter only rows that have actual data (not empty rows)
+            csvData = data.filter(row => {
+                const hasData = Object.values(row).some(val => val && String(val).trim().length > 0);
+                return hasData;
+            });
+        }
+
+        // Real-time preview generation
+        const inputsToWatch = [
+            'docType', 'docNumber', 'docDate', 'vendorName', 'vendorAddr1', 'vendorAddr2',
+            'vendorCountry', 'clientName', 'clientContact', 'currencySymbol', 'taxRate', 'paymentTerms'
+        ];
+
+        inputsToWatch.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('change', generatePreview);
+                element.addEventListener('input', generatePreview);
+            }
+        });
+
+        // Watch deposit rate for preview updates
+        const depositRateInput = document.getElementById('depositRate');
+        if (depositRateInput) {
+            depositRateInput.addEventListener('change', generatePreview);
+            depositRateInput.addEventListener('input', generatePreview);
+        }
+
+        function generatePreview() {
+            if (csvData.length === 0) return;
+
+            const docType = document.querySelector('input[name="docType"]:checked').value;
+            const docNumber = document.getElementById('docNumber').value || 'SERIES-001';
+            const docDate = document.getElementById('docDate').value || new Date().toISOString().split('T')[0];
+            const vendorName = document.getElementById('vendorName').value || 'Your Company';
+            const vendorAddr1 = document.getElementById('vendorAddr1').value || 'Address Line 1';
+            const vendorAddr2 = document.getElementById('vendorAddr2').value || 'City, Postal Code';
+            const vendorCountry = document.getElementById('vendorCountry').value || 'COUNTRY';
+            const clientName = document.getElementById('clientName').value || 'Client Name';
+            const clientContact = document.getElementById('clientContact').value || '+60 19-829-0941';
+            const currencySymbol = document.getElementById('currencySymbol').value || 'RM';
+            const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+            const depositRate = parseFloat(document.getElementById('depositRate').value) || 50;
+            const paymentTerms = document.getElementById('paymentTerms').value || 'Payment terms go here';
+
+            const dateObj = new Date(docDate);
+            const formattedDate = dateObj.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: '2-digit' }).toUpperCase();
+
+            // Calculate totals from CSV
+            let subtotal = 0;
+            let itemsHTML = '<tr>';
+
+            // Determine if we have price column
+            const priceCol = csvHeaders.find(h => h.toLowerCase().includes('harga') || h.toLowerCase().includes('price'));
+            const descCol = csvHeaders.find(h => h.toLowerCase().includes('deskripsi') || h.toLowerCase().includes('description') || h.toLowerCase().includes('modul'));
+            const qtyCol = csvHeaders.find(h => h.toLowerCase().includes('qty') || h.toLowerCase().includes('quantity'));
+            const codeCol = csvHeaders.find(h => h.toLowerCase().includes('kod') || h.toLowerCase().includes('code'));
+
+            // Create table headers based on available columns
+            let headers = [];
+            if (codeCol) headers.push('CODE');
+            headers.push('ITEM');
+            if (qtyCol) headers.push('QTY');
+            headers.push('PRICE');
+            headers.push('TOTAL');
+
+            itemsHTML = '<thead><tr>';
+            headers.forEach(h => {
+                itemsHTML += `<th>${h}</th>`;
+            });
+            itemsHTML += '</tr></thead><tbody>';
+
+            // Process data rows
+            csvData.forEach((row, idx) => {
+                // Skip rows that are ONLY subtotal/total rows (have no description or price is empty/0)
+                const code = codeCol ? (row[codeCol] || '').substring(0, 5) : '';
+                const description = descCol ? (row[descCol] || '') : Object.values(row).find(v => v && typeof v === 'string' && v.length > 10) || '';
+                const qty = qtyCol ? (row[qtyCol] || 1) : 1;
+                const price = priceCol ? parseFloat(row[priceCol] || 0) : 0;
+                
+                // Skip only if both description and price are empty/zero
+                if (!price || !description.trim()) {
+                    return;
+                }
+                
+                const total = price * qty;
+                
+                if (price > 0 && description.trim()) {
+                    subtotal += total;
+                    itemsHTML += '<tr>';
+                    if (code) itemsHTML += `<td>${code}</td>`;
+                    itemsHTML += `<td>${description}</td>`;
+                    if (qtyCol) itemsHTML += `<td class="text-center">${qty}</td>`;
+                    itemsHTML += `<td class="text-right">${currencySymbol} ${price.toFixed(2)}</td>`;
+                    itemsHTML += `<td class="text-right"><strong>${currencySymbol} ${total.toFixed(2)}</strong></td>`;
+                    itemsHTML += '</tr>';
+                }
+            });
+
+            const tax = subtotal * (taxRate / 100);
+            const totalAmount = subtotal + tax;
+            const deposit = totalAmount * (depositRate / 100);
+
+            itemsHTML += '</tbody>';
+
+            const previewHTML = `
+                <div style="padding: 2rem; background: white; font-family: Arial, sans-serif;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                        <div class="quotation-header" style="margin: 0; border: none; padding: 0;">
+                            <h1 class="quotation-title">${docType.toUpperCase()}</h1>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="meta-item">
+                                <span class="meta-label">DATE:</span>
+                                ${formattedDate}
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">SERIES NO:</span>
+                                ${docNumber}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="parties-section">
+                        <div class="party-info">
+                            <h4>VENDOR</h4>
+                            <p><strong>${vendorName}</strong></p>
+                            <p>${vendorAddr1}</p>
+                            <p>${vendorAddr2}</p>
+                            <p>${vendorCountry}</p>
+                        </div>
+                        <div class="party-info">
+                            <h4>CLIENT</h4>
+                            <p><strong>${clientName}</strong></p>
+                            <p>${clientContact}</p>
+                        </div>
+                    </div>
+
+                    <table class="items-table">
+                        ${itemsHTML}
+                    </table>
+
+                    <div class="amount-section">
+                        <div class="amount-box">
+                            <div class="amount-label">TOTAL</div>
+                            <div class="amount-value">${currencySymbol} ${subtotal.toFixed(2)}</div>
+                        </div>
+                        ${taxRate > 0 ? `
+                        <div class="amount-box">
+                            <div class="amount-label">TAX (${taxRate}%)</div>
+                            <div class="amount-value">${currencySymbol} ${tax.toFixed(2)}</div>
+                        </div>
+                        ` : ''}
+                        <div class="amount-box">
+                            <div class="amount-label">GRAND TOTAL</div>
+                            <div class="amount-value">${currencySymbol} ${totalAmount.toFixed(2)}</div>
+                        </div>
+                        <div class="amount-box">
+                            <div class="amount-label">DEPOSIT (${depositRate}%)</div>
+                            <div class="amount-value">${currencySymbol} ${deposit.toFixed(2)}</div>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <div class="qr-note">
+                            <strong>📝 Payment Information:</strong>
+                        </div>
+                        <p>${paymentTerms}</p>
+                        <p style="margin-top: 1rem; font-size: 0.8rem; color: #999;">
+                            Generated by Cubic Tech Enterprise
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('invoicePreview').innerHTML = previewHTML;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = '❌ ' + message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = '✅ ' + message;
+            successDiv.style.display = 'block';
+        }
+
+        function downloadPDF() {
+            if (csvData.length === 0) {
+                showError('Please upload a CSV file first');
+                return;
+            }
+
+            const docType = document.querySelector('input[name="docType"]:checked').value;
+            const docNumber = document.getElementById('docNumber').value || 'SERIES-001';
+            const previewContent = document.getElementById('invoicePreview').innerHTML;
+            
+            // Create wrapper div with styling
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = previewContent;
+            wrapper.style.padding = '2rem';
+            wrapper.style.background = 'white';
+
+            const options = {
+                margin: [10, 10, 10, 10],
+                filename: `${docType}-${docNumber}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, allowTaint: true },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+                pagebreak: { mode: ['css', 'legacy'] }
+            };
+
+            html2pdf().set(options).from(wrapper).save().then(() => {
+                showSuccess('PDF downloaded successfully!');
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            });
+        }
+
+        function publishHTML() {
+            if (csvData.length === 0) {
+                showError('Please upload a CSV file first');
+                return;
+            }
+
+            const docType = document.querySelector('input[name="docType"]:checked').value;
+            const docNumber = document.getElementById('docNumber').value || 'SERIES-001';
+            const previewContent = document.getElementById('invoicePreview').innerHTML;
+            
+            // Create a complete HTML document
+            const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${docType} - ${docNumber}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .quotation-header { display: flex; align-items: center; margin-bottom: 2rem; border-left: 8px solid #4854a6; padding-left: 1rem; }
+        .quotation-title { font-size: 2.5rem; font-weight: 700; color: #4854a6; letter-spacing: 0.1em; margin: 0; }
+        .meta-item { text-align: right; margin: 0.5rem 0; }
+        .meta-label { font-weight: 600; color: #4854a6; display: block; font-size: 0.85rem; }
+        .parties-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 0.5rem; }
+        .party-info h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #4854a6; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .party-info p { margin: 0.25rem 0; font-size: 0.9rem; color: #333; line-height: 1.5; }
+        .items-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        .items-table thead { background: #4854a6; color: white; }
+        .items-table th { padding: 1rem; text-align: left; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .items-table td { padding: 1rem; border-bottom: 1px solid #e0e0e0; font-size: 0.9rem; }
+        .items-table tbody tr:last-child td { border-bottom: 2px solid #4854a6; }
+        .items-table tbody tr:nth-child(even) { background: #f9f9f9; }
+        .amount-section { display: flex; justify-content: flex-end; margin-bottom: 2rem; gap: 3rem; flex-wrap: wrap; }
+        .amount-box { display: flex; flex-direction: column; gap: 0.5rem; }
+        .amount-label { font-size: 0.9rem; font-weight: 600; color: #666; }
+        .amount-value { font-size: 1.5rem; font-weight: 700; color: #4854a6; }
+        .footer-section { border-top: 2px solid #4854a6; padding-top: 1.5rem; margin-top: 2rem; font-size: 0.85rem; color: #666; line-height: 1.6; }
+        .qr-note { background: #ffe8d6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        @media print { body { padding: 0; background: white; } .container { box-shadow: none; padding: 0; margin: 0; } }
+        @media screen { @media (max-width: 768px) { .parties-section { grid-template-columns: 1fr; } .amount-section { flex-direction: column; gap: 1rem; } } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        ${previewContent}
+    </div>
+</body>
+</html>`;
+            
+            // Create a blob and download
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${docType}-${docNumber}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showSuccess('HTML file published successfully!');
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        }
+
+        // Demo CSV loading hint
+        console.log('CSV to Invoice feature loaded. You can now upload CSV files to generate professional quotations and invoices!');
+    </script>
+</body>
+</html>
