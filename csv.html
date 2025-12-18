@@ -625,7 +625,6 @@
                             parseData(data.data);
                             showSuccess('CSV loaded successfully! Found ' + csvData.length + ' items.');
                             generatePreview();
-                            document.getElementById('downloadBtn').disabled = false;
                             document.getElementById('publishBtn').disabled = false;
 
                             setTimeout(() => {
@@ -679,7 +678,6 @@
                         parseData(dataRows);
                         showSuccess('Excel file loaded successfully! Found ' + csvData.length + ' items.');
                         generatePreview();
-                        document.getElementById('downloadBtn').disabled = false;
                         document.getElementById('publishBtn').disabled = false;
 
                         setTimeout(() => {
