@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO Meta Description -->
-    <meta name="description" content="Official Quotation for DBKL Jabatan Alam Sekitar (Unit Kesihatan). Development of Aduan (Kacau Ganggu) Forms Flow. Ref: VCA-DBKL-2026-001-REV3.">
+    <meta name="description" content="Official Quotation for DBKL Jabatan Alam Sekitar (Unit Kesihatan). Development of Aduan (Kacau Ganggu) Forms Flow. Ref: VCA-DBKL-2026-001-REV4.">
     
     <title>Quotation: DBKL Unit Kesihatan Digitalization</title>
     
@@ -135,7 +135,7 @@
                         <span>OFFICIAL QUOTATION</span>
                     </div>
                     <p class="text-sm text-gray-500 mt-2">Date: January 19, 2026</p>
-                    <p class="text-sm text-gray-500">Ref: VCA-DBKL-2026-001-REV3</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-DBKL-2026-001-REV4</p>
                 </div>
             </div>
 
@@ -214,7 +214,7 @@
                                     </div>
                                     <div>
                                         <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Migration Target</h4>
-                                        <p class="text-sm text-gray-600">Migration of historical data from existing Google Sheets (approx 400 records/year) into the new database.</p>
+                                        <p class="text-sm text-gray-600">Migration of some historical data from existing Google Sheets into the new database.</p>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +229,7 @@
                                     </div>
                                     <div>
                                         <h3 class="font-bold text-gray-800 text-lg">2. Hands-on Training: Build Your Own Modules</h3>
-                                        <span class="text-xs font-medium text-blue-600 uppercase tracking-wide">Learn SDLC via Real Implementation</span>
+                                        <span class="text-xs font-medium text-blue-600 uppercase tracking-wide">Learn SDLC via Real Implementation (Software Development via Guided Vibe Coding)</span>
                                     </div>
                                 </div>
                                 <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
@@ -255,7 +255,7 @@
                                     </div>
                                     <div>
                                         <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Goal</h4>
-                                        <p class="text-sm text-gray-600">By the end of this training, Unit Kesihatan staff will have the skills to digitally transform the remaining 12 forms independently.</p>
+                                        <p class="text-sm text-gray-600">By the end of this training, Unit Kesihatan staff will have the skills to digitally transform the remaining forms for Modul Lesen and Modul Pemantauan Rutin independently.</p>
                                     </div>
                                 </div>
                             </div>
@@ -489,7 +489,7 @@
                             </td>
                             <td class="py-4 px-4">
                                 <strong>Training / Troubleshooting / Maintenance Retainer</strong>
-                                <p class="text-xs text-gray-500 mt-1">Dedicated hours for post-deployment troubleshooting, advanced training, and system maintenance.</p>
+                                <p class="text-xs text-gray-500 mt-1">Dedicated hours for post-deployment troubleshooting, advanced training, and system maintenance throughout the year (12 months, total of 5 block to use).</p>
                             </td>
                             <td class="py-4 px-4 text-right font-medium">RM 1,500.00 / Block</td>
                         </tr>
@@ -497,8 +497,21 @@
                 </table>
             </div>
 
+            <!-- Receipt Recipient Section -->
+            <div class="mt-8 bg-white rounded-lg p-6 border border-gray-200 shadow-sm no-print">
+                <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-gray-600"></i>
+                    Receipt Recipient
+                </h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="billing-email" value="wansuhail@dbkl.gov.my" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-crimson focus:border-crimson outline-none transition" placeholder="Enter email for receipt">
+                    <p class="text-xs text-gray-500 mt-1">The official receipt and access details will be sent to this address.</p>
+                </div>
+            </div>
+
             <!-- REMARKS SECTION -->
-            <div class="mt-12 bg-gray-100 rounded-lg p-6 border-l-4 border-gray-400 mb-8">
+            <div class="mt-8 bg-gray-100 rounded-lg p-6 border-l-4 border-gray-400 mb-8">
                 <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-3 flex items-center gap-2">
                     <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
                     Remarks
@@ -536,6 +549,7 @@
                     <div class="text-right md:text-left">
                         <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Estimated Total</p>
                         <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-xs text-gray-500 font-medium">+ RM 2.00 Processing Fee</p>
                         <p class="text-xs text-crimson font-medium hidden" id="deposit-label">Deposit Applied</p>
                     </div>
                     <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
@@ -678,22 +692,29 @@
             depositText.innerText = `Pay ${percentageText} Deposit`;
 
             // Apply Deposit Logic
+            let finalTotal = total;
             if (depositToggle.checked) {
-                total = total * depositRate;
+                finalTotal = total * depositRate;
                 depositLabel.innerText = `${percentageText} Deposit Applied`;
                 depositLabel.classList.remove('hidden');
             } else {
                 depositLabel.classList.add('hidden');
             }
 
+            // Add Processing Fee
+            if (total > 0) {
+                finalTotal += 2;
+            }
+
             // Format Currency
-            totalDisplay.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            totalDisplay.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
         // Process Payment (Chip-in Asia Integration via Cloudflare Worker)
         async function processPayment() {
             const checkboxes = document.querySelectorAll('.module-selector:checked');
             const depositToggle = document.getElementById('deposit-toggle');
+            const billingEmail = document.getElementById('billing-email').value;
             
             // Filter for visible only
             let visibleCheckboxes = [];
@@ -714,6 +735,15 @@
             payBtn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
             payBtn.disabled = true;
 
+            // Email Validation
+            if (!billingEmail || !billingEmail.includes('@')) {
+                alert("Please enter a valid email address for the receipt.");
+                payBtn.innerHTML = originalBtnText;
+                payBtn.disabled = false;
+                document.getElementById('billing-email').focus();
+                return;
+            }
+
             try {
                 let totalAmount = 0;
                 let selectedItems = [];
@@ -726,13 +756,17 @@
                 const depositRate = totalAmount <= 1000 ? 0.7 : 0.5;
                 
                 // Calculate Final Amount
-                let finalAmount = isDeposit ? totalAmount * depositRate : totalAmount;
+                let itemAmount = isDeposit ? totalAmount * depositRate : totalAmount;
                 let description = `VCA-DBKL: ${selectedItems.join(', ')} (${isDeposit ? Math.round(depositRate * 100) + '% Deposit' : 'Full Payment'})`;
                 
                 // Construct Single Line Item for Chip-in (Simplifies logic)
                 const productsPayload = [{
                     name: description.substring(0, 100) + (description.length > 100 ? '...' : ''), // Truncate if too long
-                    price: Math.round(finalAmount * 100), // Converted to Cents for Gateway
+                    price: Math.round(itemAmount * 100), // Converted to Cents for Gateway
+                    quantity: 1
+                }, {
+                    name: "Processing Fee",
+                    price: 200, // RM 2.00
                     quantity: 1
                 }];
 
@@ -748,7 +782,7 @@
                     action: 'create_payment',
                     brand_id: CHIP_IN_BRAND_ID,
                     client: {
-                        email: 'wansuhail@dbkl.gov.my',
+                        email: billingEmail,
                         first_name: 'Wan',
                         last_name: 'Suhail'
                     },
