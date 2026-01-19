@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Official Quotation for DBKL Jabatan Alam Sekitar (Unit Kesihatan). Development of Aduan (Kacau Ganggu) Forms Flow. Ref: VCA-DBKL-2026-001-REV3.">
+    
+    <title>Quotation: DBKL Unit Kesihatan Digitalization</title>
+    
+    <!-- Favicon (City/Gov Icon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏙️</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Switched to unpkg for better stability in preview environments -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FFFDF5;
+            --color-cream-dark: #F5F2E8;
+            --color-crimson: #991B1B; /* Tailwind red-800 equivalent */
+            --color-crimson-light: #FEE2E2;
+        }
+        body {
+            background-color: var(--color-cream-dark);
+            font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            padding-bottom: 120px; /* Space for fixed payment dock */
+        }
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-crimson {
+            background-color: var(--color-crimson);
+        }
+        .text-crimson {
+            color: var(--color-crimson);
+        }
+        .border-crimson {
+            border-color: var(--color-crimson);
+        }
+        /* Details Summary Styles */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            .border-t-8 { border-top-width: 4px !important; }
+            .print-break { page-break-inside: avoid; }
+            details[open] { break-inside: avoid; }
+            /* Force expand details on print */
+            details { display: block; } 
+            details > summary { display: none; }
+            details > div { display: block !important; }
+        }
+        .tab-active {
+            background-color: var(--color-crimson);
+            color: white;
+            border-color: var(--color-crimson);
+        }
+        .tab-inactive {
+            background-color: transparent;
+            color: #4B5563;
+            border-color: #E5E7EB;
+        }
+        .tab-inactive:hover {
+            color: var(--color-crimson);
+            border-color: #FCA5A5;
+        }
+        
+        /* Checkbox Custom Style */
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #D1D5DB;
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+        .custom-checkbox::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            background-color: white;
+        }
+        .custom-checkbox:checked {
+            background-color: var(--color-crimson);
+            border-color: var(--color-crimson);
+        }
+        .custom-checkbox:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden border-t-8 border-crimson">
+        
+        <!-- Header Section -->
+        <header class="p-8 border-b border-gray-100 bg-orange-50/30">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-crimson font-heading mb-1">Cetalabs</h1>
+                    <p class="text-sm text-gray-500 uppercase tracking-wide">Government Digital Transformation</p>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-crimson font-semibold px-4 py-2 bg-red-50 rounded-full border border-red-100">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>OFFICIAL QUOTATION</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Date: January 19, 2026</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-DBKL-2026-001-REV3</p>
+                </div>
+            </div>
+
+            <!-- Recipient Info -->
+            <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Attention To</h3>
+                    <p class="text-lg font-bold text-gray-800">Encik Wan Suhail</p>
+                    <p class="text-gray-600">Unit Kesihatan</p>
+                    <p class="text-gray-600 font-medium">Jabatan Alam Sekitar (DBKL)</p>
+                    <p class="text-gray-500 text-sm">Kuala Lumpur, Malaysia</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Project Title</h3>
+                    <p class="font-semibold text-crimson">Digital Forms Flow Management System</p>
+                    <p class="text-sm text-gray-500 mt-1">Digitalization of Environmental Health Forms & Workflow Automation.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="px-8 mt-6 no-print">
+            <div class="flex space-x-4 border-b border-gray-200">
+                <button onclick="switchTab('training')" id="tab-training" class="tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="hammer" class="w-4 h-4"></i>
+                    Option A: Hybrid (Dev + DIY)
+                </button>
+                <button onclick="switchTab('development')" id="tab-development" class="tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                    Option B: Full Development
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <main class="p-8">
+            
+            <!-- OPTION A CONTENT (Development + DIY Training) -->
+            <div id="pricing-training" class="block animate-fade-in">
+                <!-- Syllabus Section A -->
+                <div class="mb-10">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-crimson rounded-full"></span>
+                        Option A: Scope & DIY Training Syllabus
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <!-- Module 1: Aduan (Development) -->
+                        <details class="group bg-orange-50 rounded-xl border border-orange-100 open:ring-1 open:ring-orange-200 transition-all duration-300">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2 bg-orange-100 rounded-lg text-orange-700">
+                                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">1. Modul Aduan Kacau Ganggu (We Build)</h3>
+                                        <span class="text-xs font-medium text-orange-600 uppercase tracking-wide">Development Deliverable</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                            </summary>
+                            <div class="px-6 pb-6 pt-2 border-t border-orange-100/50">
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Scope (Aduan Kacau Ganggu)</h4>
+                                        <ul class="space-y-3 text-sm text-gray-600">
+                                            <li class="flex gap-2">
+                                                <span class="text-orange-500">•</span>
+                                                <span><strong>Specific Categories:</strong> Debu (Dust), Bising (Noise), Air (Water Pollution).</span>
+                                            </li>
+                                            <li class="flex gap-2">
+                                                <span class="text-orange-500">•</span>
+                                                <span><strong>Forms Flow Management:</strong> Digital workflow from Complaint Registration -> Investigation Assignment -> Resolution.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Migration Target</h4>
+                                        <p class="text-sm text-gray-600">Migration of historical data from existing Google Sheets (approx 400 records/year) into the new database.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Module 2: DIY Training (Syllabus) -->
+                        <details class="group bg-blue-50 rounded-xl border border-blue-100 open:ring-1 open:ring-blue-200 transition-all duration-300">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2 bg-blue-100 rounded-lg text-blue-700">
+                                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">2. Hands-on Training: Build Your Own Modules</h3>
+                                        <span class="text-xs font-medium text-blue-600 uppercase tracking-wide">Learn SDLC via Real Implementation</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                            </summary>
+                            <div class="px-6 pb-6 pt-2 border-t border-blue-100/50">
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Workshop Syllabus (SDLC Applied)</h4>
+                                        <ul class="space-y-3 text-sm text-gray-600">
+                                            <li class="flex gap-2">
+                                                <span class="text-blue-500">•</span>
+                                                <span><strong>Topic A: SDLC Planning & Design (Unit Lesen):</strong> Mastering database structuring and requirement analysis for the Licensing Registry (300 records/year).</span>
+                                            </li>
+                                            <li class="flex gap-2">
+                                                <span class="text-blue-500">•</span>
+                                                <span><strong>Topic B: SDLC Implementation (Automation):</strong> Coding the backend logic for "Expiry Date" alerts and automated email notifications.</span>
+                                            </li>
+                                            <li class="flex gap-2">
+                                                <span class="text-blue-500">•</span>
+                                                <span><strong>Topic C: SDLC Testing & Deployment (Pemantauan):</strong> Creating, testing (UAT), and deploying responsive Mobile Inspection Forms for site visits (Construction/Factories).</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Goal</h4>
+                                        <p class="text-sm text-gray-600">By the end of this training, Unit Kesihatan staff will have the skills to digitally transform the remaining 12 forms independently.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Pricing Table A -->
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option A Pricing: Hybrid (Dev + DIY Training)</h3>
+                        <p class="text-sm text-gray-500">We build the Main Complaint Module; You learn to build additional form flows.</p>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Deliverables</th>
+                            <th class="py-3 px-4 font-semibold text-center">Qty</th>
+                            <th class="py-3 px-4 font-semibold text-right">Rate (RM)</th>
+                            <th class="py-3 px-4 font-semibold text-right">Amount (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Option A: Hybrid Package" data-price="1000" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>1. Modul Aduan Kacau Ganggu (Forms Flow)</strong>
+                                <p class="text-xs text-gray-500 mt-1">Development of main complaint workflow & migration.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">500.00</td>
+                            <td class="py-4 px-4 text-right" rowspan="2">1,000.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <!-- Logic handled by bundle selection -->
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Hands-on Training (Build Modul 2 & 3)</strong>
+                                <p class="text-xs text-gray-500 mt-1">
+                                    <span class="font-bold text-crimson">DIY Empowerment:</span> Practical training specifically designed for you to develop <strong>Modul Unit Lesen</strong> and <strong>Modul Pemantauan Rutin</strong> independently.
+                                </p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">500.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-orange-50/50">
+                        <tr>
+                            <td colspan="4" class="py-4 px-4 text-right font-bold text-gray-600 uppercase">Option A Total</td>
+                            <td class="py-4 px-4 text-right font-bold text-crimson text-xl">RM 1,000.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- OPTION B CONTENT (Full Development) -->
+            <div id="pricing-development" class="hidden animate-fade-in">
+                
+                <!-- Syllabus Section B -->
+                <div class="mb-10">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                        <span class="w-2 h-8 bg-crimson rounded-full"></span>
+                        Option B: Full Scope Development
+                    </h2>
+                    <div class="grid grid-cols-3 gap-4 mb-6 text-center text-sm">
+                        <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                            <span class="block font-bold text-xl text-crimson">400</span>
+                            <span class="text-gray-600">Borang Aduan/Year</span>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                            <span class="block font-bold text-xl text-crimson">300</span>
+                            <span class="text-gray-600">Borang Lesen/Year</span>
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                            <span class="block font-bold text-xl text-crimson">200</span>
+                            <span class="text-gray-600">Pemantauan/Year</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Module 1: Aduan (Same as A) -->
+                        <details class="group bg-orange-50 rounded-xl border border-orange-100 open:ring-1 open:ring-orange-200 transition-all duration-300">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2 bg-orange-100 rounded-lg text-orange-700">
+                                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">1. Modul Aduan Kacau Ganggu (We Build)</h3>
+                                        <span class="text-xs font-medium text-orange-600 uppercase tracking-wide">Included</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                            </summary>
+                            <div class="px-6 pb-6 pt-2 border-t border-orange-100/50">
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Scope</h4>
+                                        <ul class="space-y-3 text-sm text-gray-600">
+                                            <li class="flex gap-2">
+                                                <span class="text-orange-500">•</span>
+                                                <span><strong>Forms Flow Management:</strong> Digital workflow from Complaint Registration -> Investigation Assignment -> Resolution.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Module 2: Expansion (We Build) -->
+                        <details class="group bg-red-50 rounded-xl border border-red-100 open:ring-1 open:ring-red-200 transition-all duration-300">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2 bg-red-100 rounded-lg text-crimson">
+                                        <i data-lucide="hammer" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-800 text-lg">2. Lesen & 3. Pemantauan Rutin (We Build)</h3>
+                                        <span class="text-xs font-medium text-crimson uppercase tracking-wide">Turnkey Development</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                            </summary>
+                            <div class="px-6 pb-6 pt-2 border-t border-red-100/50">
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Unit Lesen (Licensing)</h4>
+                                        <ul class="space-y-3 text-sm text-gray-600">
+                                            <li class="flex gap-2">
+                                                <span class="text-crimson">•</span>
+                                                <span><strong>Scope:</strong> Investigation of business licenses related to complaints.</span>
+                                            </li>
+                                            <li class="flex gap-2">
+                                                <span class="text-crimson">•</span>
+                                                <span><strong>Volume:</strong> Approx 300 license investigations/year.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Unit Pemantauan (Monitoring)</h4>
+                                        <ul class="space-y-3 text-sm text-gray-600">
+                                            <li class="flex gap-2">
+                                                <span class="text-crimson">•</span>
+                                                <span><strong>Targets:</strong> Tapak bina (Construction), Loji pembancuh simen, Bengkel kenderaan.</span>
+                                            </li>
+                                            <li class="flex gap-2">
+                                                <span class="text-crimson">•</span>
+                                                <span><strong>Volume:</strong> Approx 200 routine checks/year.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-3 bg-white rounded border border-red-200 text-sm italic text-gray-500">
+                                    <strong>Note:</strong> Total 12 distinct forms will be digitalized across these workflows.
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Pricing Table B -->
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option B Pricing: Full Suite (Turnkey)</h3>
+                        <p class="text-sm text-gray-500">We develop all 3 modules (Aduan, Lesen, Pemantauan) for you.</p>
+                    </div>
+                    <span class="text-sm bg-crimson text-white px-3 py-1 rounded-full shadow-sm">Best Value</span>
+                </div>
+
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Description</th>
+                            <th class="py-3 px-4 font-semibold text-center">Modules</th>
+                            <th class="py-3 px-4 font-semibold text-right">Unit Price</th>
+                            <th class="py-3 px-4 font-semibold text-right">Total (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Option A Bundle" data-price="1000" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Option A Bundle (Aduan Dev + Training)</strong>
+                                <p class="text-xs text-gray-500 mt-1">Core system and base training.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">1,000.00</td>
+                            <td class="py-4 px-4 text-right">1,000.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 bg-red-50/30 hover:bg-red-50/50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Full Dev: Lesen & Pemantauan" data-price="2250" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Full Dev: Lesen & Pemantauan Modules</strong>
+                                <p class="text-xs text-gray-500 mt-1">Complete digitalization of Licensing Investigations and Routine Monitoring.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">2</td>
+                            <td class="py-4 px-4 text-right">1,125.00</td>
+                            <td class="py-4 px-4 text-right">2,250.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-red-50">
+                        <tr>
+                            <td colspan="4" class="py-4 px-4 text-right font-bold text-gray-600 uppercase">Option B Total</td>
+                            <td class="py-4 px-4 text-right font-bold text-crimson text-xl">RM 3,250.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <!-- Future Engagement Add-on (Visible for Both) -->
+            <div class="mt-8 border-t-2 border-dashed border-gray-300 pt-6 animate-fade-in">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-gray-800 text-white text-xs font-bold px-2 py-1 rounded">OPTIONAL ADD-ON</span>
+                    <h3 class="text-lg font-bold text-gray-800">Future Engagement: Long-Term Support</h3>
+                </div>
+                <table class="w-full text-left border-collapse bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                    <tbody class="text-gray-700">
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print border-r border-gray-200">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Future Engagement: Support/Maint" data-price="1500" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Training / Troubleshooting / Maintenance Retainer</strong>
+                                <p class="text-xs text-gray-500 mt-1">Dedicated hours for post-deployment troubleshooting, advanced training, and system maintenance.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right font-medium">RM 1,500.00 / Block</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- REMARKS SECTION -->
+            <div class="mt-12 bg-gray-100 rounded-lg p-6 border-l-4 border-gray-400 mb-8">
+                <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
+                    Remarks
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-gray-200">
+                        <div class="bg-blue-100 text-blue-700 p-2 rounded-full">
+                            <i data-lucide="server" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Deployment</p>
+                            <p class="font-bold text-gray-800">Free Hosting (Internal)</p>
+                            <p class="text-xs text-gray-500">Secure environment for DBKL internal usage.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-gray-200">
+                        <div class="bg-green-100 text-green-700 p-2 rounded-full">
+                            <i data-lucide="shield" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Data Security</p>
+                            <p class="font-bold text-gray-800">Role-Based Access</p>
+                            <p class="text-xs text-gray-500">Admin, Officer, and Viewer roles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Fixed Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-crimson shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-4 transform translate-y-full transition-transform duration-300 z-40 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="text-right md:text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Estimated Total</p>
+                        <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-xs text-crimson font-medium hidden" id="deposit-label">Deposit Applied</p>
+                    </div>
+                    <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-crimson rounded focus:ring-crimson" onchange="calculateTotal()">
+                        <span class="text-sm font-medium text-gray-700" id="deposit-text">Pay Deposit</span>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-crimson text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
+                    <span class="flex flex-col items-start leading-tight">
+                        <span class="text-xs opacity-80 font-normal">Secure Checkout via</span>
+                        <span class="text-sm">Chip-in Asia</span>
+                    </span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 py-8 px-8 mt-auto print:hidden">
+            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                <div>
+                    <h4 class="font-bold text-white mb-2 uppercase tracking-wide">Terms & Conditions</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-400">
+                        <li>Payment: 70% deposit for packages ≤ RM 1,000; 50% for > RM 1,000.</li>
+                        <li>Validity: This quotation is valid for 30 days.</li>
+                        <li>Timeline: 1-2 Weeks (subject to feedback turnaround).</li>
+                    </ul>
+                </div>
+                <div class="md:text-right flex flex-col justify-between">
+                    <div>
+                        <p class="mb-4">Authorized Signature:</p>
+                        <div class="h-12 border-b border-gray-600 w-48 ml-auto mb-2"></div>
+                        <p class="font-bold text-white">Shafira Noh</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+                &copy; 2026 Cetalabs. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Print Button Fixed -->
+    <button onclick="window.print()" class="fixed bottom-32 right-6 bg-gray-900 text-white p-3 rounded-full shadow-xl hover:bg-gray-800 transition-all no-print flex items-center gap-2 z-30 opacity-80 hover:opacity-100">
+        <i data-lucide="printer" class="w-5 h-5"></i>
+    </button>
+
+    <script>
+        // Updated Cloudflare Worker URL and Brand ID Placeholder
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; // Client to replace with actual Brand ID
+
+        // Initialize Icons with safety check
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.warn('Lucide icons could not be loaded');
+            }
+        });
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            const trainingContent = document.getElementById('pricing-training');
+            const developmentContent = document.getElementById('pricing-development');
+            const tabTraining = document.getElementById('tab-training');
+            const tabDevelopment = document.getElementById('tab-development');
+
+            if (tabName === 'training') {
+                trainingContent.classList.remove('hidden');
+                developmentContent.classList.add('hidden');
+                
+                // Style Tabs
+                tabTraining.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                tabDevelopment.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            } else {
+                trainingContent.classList.add('hidden');
+                developmentContent.classList.remove('hidden');
+
+                // Style Tabs
+                tabTraining.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                tabDevelopment.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            }
+            
+            // Re-calculate to reset UI if checkboxes persist
+            calculateTotal();
+        }
+
+        // Calculation Logic
+        function calculateTotal() {
+            // Select visible inputs only to avoid summing hidden tab items
+            // However, typical behavior is to select based on the ACTIVE tab.
+            // But here, let's keep it simple: Select strictly visible checked boxes
+            // OR simply select ALL checked boxes if we assume user only works on one tab effectively.
+            // Better approach: Since we have duplicate IDs/names might conflict conceptually,
+            // let's grab checked boxes inside the visible container.
+            
+            const activeTabId = document.getElementById('pricing-training').classList.contains('hidden') 
+                                ? 'pricing-development' 
+                                : 'pricing-training';
+            
+            const activeContainer = document.getElementById(activeTabId);
+            // Also include the "Future Engagement" table which is outside tabs (shared)
+            // But wait, the shared table is AFTER tabs.
+            // Let's just grab all checked boxes for now, assuming user unchecks if they switch contexts,
+            // OR better: clear checkboxes when switching tabs? (Might be annoying).
+            // Let's stick to "all checked" for simplicity in this specific UI.
+            
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            
+            const paymentDock = document.getElementById('payment-dock');
+            const totalDisplay = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+            const depositText = document.getElementById('deposit-text');
+
+            let total = 0;
+            
+            checkboxes.forEach(box => {
+                // Ensure we are only counting visible ones or shared ones
+                if(box.closest('.hidden') === null) {
+                     total += parseFloat(box.dataset.price);
+                }
+            });
+
+            // Show/Hide Dock
+            if (total > 0) {
+                paymentDock.classList.remove('translate-y-full');
+            } else {
+                paymentDock.classList.add('translate-y-full');
+            }
+
+            // Determine Deposit Percentage (70% if <= 1000, 50% otherwise)
+            // Note: Since Option A is exactly 1000, it falls into 70% bracket.
+            const depositRate = total <= 1000 ? 0.7 : 0.5;
+            const percentageText = Math.round(depositRate * 100) + '%';
+            
+            depositText.innerText = `Pay ${percentageText} Deposit`;
+
+            // Apply Deposit Logic
+            if (depositToggle.checked) {
+                total = total * depositRate;
+                depositLabel.innerText = `${percentageText} Deposit Applied`;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            // Format Currency
+            totalDisplay.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Process Payment (Chip-in Asia Integration via Cloudflare Worker)
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            
+            // Filter for visible only
+            let visibleCheckboxes = [];
+            checkboxes.forEach(box => {
+                if(box.closest('.hidden') === null) {
+                    visibleCheckboxes.push(box);
+                }
+            });
+
+            if (visibleCheckboxes.length === 0) {
+                alert("Please select at least one module.");
+                return;
+            }
+
+            // UI Feedback
+            const payBtn = document.getElementById('pay-btn');
+            const originalBtnText = payBtn.innerHTML;
+            payBtn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
+            payBtn.disabled = true;
+
+            try {
+                let totalAmount = 0;
+                let selectedItems = [];
+                visibleCheckboxes.forEach(box => {
+                    totalAmount += parseFloat(box.dataset.price);
+                    selectedItems.push(box.dataset.name);
+                });
+
+                const isDeposit = depositToggle.checked;
+                const depositRate = totalAmount <= 1000 ? 0.7 : 0.5;
+                
+                // Calculate Final Amount
+                let finalAmount = isDeposit ? totalAmount * depositRate : totalAmount;
+                let description = `VCA-DBKL: ${selectedItems.join(', ')} (${isDeposit ? Math.round(depositRate * 100) + '% Deposit' : 'Full Payment'})`;
+                
+                // Construct Single Line Item for Chip-in (Simplifies logic)
+                const productsPayload = [{
+                    name: description.substring(0, 100) + (description.length > 100 ? '...' : ''), // Truncate if too long
+                    price: Math.round(finalAmount * 100), // Converted to Cents for Gateway
+                    quantity: 1
+                }];
+
+                // Handle Redirect URLs
+                let currentUrl = window.location.href;
+                if (!currentUrl.startsWith('http')) {
+                    // Fallback for preview/local environments to pass API validation
+                    currentUrl = 'https://atlasnovus.co/vibe-coding-quotation-dbkl'; 
+                }
+
+                // Construct Payload for Worker
+                const payload = {
+                    action: 'create_payment',
+                    brand_id: CHIP_IN_BRAND_ID,
+                    client: {
+                        email: 'wansuhail@dbkl.gov.my',
+                        first_name: 'Wan',
+                        last_name: 'Suhail'
+                    },
+                    purchase: {
+                        currency: 'MYR',
+                        products: productsPayload,
+                        notes: description
+                    },
+                    success_redirect: currentUrl,
+                    failure_redirect: currentUrl + '?error=payment_failed'
+                };
+
+                const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    console.error('Payment Error:', data);
+                    alert('Could not initialize payment. Please check console or Brand ID configuration.');
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert('Connection error with Payment Worker. Ensure the Worker URL is correct.');
+            } finally {
+                payBtn.innerHTML = originalBtnText;
+                payBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
