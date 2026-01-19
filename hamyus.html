@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation: Vibe Coding Training - UniKL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Switched to unpkg for better stability in preview environments -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FFFDF5;
+            --color-cream-dark: #F5F2E8;
+            --color-crimson: #991B1B; /* Tailwind red-800 equivalent */
+            --color-crimson-light: #FEE2E2;
+        }
+        body {
+            background-color: var(--color-cream-dark);
+            font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            padding-bottom: 120px; /* Space for fixed payment dock */
+        }
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-crimson {
+            background-color: var(--color-crimson);
+        }
+        .text-crimson {
+            color: var(--color-crimson);
+        }
+        .border-crimson {
+            border-color: var(--color-crimson);
+        }
+        /* Details Summary Styles */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+        
+        /* Print Styles */
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            .border-t-8 { border-top-width: 4px !important; }
+            .print-break { page-break-inside: avoid; }
+            details[open] { break-inside: avoid; }
+            /* Force expand details on print */
+            details { display: block; } 
+            details > summary { display: none; }
+            details > div { display: block !important; }
+        }
+        .tab-active {
+            background-color: var(--color-crimson);
+            color: white;
+            border-color: var(--color-crimson);
+        }
+        .tab-inactive {
+            background-color: transparent;
+            color: #4B5563;
+            border-color: #E5E7EB;
+        }
+        .tab-inactive:hover {
+            color: var(--color-crimson);
+            border-color: #FCA5A5;
+        }
+        
+        /* Checkbox Custom Style */
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #D1D5DB;
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+        .custom-checkbox::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            background-color: white;
+        }
+        .custom-checkbox:checked {
+            background-color: var(--color-crimson);
+            border-color: var(--color-crimson);
+        }
+        .custom-checkbox:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden border-t-8 border-crimson">
+        
+        <!-- Header Section -->
+        <header class="p-8 border-b border-gray-100 bg-orange-50/30">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-crimson font-heading mb-1">Vibe Coding Academy</h1>
+                    <p class="text-sm text-gray-500 uppercase tracking-wide">Future-Ready Tech Training</p>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-crimson font-semibold px-4 py-2 bg-red-50 rounded-full border border-red-100">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>OFFICIAL QUOTATION</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Date: January 19, 2026</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-UNIKL-2026-001-REV3</p>
+                </div>
+            </div>
+
+            <!-- Recipient Info -->
+            <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Attention To</h3>
+                    <p class="text-lg font-bold text-gray-800">Encik Hamyus</p>
+                    <p class="text-gray-600">Department of Multimedia Animation</p>
+                    <p class="text-gray-600 font-medium">Universiti Kuala Lumpur (UniKL)</p>
+                    <p class="text-gray-500 text-sm">Kuala Lumpur, Malaysia</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Project Title</h3>
+                    <p class="font-semibold text-crimson">Alumni Management System Vibe Coding Training (Online)</p>
+                    <p class="text-sm text-gray-500 mt-1">Full SDLC Training & Vibe Coding Platform Implementation.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="px-8 mt-6 no-print">
+            <div class="flex space-x-4 border-b border-gray-200">
+                <button onclick="switchTab('training')" id="tab-training" class="tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                    Option A: Training + Codebase
+                </button>
+                <button onclick="switchTab('development')" id="tab-development" class="tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="rocket" class="w-4 h-4"></i>
+                    Option B: Training + Turnkey Solution
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <main class="p-8">
+            
+            <!-- Syllabus Section (Collapsible) -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-crimson rounded-full"></span>
+                    Comprehensive Syllabus (Full SDLC & Vibe Coding)
+                </h2>
+                <p class="text-sm text-gray-500 mb-4 italic">Click on the modules below to reveal detailed learning outcomes.</p>
+
+                <div class="space-y-4">
+                    <!-- Module 1 -->
+                    <details class="group bg-orange-50 rounded-xl border border-orange-100 open:ring-1 open:ring-orange-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-orange-100 rounded-lg text-orange-700">
+                                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 1: User Requirements & Vibe Coding Strategy</h3>
+                                    <span class="text-xs font-medium text-orange-600 uppercase tracking-wide">Analysis & Planning Phase</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-orange-100/50">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Learning Objectives</h4>
+                                    <ul class="space-y-3 text-sm text-gray-600">
+                                        <li class="flex gap-2">
+                                            <span class="text-orange-500">•</span>
+                                            <span>You will <strong>Formulate</strong> precise User Requirements (URS) and scope for academic systems.</span>
+                                        </li>
+                                        <li class="flex gap-2">
+                                            <span class="text-orange-500">•</span>
+                                            <span>You will <strong>Analyze</strong> the Vibe Coding Platform capabilities, focusing on its Recommendation APIs.</span>
+                                        </li>
+                                        <li class="flex gap-2">
+                                            <span class="text-orange-500">•</span>
+                                            <span>You will <strong>Differentiate</strong> between CMS rigidity and Custom API-driven development.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Key Topics</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-orange-100">Gathering Requirements (SRS/PRD)</li>
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-orange-100">Vibe Coding API Integration</li>
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-orange-100">Comparing Recommendation Outputs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Module 2 -->
+                    <details class="group bg-red-50 rounded-xl border border-red-100 open:ring-1 open:ring-red-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-red-100 rounded-lg text-crimson">
+                                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 2: Development, Testing & Maintenance</h3>
+                                    <span class="text-xs font-medium text-crimson uppercase tracking-wide">Execution & Validation Phase</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-red-100/50">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Learning Objectives</h4>
+                                    <ul class="space-y-3 text-sm text-gray-600">
+                                        <li class="flex gap-2">
+                                            <span class="text-crimson">•</span>
+                                            <span>You will <strong>Develop</strong> the Alumni Logic flow and connect it to the Vibe Coding output.</span>
+                                        </li>
+                                        <li class="flex gap-2">
+                                            <span class="text-crimson">•</span>
+                                            <span>You will <strong>Validate</strong> system integrity through Unit Testing and User Acceptance Testing (UAT).</span>
+                                        </li>
+                                        <li class="flex gap-2">
+                                            <span class="text-crimson">•</span>
+                                            <span>You will <strong>Plan</strong> for post-deployment maintenance and versioning.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Key Topics</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-red-100">Full Stack Development Logic</li>
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-red-100">Testing Protocols (UAT)</li>
+                                        <li class="bg-white/50 px-3 py-2 rounded border border-red-100">System Maintenance & Security</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- PRICING TABLES WITH SELECTION -->
+            <p class="no-print bg-blue-50 text-blue-700 p-3 rounded-lg border border-blue-100 text-sm mb-4 flex items-center gap-2">
+                <i data-lucide="check-square" class="w-4 h-4"></i>
+                <strong>Interactive Quotation:</strong> Select specific modules below to build your payment package.
+            </p>
+            
+            <!-- Option A Table -->
+            <div id="pricing-training" class="block animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option A: Professional Training + Reference Code</h3>
+                        <p class="text-sm text-gray-500">Comprehensive training with access to the Instructor's source code.</p>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Module Description</th>
+                            <th class="py-3 px-4 font-semibold text-center">Session</th>
+                            <th class="py-3 px-4 font-semibold text-right">Rate (RM)</th>
+                            <th class="py-3 px-4 font-semibold text-right">Amount (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 1: Requirements & Strategy" data-price="900" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 1: Requirements & Vibe Strategy</strong>
+                                <p class="text-xs text-gray-500 mt-1">Focus: User Req gathering, API Analysis, Tech Stack.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">900.00</td>
+                            <td class="py-4 px-4 text-right">900.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 2: Development & Lifecycle" data-price="900" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 2: Development & Lifecycle</strong>
+                                <p class="text-xs text-gray-500 mt-1">Focus: Coding, Testing (UAT), Maintenance planning.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">900.00</td>
+                            <td class="py-4 px-4 text-right">900.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-orange-50/50">
+                        <tr>
+                            <td colspan="4" class="py-4 px-4 text-right font-bold text-gray-600 uppercase">Option A Total</td>
+                            <td class="py-4 px-4 text-right font-bold text-crimson text-xl">RM 1,800.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div class="flex gap-4 items-start p-4 bg-orange-50 rounded-lg border border-orange-100">
+                    <div class="p-2 bg-white rounded shadow-sm shrink-0">
+                        <i data-lucide="layout" class="w-6 h-6 text-orange-500"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 text-sm">Deliverable: Instructor's Reference Implementation</h4>
+                        <p class="text-sm text-gray-600 mt-1">Participants will receive the <strong>complete version of the application developed by the instructor</strong> during the course.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Option B Table -->
+            <div id="pricing-development" class="hidden animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option B: Training + Turnkey Solution</h3>
+                        <p class="text-sm text-gray-500">Ready for immediate deployment within job scope.</p>
+                    </div>
+                    <span class="text-sm bg-crimson text-white px-3 py-1 rounded-full shadow-sm">Highly Recommended</span>
+                </div>
+
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Description</th>
+                            <th class="py-3 px-4 font-semibold text-center">Qty</th>
+                            <th class="py-3 px-4 font-semibold text-right">Unit Price</th>
+                            <th class="py-3 px-4 font-semibold text-right">Total (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Complete Training Package (Option A)" data-price="1800" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Complete Training Package (Option A)</strong>
+                                <p class="text-xs text-gray-500 mt-1">Full SDLC training with Vibe Coding integration.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">1,800.00</td>
+                            <td class="py-4 px-4 text-right">1,800.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 bg-red-50/30 hover:bg-red-50/50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Turnkey Alumni System Development" data-price="2000" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Turnkey Alumni System Development</strong>
+                                <p class="text-xs text-gray-500 mt-1">Customized, ready-to-use application for your specific job scope.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">2,000.00</td>
+                            <td class="py-4 px-4 text-right">2,000.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-red-50">
+                        <tr>
+                            <td colspan="4" class="py-4 px-4 text-right font-bold text-gray-600 uppercase">Option B Total</td>
+                            <td class="py-4 px-4 text-right font-bold text-crimson text-xl">RM 3,800.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- Justification Section -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="bg-gray-50 px-4 py-2 border-b border-gray-200">
+                        <h4 class="font-bold text-gray-700 text-sm uppercase tracking-wide">Justification for Turnkey Development (RM 2,000)</h4>
+                    </div>
+                    <div class="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                        <div class="p-4">
+                            <h5 class="font-bold text-crimson mb-2 flex items-center gap-2">
+                                <i data-lucide="monitor-check" class="w-4 h-4"></i> Ready-to-Use (Job Scope)
+                            </h5>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• <strong>Immediate Value:</strong> A system deployed specifically for your department's needs.</li>
+                                <li>• <strong>Vibe Coding Integrated:</strong> Recommendation API fully configured.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-orange-50/30">
+                            <h5 class="font-bold text-orange-600 mb-2 flex items-center gap-2">
+                                <i data-lucide="wrench" class="w-4 h-4"></i> The "Tweaking" Session
+                            </h5>
+                            <p class="text-sm text-gray-600 mb-2">
+                                Since the system is ready for your job scope, we dedicate a session to <strong>teaching you how to maintain and tweak it.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REMARKS SECTION -->
+            <div class="mt-12 bg-gray-100 rounded-lg p-6 border-l-4 border-gray-400 mb-8">
+                <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
+                    Remarks
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-gray-200">
+                        <div class="bg-blue-100 text-blue-700 p-2 rounded-full">
+                            <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Payment Terms</p>
+                            <p class="font-bold text-gray-800">Modular Payment Accepted</p>
+                            <p class="text-xs text-gray-500">Fees can be paid per module (RM 900).</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white p-3 rounded shadow-sm border border-gray-200">
+                        <div class="bg-green-100 text-green-700 p-2 rounded-full">
+                            <i data-lucide="user-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold uppercase">Instructor Certification</p>
+                            <p class="font-bold text-gray-800">TTT Certified Trainer</p>
+                            <p class="text-xs text-gray-500">Exempted from HRD Levy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Fixed Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-crimson shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-4 transform translate-y-full transition-transform duration-300 z-40 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="text-right md:text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Payment Total</p>
+                        <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-xs text-crimson font-medium hidden" id="deposit-label">50% Deposit Applied</p>
+                    </div>
+                    <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-crimson rounded focus:ring-crimson" onchange="calculateTotal()">
+                        <span class="text-sm font-medium text-gray-700">Pay 50% Deposit</span>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-crimson text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
+                    <span class="flex flex-col items-start leading-tight">
+                        <span class="text-xs opacity-80 font-normal">Secure Checkout via</span>
+                        <span class="text-sm">Chip-in Asia</span>
+                    </span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 py-8 px-8 mt-auto print:hidden">
+            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                <div>
+                    <h4 class="font-bold text-white mb-2 uppercase tracking-wide">Terms & Conditions</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-400">
+                        <li>Payment Terms: 50% deposit prior to commencement.</li>
+                        <li>Validity: This quotation is valid for 30 days.</li>
+                        <li>Platform: Training conducted via Zoom/Google Meet.</li>
+                    </ul>
+                </div>
+                <div class="md:text-right flex flex-col justify-between">
+                    <div>
+                        <p class="mb-4">Authorized Signature:</p>
+                        <div class="h-12 border-b border-gray-600 w-48 ml-auto mb-2"></div>
+                        <p class="font-bold text-white">Vibe Coding Admin</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+                &copy; 2026 Vibe Coding Academy. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Print Button Fixed -->
+    <button onclick="window.print()" class="fixed bottom-32 right-6 bg-gray-900 text-white p-3 rounded-full shadow-xl hover:bg-gray-800 transition-all no-print flex items-center gap-2 z-30 opacity-80 hover:opacity-100">
+        <i data-lucide="printer" class="w-5 h-5"></i>
+    </button>
+
+    <script>
+        // Updated Cloudflare Worker URL and Brand ID Placeholder
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; // Client to replace with actual Brand ID
+
+        // Initialize Icons with safety check
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.warn('Lucide icons could not be loaded');
+            }
+        });
+
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            const trainingContent = document.getElementById('pricing-training');
+            const developmentContent = document.getElementById('pricing-development');
+            const tabTraining = document.getElementById('tab-training');
+            const tabDevelopment = document.getElementById('tab-development');
+
+            if (tabName === 'training') {
+                trainingContent.classList.remove('hidden');
+                developmentContent.classList.add('hidden');
+                
+                // Style Tabs
+                tabTraining.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                tabDevelopment.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            } else {
+                trainingContent.classList.add('hidden');
+                developmentContent.classList.remove('hidden');
+
+                // Style Tabs
+                tabTraining.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                tabDevelopment.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            }
+        }
+
+        // Calculation Logic
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const paymentDock = document.getElementById('payment-dock');
+            const totalDisplay = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+
+            let total = 0;
+            
+            checkboxes.forEach(box => {
+                total += parseFloat(box.dataset.price);
+            });
+
+            // Show/Hide Dock
+            if (total > 0) {
+                paymentDock.classList.remove('translate-y-full');
+            } else {
+                paymentDock.classList.add('translate-y-full');
+            }
+
+            // Apply Deposit Logic
+            if (depositToggle.checked) {
+                total = total / 2;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            // Format Currency
+            totalDisplay.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Process Payment (Chip-in Asia Integration via Cloudflare Worker)
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            
+            if (checkboxes.length === 0) {
+                alert("Please select at least one module.");
+                return;
+            }
+
+            // UI Feedback
+            const payBtn = document.getElementById('pay-btn');
+            const originalBtnText = payBtn.innerHTML;
+            payBtn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
+            payBtn.disabled = true;
+
+            try {
+                let totalAmount = 0;
+                checkboxes.forEach(box => {
+                    totalAmount += parseFloat(box.dataset.price);
+                });
+
+                const isDeposit = depositToggle.checked;
+                
+                // Calculate Final Amount
+                let finalAmount = isDeposit ? totalAmount / 2 : totalAmount;
+                let description = `Payment for VCA-UNIKL-2026-001 (${isDeposit ? '50% Deposit' : 'Full Payment'})`;
+                
+                // Construct Single Line Item for Chip-in (Simplifies logic)
+                const productsPayload = [{
+                    name: description,
+                    price: Math.round(finalAmount * 100), // Converted to Cents for Gateway
+                    quantity: 1
+                }];
+
+                // Handle Redirect URLs
+                // API requires valid HTTP/HTTPS URLs. Blob/File protocols will fail validation.
+                let currentUrl = window.location.href;
+                if (!currentUrl.startsWith('http')) {
+                    // Fallback for preview/local environments to pass API validation
+                    currentUrl = 'https://atlasnovus.co/vibe-coding-quotation'; 
+                }
+
+                // Construct Payload for Worker
+                const payload = {
+                    action: 'create_payment',
+                    brand_id: CHIP_IN_BRAND_ID,
+                    client: {
+                        email: 'hamyus@unikl.edu.my',
+                        first_name: 'Hamyus',
+                        last_name: 'UniKL'
+                    },
+                    // client_ip handled by Worker
+                    purchase: {
+                        currency: 'MYR',
+                        products: productsPayload,
+                        notes: description
+                    },
+                    success_redirect: currentUrl,
+                    failure_redirect: currentUrl + '?error=payment_failed'
+                };
+
+                const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    console.error('Payment Error:', data);
+                    alert('Could not initialize payment. Please check console or Brand ID configuration.');
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert('Connection error with Payment Worker. Ensure the Worker URL is correct.');
+            } finally {
+                payBtn.innerHTML = originalBtnText;
+                payBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
