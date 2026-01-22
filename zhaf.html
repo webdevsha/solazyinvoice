@@ -452,19 +452,29 @@
                 const isTestMode = testModeToggle.checked;
                 const activeBrandId = isTestMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
 
-                // Handle Redirect URLs (Updated to point to payment_result.html with hyphen)
+                // --- NEW CODE START ---
+                // Construct params to pass to success page
+                const params = new URLSearchParams({
+                    name: 'Zhafirah Redza',
+                    email: email,
+                    amount: payAmount.toFixed(2),
+                    desc: desc,
+                    items: items.join(', ')
+                }).toString();
+
                 let currentUrl = window.location.href;
                 let successUrl, failureUrl;
-                
+                const resultPage = 'payment-result.html';
+
                 if (window.location.protocol.startsWith('http')) {
-                    // We are on a server (localhost or live), use relative path
-                    successUrl = new URL('payment-result.html', window.location.href).href;
-                    failureUrl = new URL('payment-result.html?error=true', window.location.href).href;
+                    const baseUrl = new URL('.', window.location.href).href;
+                    successUrl = new URL(`${resultPage}?${params}`, baseUrl).href;
+                    failureUrl = new URL(`${resultPage}?error=true&${params}`, baseUrl).href;
                 } else {
-                    // Fallback for local file/preview - UPDATED to use hyphenated name
-                    successUrl = 'https://webdevsha.github.io/solazyinvoice/payment-result.html'; 
-                    failureUrl = 'https://cetalabs.com/payment-result.html?error=true';
+                    successUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?${params}`; 
+                    failureUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?error=true&${params}`;
                 }
+                // --- NEW CODE END ---
 
                 // 1. Send Payment Request to Worker
                 const payload = {
