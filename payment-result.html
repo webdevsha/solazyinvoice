@@ -51,6 +51,18 @@
                 </div>
             </div>
 
+            <!-- Booking Section -->
+            <div id="booking-section" class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+                <div class="flex items-center justify-center gap-2 text-blue-800 font-bold mb-2">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    <h3>Next Step: Schedule Training</h3>
+                </div>
+                <p class="text-sm text-blue-600 mb-3">Please book your preferred date and time for the training session included in your package.</p>
+                <a href="https://shafiranoh.com/power-hour.html" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors text-sm">
+                    Book Training Slot
+                </a>
+            </div>
+
             <a href="/" class="block w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
                 Return to Home
             </a>
@@ -95,6 +107,7 @@
             const loadingEl = document.getElementById('status-loading');
             const successEl = document.getElementById('status-success');
             const errorEl = document.getElementById('status-error');
+            const bookingSection = document.getElementById('booking-section');
             
             // Receipt Elements
             const txnIdEl = document.getElementById('txn-id');
@@ -111,6 +124,11 @@
                 nameEl.innerText = decodeURIComponent(name);
                 amountEl.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 descEl.innerText = decodeURIComponent(description);
+
+                // Optional: Hide booking section if "Training" is not in description
+                // if (!description.toLowerCase().includes('training')) {
+                //    bookingSection.classList.add('hidden');
+                // }
 
                 successEl.classList.remove('hidden');
                 
