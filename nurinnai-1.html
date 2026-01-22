@@ -476,11 +476,47 @@
                             { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
                             { name: "Processing Fee", price: 200, quantity: 1 }
                         ],
-                        notes: desc
+                        notes: desc,
+                        // ADDED: Explicit email subject for the Worker to pick up
+                        email_subject: "Receipt: Nurinnai Digital Services Payment" 
                     },
                     success_redirect: successUrl,
                     failure_redirect: failureUrl
                 };
+                
+                // IMPORTANT: The worker expects email_subject at the top level of payload for the send_email action,
+                // BUT for 'create_payment' action which then saves to DB/sends email later, 
+                // we might need to pass it differently or ensure the worker handles it.
+                // Looking at your worker code, 'create_payment' cleans payload and sends to Chip-in.
+                // Chip-in doesn't store 'email_subject'.
+                // However, the worker has a separate 'send_email' action.
+                // The current flow relies on the success page triggering 'send_email'.
+                // The success page reads params from URL.
+                // So we need to ensure the email_subject is passed to the success page too!
+                
+                // Let's update params to include the subject so payment-result.html can read it
+                const paramsWithSubject = new URLSearchParams({
+                    name: 'Aida Shaiza',
+                    email: email,
+                    amount: finalAmountPaid, 
+                    desc: desc,
+                    items: items.join(', '),
+                    subject: "Receipt: Nurinnai Digital Services" // Passing subject to result page
+                }).toString();
+                
+                // Update URLs with new params
+                if (window.location.protocol.startsWith('http')) {
+                    const baseUrl = new URL('.', window.location.href).href;
+                    successUrl = new URL(`${resultPage}?${paramsWithSubject}`, baseUrl).href;
+                    failureUrl = new URL(`${resultPage}?error=true&${paramsWithSubject}`, baseUrl).href;
+                } else {
+                    successUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?${paramsWithSubject}`; 
+                    failureUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?error=true&${paramsWithSubject}`;
+                }
+                
+                // Update payload success redirect
+                payload.success_redirect = successUrl;
+                payload.failure_redirect = failureUrl;
 
                 const res = await fetch(CLOUDFLARE_WORKER_URL, {
                     method: 'POST',
