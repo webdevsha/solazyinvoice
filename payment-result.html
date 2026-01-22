@@ -56,11 +56,11 @@
             <div id="booking-section" class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
                 <div class="flex items-center justify-center gap-2 text-blue-800 font-bold mb-2">
                     <i data-lucide="calendar-check" class="w-5 h-5"></i>
-                    <h3>Next Step: Schedule Training/ Meeting (if needed)</h3>
+                    <h3>Next Step: Schedule Training</h3>
                 </div>
-                <p class="text-sm text-blue-600 mb-3">Please book your preferred date and time for the training/ meeting session if it's included in your package.</p>
+                <p class="text-sm text-blue-600 mb-3">Please book your preferred date and time for the training session included in your package.</p>
                 <a href="https://shafiranoh.com/power-hour.html" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors text-sm">
-                    Book Training/ Meeting Slot
+                    Book Training Slot
                 </a>
             </div>
 
@@ -116,6 +116,9 @@
             const amountStr = urlParams.get('amount') || '0.00';
             const amount = parseFloat(amountStr);
             const description = urlParams.get('desc') || 'Vibe Coding Services';
+            
+            // Dynamic Subject (Fixes the Nurinnai/Aging issue)
+            const subject = urlParams.get('subject') || 'Payment Receipt';
 
             // Select Elements by Class (to update both Success and Failure cards)
             const nameEls = document.querySelectorAll('.receipt-name');
@@ -140,12 +143,12 @@
                 
                 // Trigger Email Receipt via Worker (Only on Success)
                 if (email) {
-                    sendEmailReceipt(name, email, amountStr, description);
+                    sendEmailReceipt(name, email, amountStr, description, subject);
                 }
             }
         });
 
-        async function sendEmailReceipt(name, email, amount, desc) {
+        async function sendEmailReceipt(name, email, amount, desc, subject) {
             try {
                 await fetch(WORKER_URL, {
                     method: 'POST',
@@ -156,10 +159,11 @@
                         user_email: email,
                         total_amount: 'RM ' + amount,
                         items_purchased: decodeURIComponent(desc),
-                        email_subject: 'Receipt: Smart Aging System Payment'
+                        // Pass the dynamic subject from URL
+                        email_subject: decodeURIComponent(subject) 
                     })
                 });
-                console.log('Receipt email triggered');
+                console.log('Receipt email triggered for: ' + subject);
             } catch (e) {
                 console.error('Failed to send receipt email', e);
             }
