@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Description -->
+    <meta name="description" content="Official Quotation for Zhafirah Redza (Sungai Buloh). Development of Smart Aging People Information Management System. Ref: VCA-ZR-2026-001-REV2.">
+    
+    <title>Quotation: Smart Aging Management System</title>
+    
+    <!-- Favicon (Heart/Health) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧓</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FFFDF5;
+            --color-cream-dark: #F5F2E8;
+            --color-teal: #0F766E; /* Teal-700 */
+            --color-teal-light: #CCFBF1;
+        }
+        body {
+            background-color: var(--color-cream-dark);
+            font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            padding-bottom: 120px;
+        }
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-brand {
+            background-color: var(--color-teal);
+        }
+        .text-brand {
+            color: var(--color-teal);
+        }
+        .border-brand {
+            border-color: var(--color-teal);
+        }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+        
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            .border-t-8 { border-top-width: 4px !important; }
+            details { display: block; } 
+            details > summary { display: none; }
+            details > div { display: block !important; }
+        }
+        
+        /* Custom Checkbox */
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            width: 1.25em; height: 1.25em;
+            border: 2px solid #D1D5DB; border-radius: 0.25em;
+            display: grid; place-content: center; cursor: pointer;
+        }
+        .custom-checkbox::before {
+            content: ""; width: 0.65em; height: 0.65em; transform: scale(0);
+            transition: 120ms ease-in-out; box-shadow: inset 1em 1em white;
+            background-color: white; transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        .custom-checkbox:checked { background-color: var(--color-teal); border-color: var(--color-teal); }
+        .custom-checkbox:checked::before { transform: scale(1); }
+
+        .tab-active { background-color: var(--color-teal); color: white; border-color: var(--color-teal); }
+        .tab-inactive { background-color: transparent; color: #4B5563; border-color: #E5E7EB; }
+        .tab-inactive:hover { color: var(--color-teal); border-color: #99F6E4; }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden border-t-8 border-brand">
+        
+        <!-- Header -->
+        <header class="p-8 border-b border-gray-100 bg-teal-50/30">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-brand font-heading mb-1">Cetalabs</h1>
+                    <p class="text-sm text-gray-500 uppercase tracking-wide">Healthcare Digital Solutions</p>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-brand font-semibold px-4 py-2 bg-teal-50 rounded-full border border-teal-100">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>OFFICIAL INVOICE / QUOTATION</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Date: January 22, 2026</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-ZR-2026-001-REV2</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Billed To</h3>
+                    <p class="text-lg font-bold text-gray-800">Puan Zhafirah Redza</p>
+                    <p class="text-gray-600">Client Representative</p>
+                    <p class="text-gray-600 font-medium">Sungai Buloh, Selangor</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Project</h3>
+                    <p class="font-semibold text-brand">Smart Aging Information Management System</p>
+                    <p class="text-sm text-gray-500 mt-1">Web-based platform for elderly care records, medication tracking, and emergency alerts.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="px-8 mt-6 no-print">
+            <div class="flex space-x-4 border-b border-gray-200">
+                <button onclick="switchTab('training')" id="tab-training" class="tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    Option A: Guided SDLC Training
+                </button>
+                <button onclick="switchTab('development')" id="tab-development" class="tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="code" class="w-4 h-4"></i>
+                    Option B: Full Turnkey Development
+                </button>
+            </div>
+        </div>
+
+        <main class="p-8">
+            
+            <!-- Syllabus (Integrated SDLC) -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-brand rounded-full"></span>
+                    Integrated SDLC Modules
+                </h2>
+                <p class="text-sm text-gray-500 mb-4 italic">Each module covers a complete "Frontend-to-Backend" cycle for a specific feature.</p>
+
+                <div class="space-y-4">
+                    <!-- Module 1: Core Connection -->
+                    <details class="group bg-teal-50 rounded-xl border border-teal-100 open:ring-1 open:ring-teal-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-teal-100 rounded-lg text-teal-800">
+                                    <i data-lucide="network" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 1: Core System Architecture (Full Stack SDLC 1)</h3>
+                                    <span class="text-xs font-medium text-teal-700 uppercase tracking-wide">Data Flow: Dashboard <-> Database</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-teal-100/50">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Functional Scope</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex gap-2"><span class="text-teal-500">•</span> <strong>Frontend:</strong> Building the Elderly Profile Card UI (Photo, Name, Age, Blood Type).</li>
+                                        <li class="flex gap-2"><span class="text-teal-500">•</span> <strong>Backend:</strong> Creating the 'Profiles' table in Cloudflare D1.</li>
+                                        <li class="flex gap-2"><span class="text-teal-500">•</span> <strong>Connection:</strong> Fetching data from D1 and displaying it on the Dashboard live.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">SDLC Outcome</h4>
+                                    <p class="text-sm text-gray-600">Participants will understand the complete lifecycle of a <strong>"Create & Read"</strong> feature—from designing the form to saving it in the SQL database.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Module 2: Logic & Automation -->
+                    <details class="group bg-blue-50 rounded-xl border border-blue-100 open:ring-1 open:ring-blue-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-blue-100 rounded-lg text-blue-800">
+                                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 2: Logic & Automation (Full Stack SDLC 2)</h3>
+                                    <span class="text-xs font-medium text-blue-700 uppercase tracking-wide">Complex Workflows & Notifications</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-blue-100/50">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">Functional Scope</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex gap-2"><span class="text-blue-500">•</span> <strong>Logic Layer:</strong> Medication Scheduler Algorithm (Tracking frequency vs time).</li>
+                                        <li class="flex gap-2"><span class="text-blue-500">•</span> <strong>Frontend Logic:</strong> Visual alerts for "Missed Dose" in red.</li>
+                                        <li class="flex gap-2"><span class="text-blue-500">•</span> <strong>External API:</strong> Connecting Brevo to send automatic email alerts to Next of Kin.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800 mb-3 text-sm uppercase">SDLC Outcome</h4>
+                                    <p class="text-sm text-gray-600">Participants will master the <strong>"Process & Notify"</strong> lifecycle—handling logic conditions and triggering 3rd party services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Pricing Tables -->
+            
+            <!-- Option A -->
+            <div id="pricing-training" class="block animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option A: Guided SDLC Training</h3>
+                        <p class="text-sm text-gray-500">Modular training to build the system yourself.</p>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Module Description</th>
+                            <th class="py-3 px-4 font-semibold text-center">Session</th>
+                            <th class="py-3 px-4 font-semibold text-right">Price (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 1: Core Architecture (Frontend+Backend)" data-price="250" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 1: Core System Architecture</strong>
+                                <p class="text-xs text-gray-500 mt-1">Connecting Dashboard UI to D1 Database (Profile Management).</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">250.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 2: Logic & Automation" data-price="250" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 2: Logic & Automation</strong>
+                                <p class="text-xs text-gray-500 mt-1">Medication Tracking Logic & Email Alert Integration.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">250.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="bg-teal-50">
+                        <tr>
+                            <td colspan="3" class="py-4 px-4 text-right font-bold text-gray-600 uppercase">Option A Total</td>
+                            <td class="py-4 px-4 text-right font-bold text-teal-700 text-xl">RM 500.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Option B -->
+            <div id="pricing-development" class="hidden animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option B: Full Turnkey Development</h3>
+                        <p class="text-sm text-gray-500">We build, deploy, and handover the complete system.</p>
+                    </div>
+                    <span class="text-sm bg-brand text-white px-3 py-1 rounded-full shadow-sm">Recommended</span>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <thead>
+                        <tr class="bg-gray-50 text-gray-600 text-sm uppercase tracking-wider border-y border-gray-200">
+                            <th class="py-3 px-4 font-semibold w-12 no-print text-center">Select</th>
+                            <th class="py-3 px-4 font-semibold w-1/2">Item</th>
+                            <th class="py-3 px-4 font-semibold text-center">Qty</th>
+                            <th class="py-3 px-4 font-semibold text-right">Price (RM)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Full System Development" data-price="3500" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Complete Aging Info Management System</strong>
+                                <p class="text-xs text-gray-500 mt-1">Includes UI/UX, D1 Database setup, Email Notifications (Brevo), and Deployment.</p>
+                            </td>
+                            <td class="py-4 px-4 text-center">1</td>
+                            <td class="py-4 px-4 text-right">3,500.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mt-8 bg-white rounded-lg p-6 border border-gray-200 shadow-sm no-print">
+                <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-gray-600"></i>
+                    Receipt Recipient
+                </h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="billing-email" value="zhafirah@example.com" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-700 focus:border-teal-700 outline-none transition" placeholder="Enter email for receipt">
+                    <p class="text-xs text-gray-500 mt-1">Receipts and system access keys will be sent here upon payment.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-brand shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-4 transform translate-y-full transition-transform duration-300 z-40 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="text-right md:text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Amount</p>
+                        <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-xs text-gray-500 font-medium">+ RM 2.00 Processing Fee</p>
+                        <p class="text-xs text-brand font-medium hidden" id="deposit-label">Deposit Applied</p>
+                    </div>
+                    <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-brand rounded focus:ring-teal-700" onchange="calculateTotal()">
+                        <span class="text-sm font-medium text-gray-700" id="deposit-text">Pay Deposit</span>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-brand text-white px-6 py-3 rounded-lg font-bold hover:bg-teal-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
+                    <span class="flex flex-col items-start leading-tight">
+                        <span class="text-xs opacity-80 font-normal">Secure Checkout via</span>
+                        <span class="text-sm">Chip-in Asia</span>
+                    </span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca';
+
+        document.addEventListener('DOMContentLoaded', () => { if(typeof lucide !== 'undefined') lucide.createIcons(); });
+
+        function switchTab(tabName) {
+            const training = document.getElementById('pricing-training');
+            const dev = document.getElementById('pricing-development');
+            const btnTrain = document.getElementById('tab-training');
+            const btnDev = document.getElementById('tab-development');
+
+            if (tabName === 'training') {
+                training.classList.remove('hidden'); dev.classList.add('hidden');
+                btnTrain.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                btnDev.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            } else {
+                training.classList.add('hidden'); dev.classList.remove('hidden');
+                btnTrain.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                btnDev.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            }
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const dock = document.getElementById('payment-dock');
+            const display = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+            const depositText = document.getElementById('deposit-text');
+
+            let total = 0;
+            checkboxes.forEach(box => {
+                if(box.closest('.hidden') === null) total += parseFloat(box.dataset.price);
+            });
+
+            if (total > 0) dock.classList.remove('translate-y-full');
+            else dock.classList.add('translate-y-full');
+
+            // Deposit Logic: 70% if <= 1000, 50% if > 1000
+            const depositRate = total <= 1000 ? 0.7 : 0.5;
+            const percentageText = Math.round(depositRate * 100) + '%';
+            depositText.innerText = `Pay ${percentageText} Deposit`;
+
+            let finalTotal = total;
+            if (depositToggle.checked) {
+                finalTotal = total * depositRate;
+                depositLabel.innerText = `Deposit (${percentageText}) Applied`;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            if(total > 0) finalTotal += 2; // Processing fee
+
+            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const email = document.getElementById('billing-email').value;
+            
+            let visibleCheckboxes = [];
+            checkboxes.forEach(box => { if(box.closest('.hidden') === null) visibleCheckboxes.push(box); });
+
+            if (visibleCheckboxes.length === 0) return alert("Please select a module.");
+            if (!email || !email.includes('@')) return alert("Valid email required.");
+
+            const btn = document.getElementById('pay-btn');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
+            btn.disabled = true;
+
+            try {
+                let total = 0;
+                let items = [];
+                visibleCheckboxes.forEach(box => {
+                    total += parseFloat(box.dataset.price);
+                    items.push(box.dataset.name);
+                });
+
+                const isDeposit = depositToggle.checked;
+                const depositRate = total <= 1000 ? 0.7 : 0.5;
+                const payAmount = isDeposit ? total * depositRate : total;
+                const desc = `Payment: ${items.join(', ')} (${isDeposit ? 'Deposit' : 'Full'})`;
+
+                // Handle Redirect URLs
+                let currentUrl = window.location.href;
+                if (!currentUrl.startsWith('http')) {
+                    // Fallback for preview/local environments
+                    currentUrl = 'https://webdevsha.github.io/solazyinvoice/payment-result'; 
+                }
+
+                // 1. Send Payment Request to Worker
+                const payload = {
+                    action: 'create_payment',
+                    brand_id: CHIP_IN_BRAND_ID,
+                    client: { email: email, first_name: 'Zhafirah', last_name: 'Redza' },
+                    purchase: {
+                        currency: 'MYR',
+                        products: [
+                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: "Processing Fee", price: 200, quantity: 1 }
+                        ],
+                        notes: desc
+                    },
+                    success_redirect: currentUrl,
+                    failure_redirect: currentUrl + '?error=true'
+                };
+
+                const res = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Payment Init Failed. Check Console.');
+                    console.error(data);
+                }
+            } catch (e) {
+                alert('Connection Error');
+                console.error(e);
+            } finally {
+                btn.innerHTML = oldText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
