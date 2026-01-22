@@ -110,7 +110,7 @@
             <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 flex flex-col md:flex-row justify-between gap-6">
                 <div>
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Billed To</h3>
-                    <p class="text-lg font-bold text-gray-800">Puan Zhafirah Redza</p>
+                    <p class="text-lg font-bold text-gray-800">Cik Zhafirah Redza</p>
                     <p class="text-gray-600">Client Representative</p>
                     <p class="text-gray-600 font-medium">Sungai Buloh, Selangor</p>
                 </div>
@@ -452,10 +452,18 @@
                 const isTestMode = testModeToggle.checked;
                 const activeBrandId = isTestMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
 
-                // Handle Redirect URLs
+                // Handle Redirect URLs (Updated to point to payment_result.html)
                 let currentUrl = window.location.href;
-                if (!currentUrl.startsWith('http')) {
-                    currentUrl = 'https://cetalabs.com/payment-result'; 
+                let successUrl, failureUrl;
+                
+                if (window.location.protocol.startsWith('http')) {
+                    // We are on a server (localhost or live), use relative path
+                    successUrl = new URL('payment_result.html', window.location.href).href;
+                    failureUrl = new URL('payment_result.html?error=true', window.location.href).href;
+                } else {
+                    // Fallback for local file/preview
+                    successUrl = 'https://cetalabs.com/payment-result.html'; 
+                    failureUrl = 'https://cetalabs.com/payment-result.html?error=true';
                 }
 
                 // 1. Send Payment Request to Worker
@@ -472,8 +480,8 @@
                         ],
                         notes: desc
                     },
-                    success_redirect: currentUrl,
-                    failure_redirect: currentUrl + '?error=true'
+                    success_redirect: successUrl,
+                    failure_redirect: failureUrl
                 };
 
                 const res = await fetch(CLOUDFLARE_WORKER_URL, {
