@@ -92,6 +92,9 @@
         // Initialize Icons
         lucide.createIcons();
 
+        // Worker URL for Email Trigger
+        const WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             
@@ -99,23 +102,21 @@
             
             // Extract Details
             const txnId = urlParams.get('id') || urlParams.get('payment_id') || 'N/A';
-            const name = urlParams.get('name') || urlParams.get('client_name') || 'Valued Client';
-            const amount = parseFloat(urlParams.get('amount')) || 0.00;
-            const description = urlParams.get('desc') || urlParams.get('description') || 'Vibe Coding Services';
+            const name = urlParams.get('name') || 'Valued Client';
+            const email = urlParams.get('email');
+            const amountStr = urlParams.get('amount') || '0.00';
+            const amount = parseFloat(amountStr);
+            const description = urlParams.get('desc') || 'Vibe Coding Services';
 
             // DOM Elements
-            const loadingEl = document.getElementById('status-loading');
             const successEl = document.getElementById('status-success');
             const errorEl = document.getElementById('status-error');
-            const bookingSection = document.getElementById('booking-section');
             
-            // Receipt Elements
             const txnIdEl = document.getElementById('txn-id');
             const nameEl = document.getElementById('receipt-name');
             const amountEl = document.getElementById('receipt-amount');
             const descEl = document.getElementById('receipt-desc');
 
-            // Logic to show correct state
             if (isError) {
                 errorEl.classList.remove('hidden');
             } else {
@@ -125,16 +126,34 @@
                 amountEl.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 descEl.innerText = decodeURIComponent(description);
 
-                // Optional: Hide booking section if "Training" is not in description
-                // if (!description.toLowerCase().includes('training')) {
-                //    bookingSection.classList.add('hidden');
-                // }
-
                 successEl.classList.remove('hidden');
                 
-                // Optional: Trigger confetti or analytics here
+                // Trigger Email Receipt via Worker
+                if (email) {
+                    sendEmailReceipt(name, email, amountStr, description);
+                }
             }
         });
+
+        async function sendEmailReceipt(name, email, amount, desc) {
+            try {
+                await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'send_email',
+                        user_name: decodeURIComponent(name),
+                        user_email: email,
+                        total_amount: 'RM ' + amount,
+                        items_purchased: decodeURIComponent(desc),
+                        email_subject: 'Receipt: Smart Aging System Payment'
+                    })
+                });
+                console.log('Receipt email triggered');
+            } catch (e) {
+                console.error('Failed to send receipt email', e);
+            }
+        }
     </script>
 </body>
 </html>
