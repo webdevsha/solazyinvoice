@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO Meta Description -->
-    <meta name="description" content="Official Quotation for Zhafirah Redza (Sungai Buloh). Development of Smart Aging People Information Management System. Ref: VCA-ZR-2026-001-REV2.">
+    <meta name="description" content="Official Quotation for Zhafirah Redza (Sungai Buloh). Development of Smart Aging People Information Management System. Ref: VCA-ZR-2026-001-REV3.">
     
     <title>Quotation: Smart Aging Management System</title>
     
@@ -103,7 +103,7 @@
                         <span>OFFICIAL INVOICE / QUOTATION</span>
                     </div>
                     <p class="text-sm text-gray-500 mt-2">Date: January 22, 2026</p>
-                    <p class="text-sm text-gray-500">Ref: VCA-ZR-2026-001-REV2</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-ZR-2026-001-REV3</p>
                 </div>
             </div>
 
@@ -357,9 +357,11 @@
     <script>
         const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
         
-        // Configurable Brand IDs (Fill these with your real IDs)
+        // Brand IDs configuration
         const CHIP_IN_BRAND_ID_LIVE = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
-        const CHIP_IN_BRAND_ID_TEST = 'test-brand-id-placeholder'; // Client to replace with Test Brand ID
+        // NOTE: Use the SAME ID for test if you don't have a specific test ID, 
+        // as the Worker will switch the SECRET KEY based on mode.
+        const CHIP_IN_BRAND_ID_TEST = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
 
         document.addEventListener('DOMContentLoaded', () => { if(typeof lucide !== 'undefined') lucide.createIcons(); });
 
@@ -446,7 +448,7 @@
                 const payAmount = isDeposit ? total * depositRate : total;
                 const desc = `Payment: ${items.join(', ')} (${isDeposit ? 'Deposit' : 'Full'})`;
 
-                // Determine Mode
+                // Determine Mode & Brand ID
                 const isTestMode = testModeToggle.checked;
                 const activeBrandId = isTestMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
 
@@ -460,7 +462,7 @@
                 const payload = {
                     action: 'create_payment',
                     mode: isTestMode ? 'test' : 'live', // Send mode flag to worker
-                    brand_id: activeBrandId, // Send appropriate Brand ID
+                    brand_id: activeBrandId, 
                     client: { email: email, first_name: 'Zhafirah', last_name: 'Redza' },
                     purchase: {
                         currency: 'MYR',
@@ -481,14 +483,22 @@
                 });
 
                 const data = await res.json();
+                
                 if (res.ok && data.checkout_url) {
                     window.location.href = data.checkout_url;
                 } else {
-                    alert('Payment Init Failed. Check Console.');
-                    console.error(data);
+                    console.error('Payment Error:', data);
+                    // Specific error handling
+                    if (data.__all__ && data.__all__[0].code === 'purchase_client_or_id_required') {
+                        alert('Error: Client details missing. Please contact support.');
+                    } else if (data.brand_id) {
+                        alert(`Error: Invalid Brand ID (${activeBrandId}). Please check configuration.`);
+                    } else {
+                        alert('Payment Init Failed: ' + JSON.stringify(data));
+                    }
                 }
             } catch (e) {
-                alert('Connection Error');
+                alert('Connection Error: ' + e.message);
                 console.error(e);
             } finally {
                 btn.innerHTML = oldText;
