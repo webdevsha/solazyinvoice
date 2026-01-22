@@ -32,22 +32,23 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
             <p class="text-gray-500 mb-6">Thank you. Your transaction has been completed successfully. A receipt has been sent to your email.</p>
             
+            <!-- Success Details -->
             <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-gray-100">
                 <div>
                     <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Paid By</p>
-                    <p class="text-sm font-medium text-gray-800" id="receipt-name">Client Name</p>
+                    <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
                 </div>
                 <div>
                     <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Payment For</p>
-                    <p class="text-sm font-medium text-gray-800 leading-snug" id="receipt-desc">Service Description</p>
+                    <p class="text-sm font-medium text-gray-800 leading-snug receipt-desc">Service Description</p>
                 </div>
                 <div class="border-t border-gray-200 pt-3 flex justify-between items-center">
                     <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Total Amount</p>
-                    <p class="text-xl font-bold text-green-600" id="receipt-amount">RM 0.00</p>
+                    <p class="text-xl font-bold text-green-600 receipt-amount">RM 0.00</p>
                 </div>
                 <div class="pt-1">
                     <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Transaction Ref</p>
-                    <p class="text-xs font-mono text-gray-500 break-all" id="txn-id">Loading...</p>
+                    <p class="text-xs font-mono text-gray-500 break-all txn-id">Loading...</p>
                 </div>
             </div>
 
@@ -71,6 +72,18 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Payment Failed</h2>
             <p class="text-gray-500 mb-6">We couldn't process your payment. This might be due to a declined card or a network issue.</p>
             
+            <!-- Failure Details (Reusing Logic) -->
+            <div class="bg-red-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-red-100">
+                <div>
+                    <p class="text-xs text-red-400 uppercase font-semibold tracking-wider mb-1">Attempted By</p>
+                    <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
+                </div>
+                <div class="border-t border-red-200 pt-3 flex justify-between items-center">
+                    <p class="text-xs text-red-400 uppercase font-semibold tracking-wider">Amount Failed</p>
+                    <p class="text-xl font-bold text-red-600 receipt-amount">RM 0.00</p>
+                </div>
+            </div>
+
             <div class="flex gap-3">
                 <a href="javascript:history.back()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors">
                     Try Again
@@ -93,7 +106,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             
-            const isError = urlParams.get('error') === 'true' || urlParams.get('status') === 'failed';
+            // Checks for 'error' presence OR specific status
+            const isError = urlParams.get('error') || urlParams.get('status') === 'failed';
             
             // Extract Details
             const txnId = urlParams.get('id') || urlParams.get('payment_id') || 'N/A';
@@ -103,27 +117,28 @@
             const amount = parseFloat(amountStr);
             const description = urlParams.get('desc') || 'Vibe Coding Services';
 
-            // DOM Elements
+            // Select Elements by Class (to update both Success and Failure cards)
+            const nameEls = document.querySelectorAll('.receipt-name');
+            const amountEls = document.querySelectorAll('.receipt-amount');
+            const descEls = document.querySelectorAll('.receipt-desc');
+            const txnIdEls = document.querySelectorAll('.txn-id');
+
+            // Populate Data in all Cards
+            nameEls.forEach(el => el.innerText = decodeURIComponent(name));
+            amountEls.forEach(el => el.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+            descEls.forEach(el => el.innerText = decodeURIComponent(description));
+            txnIdEls.forEach(el => el.innerText = txnId !== 'N/A' ? txnId : `TXN-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
+
+            // Toggle Visibility
             const successEl = document.getElementById('status-success');
             const errorEl = document.getElementById('status-error');
-            
-            const txnIdEl = document.getElementById('txn-id');
-            const nameEl = document.getElementById('receipt-name');
-            const amountEl = document.getElementById('receipt-amount');
-            const descEl = document.getElementById('receipt-desc');
 
             if (isError) {
                 errorEl.classList.remove('hidden');
             } else {
-                // Populate Data
-                txnIdEl.innerText = txnId !== 'N/A' ? txnId : `TXN-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-                nameEl.innerText = decodeURIComponent(name);
-                amountEl.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                descEl.innerText = decodeURIComponent(description);
-
                 successEl.classList.remove('hidden');
                 
-                // Trigger Email Receipt via Worker
+                // Trigger Email Receipt via Worker (Only on Success)
                 if (email) {
                     sendEmailReceipt(name, email, amountStr, description);
                 }
