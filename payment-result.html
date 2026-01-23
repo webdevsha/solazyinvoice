@@ -219,7 +219,12 @@
                 errorEl.classList.remove('hidden');
             } else if (method === 'manual') {
                 manualEl.classList.remove('hidden');
-                // Trigger "Manual Submitted" Email if needed, or rely on user to email receipt
+                // Trigger "Manual Submitted" Email if needed
+                if (email) {
+                    // Update subject for manual flow context
+                    const manualSubject = "Manual Transfer Submitted: " + subject;
+                    sendEmailReceipt(name, email, amountStr, description, manualSubject);
+                }
             } else {
                 successEl.classList.remove('hidden');
                 
