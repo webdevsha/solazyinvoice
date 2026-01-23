@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Description -->
+    <meta name="description" content="1:1 WordPress Training Quotation. Master WordPress from setup to security. Modular sessions (RM 99) or Value Bundle (RM 250) with free premium themes & plugins.">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Quotation: WordPress 1:1 Mastery">
+    <meta property="og:description" content="Personalized WordPress training. Choose individual modules or the complete bundle with free gifts.">
+    <meta property="og:image" content="https://ik.imagekit.io/cbctech/Deeptech.jpg"> <!-- Reusing existing asset as placeholder -->
+    <meta property="og:url" content="https://cetalabs.com">
+    <meta property="og:type" content="website">
+
+    <title>Quotation: WordPress 1:1 Training</title>
+    
+    <!-- Favicon (WP/Code) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FFFDF5;
+            --color-cream-dark: #F5F2E8;
+            --color-red-bold: #B91C1C; /* Red-700 */
+            --color-red-light: #FEE2E2;
+        }
+        body {
+            background-color: var(--color-cream-dark);
+            font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            padding-bottom: 120px;
+        }
+        .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-brand {
+            background-color: var(--color-red-bold);
+        }
+        .text-brand {
+            color: var(--color-red-bold);
+        }
+        .border-brand {
+            border-color: var(--color-red-bold);
+        }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+        
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            .border-t-8 { border-top-width: 4px !important; }
+            details { display: block; } 
+            details > summary { display: none; }
+            details > div { display: block !important; }
+        }
+        
+        /* Custom Checkbox */
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            width: 1.25em; height: 1.25em;
+            border: 2px solid #D1D5DB; border-radius: 0.25em;
+            display: grid; place-content: center; cursor: pointer;
+        }
+        .custom-checkbox::before {
+            content: ""; width: 0.65em; height: 0.65em; transform: scale(0);
+            transition: 120ms ease-in-out; box-shadow: inset 1em 1em white;
+            background-color: white; transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        .custom-checkbox:checked { background-color: var(--color-red-bold); border-color: var(--color-red-bold); }
+        .custom-checkbox:checked::before { transform: scale(1); }
+
+        /* Toggle Switch for Test/Live */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #B91C1C;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #B91C1C;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden border-t-8 border-brand">
+        
+        <!-- Header -->
+        <header class="p-8 border-b border-gray-100 bg-red-50/30">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-brand font-heading mb-1">Cetalabs</h1>
+                    <p class="text-sm text-gray-500 uppercase tracking-wide">Web Skills & Digital Training</p>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-brand font-semibold px-4 py-2 bg-red-50 rounded-full border border-red-100">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span>OFFICIAL QUOTATION</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Date: January 22, 2026</p>
+                    <p class="text-sm text-gray-500">Ref: VCA-WP-2026-001</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-white rounded-lg border border-gray-100 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Prepared For</h3>
+                    <p class="text-lg font-bold text-gray-800">WordPress Learner</p>
+                    <p class="text-gray-600">1:1 Personal Coaching Session</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Subject</h3>
+                    <p class="font-semibold text-brand">WordPress Mastery: Zero to Hero</p>
+                    <p class="text-sm text-gray-500 mt-1">Private coaching covering setup, design, functionality, and security.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="px-8 mt-6 no-print">
+            <div class="flex space-x-4 border-b border-gray-200">
+                <button onclick="switchTab('bundle')" id="tab-bundle" class="tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="package" class="w-4 h-4"></i>
+                    Option A: The Ultimate Bundle
+                </button>
+                <button onclick="switchTab('modular')" id="tab-modular" class="tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4"></i>
+                    Option B: Modular Sessions
+                </button>
+            </div>
+        </div>
+
+        <main class="p-8">
+            
+            <!-- Syllabus Section -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-brand rounded-full"></span>
+                    Training Modules
+                </h2>
+                <div class="space-y-4">
+                    <!-- Module 1 -->
+                    <details class="group bg-red-50 rounded-xl border border-red-100 open:ring-1 open:ring-red-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-red-100 rounded-lg text-brand">
+                                    <i data-lucide="server" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 1: Setup & Foundation (30 Mins)</h3>
+                                    <span class="text-xs font-medium text-brand uppercase tracking-wide">Domain, DNS, Hosting</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-red-100/50">
+                            <p class="text-sm text-gray-600 mb-2">We start from scratch. You will learn how to purchase a domain, configure DNS records, set up hosting, and perform a fresh WordPress installation.</p>
+                        </div>
+                    </details>
+
+                    <!-- Module 2 -->
+                    <details class="group bg-orange-50 rounded-xl border border-orange-100 open:ring-1 open:ring-orange-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-orange-100 rounded-lg text-orange-800">
+                                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 2: WordPress 101 (30 Mins)</h3>
+                                    <span class="text-xs font-medium text-orange-700 uppercase tracking-wide">Dashboard, Plugins, Content</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-orange-100/50">
+                            <p class="text-sm text-gray-600 mb-2">Navigating the dashboard, understanding the difference between Posts and Pages, managing media, and installing essential plugins.</p>
+                        </div>
+                    </details>
+
+                    <!-- Module 3 -->
+                    <details class="group bg-yellow-50 rounded-xl border border-yellow-100 open:ring-1 open:ring-yellow-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-yellow-100 rounded-lg text-yellow-800">
+                                    <i data-lucide="palette" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 3: Design & Features (30 Mins)</h3>
+                                    <span class="text-xs font-medium text-yellow-700 uppercase tracking-wide">WooCommerce, Forms, Builders</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-yellow-100/50">
+                            <p class="text-sm text-gray-600 mb-2">Customizing the look and feel using themes or page builders. Adding specific features like Contact Forms or e-Commerce functionality.</p>
+                        </div>
+                    </details>
+
+                    <!-- Module 4 -->
+                    <details class="group bg-green-50 rounded-xl border border-green-100 open:ring-1 open:ring-green-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-green-100 rounded-lg text-green-800">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 4: Security & Maintenance (30 Mins)</h3>
+                                    <span class="text-xs font-medium text-green-700 uppercase tracking-wide">Backups, Updates, Safety</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-green-100/50">
+                            <p class="text-sm text-gray-600 mb-2">Best practices to keep your site safe. Setting up automated backups, handling updates, and basic firewall configuration.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Pricing Tables -->
+            
+            <!-- Option A: Bundle -->
+            <div id="pricing-bundle" class="block animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option A: The Ultimate Bundle</h3>
+                        <p class="text-sm text-gray-500">Complete 2-hour intensive training + Gifts.</p>
+                    </div>
+                    <span class="text-sm bg-brand text-white px-3 py-1 rounded-full shadow-sm">Best Value</span>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-red-50 transition-colors bg-red-50/30">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="WordPress Ultimate Bundle (4 Modules + Gifts)" data-price="250" checked disabled onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>WordPress Mastery: Zero to Hero Bundle</strong>
+                                <p class="text-xs text-gray-500 mt-1">Includes all 4 modules (Setup, 101, Design, Security).</p>
+                                <div class="mt-2 flex items-center gap-2 text-xs font-bold text-brand">
+                                    <i data-lucide="gift" class="w-4 h-4"></i>
+                                    <span>FREE GIFT: "My Go-To Plugins + Theme Pack" (Ready to Use)</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <span class="block text-gray-400 line-through text-xs">RM 396.00</span>
+                                <span class="text-xl font-bold text-gray-800">RM 250.00</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Option B: Modular -->
+            <div id="pricing-modular" class="hidden animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Option B: Individual Modules</h3>
+                        <p class="text-sm text-gray-500">Pay as you learn. RM 99 per 30-minute session.</p>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse mb-6">
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 1: Setup & Foundation" data-price="99" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 1: Setup & Foundation</strong>
+                                <p class="text-xs text-gray-500 mt-1">DNS, Domain, Hosting Setup.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 2: WordPress 101" data-price="99" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 2: WordPress 101</strong>
+                                <p class="text-xs text-gray-500 mt-1">Plugins, Posts vs Pages.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 3: Design & Features" data-price="99" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 3: Design & Features</strong>
+                                <p class="text-xs text-gray-500 mt-1">WooCommerce, Forms, Customization.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 4: Security & Maintenance" data-price="99" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 4: Security & Maintenance</strong>
+                                <p class="text-xs text-gray-500 mt-1">Backups, Updates, Safety.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Receipt Recipient -->
+            <div class="mt-8 bg-white rounded-lg p-6 border border-gray-200 shadow-sm no-print">
+                <h3 class="text-gray-800 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-gray-600"></i>
+                    Receipt Recipient
+                </h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="billing-email" value="" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-700 focus:border-red-700 outline-none transition" placeholder="Enter your email address">
+                    <p class="text-xs text-gray-500 mt-1">Receipts and training materials will be sent here.</p>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-brand shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-4 transform translate-y-full transition-transform duration-300 z-40 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="text-right md:text-left">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Amount</p>
+                        <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 250.00</p>
+                        <p class="text-xs text-gray-500 font-medium">+ RM 2.00 Processing Fee</p>
+                    </div>
+                    <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
+                    
+                    <!-- Test Mode Toggle -->
+                    <label class="flex items-center cursor-pointer relative gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+                        <span class="text-sm font-medium text-gray-700 mr-2">Test Mode</span>
+                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                            <input type="checkbox" name="toggle" id="test-mode-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                            <label for="test-mode-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+                        </div>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-brand text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
+                    <span class="flex flex-col items-start leading-tight">
+                        <span class="text-xs opacity-80 font-normal">Secure Checkout via</span>
+                        <span class="text-sm">Chip-in Asia</span>
+                    </span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 py-8 px-8 mt-auto print:hidden">
+            <div class="grid md:grid-cols-2 gap-8 text-sm">
+                <div>
+                    <h4 class="font-bold text-white mb-2 uppercase tracking-wide">Terms & Conditions</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-400">
+                        <li>Payment is non-refundable once session is booked.</li>
+                        <li>Validity: This quotation is valid for 30 days.</li>
+                        <li>Training Platform: Google Meet / Zoom.</li>
+                    </ul>
+                </div>
+                <div class="md:text-right flex flex-col justify-between">
+                    <div>
+                        <p class="mb-4">Authorized Signature:</p>
+                        <div class="h-12 border-b border-gray-600 w-48 ml-auto mb-2"></div>
+                        <p class="font-bold text-white">Shafira Noh</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-xs text-gray-600 border-t border-gray-800 pt-4">
+                &copy; 2026 <a href="https://cetalabs.com" target="_blank" class="hover:text-white transition-colors font-medium">Cetalabs</a> by <a href="https://shafiranoh.com" target="_blank" class="hover:text-red-400 transition-colors font-bold">Shafira Noh</a>. All Rights Reserved.
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID_LIVE = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+        const CHIP_IN_BRAND_ID_TEST = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+            calculateTotal(); // Init calc
+        });
+
+        function switchTab(tabName) {
+            const bundle = document.getElementById('pricing-bundle');
+            const modular = document.getElementById('pricing-modular');
+            const btnBundle = document.getElementById('tab-bundle');
+            const btnModular = document.getElementById('tab-modular');
+
+            if (tabName === 'bundle') {
+                bundle.classList.remove('hidden'); modular.classList.add('hidden');
+                btnBundle.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                btnModular.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            } else {
+                bundle.classList.add('hidden'); modular.classList.remove('hidden');
+                btnBundle.className = `tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+                btnModular.className = `tab-active py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2`;
+            }
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            // Determine active tab to know which checkboxes to count
+            const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
+            const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
+            const checkboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            
+            const dock = document.getElementById('payment-dock');
+            const display = document.getElementById('payment-total');
+
+            let total = 0;
+            checkboxes.forEach(box => {
+                total += parseFloat(box.dataset.price);
+            });
+
+            if (total > 0) dock.classList.remove('translate-y-full');
+            else dock.classList.add('translate-y-full');
+
+            display.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        async function processPayment() {
+            // Determine active tab to know which checkboxes to collect
+            const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
+            const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
+            const checkboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            
+            const testModeToggle = document.getElementById('test-mode-toggle');
+            const email = document.getElementById('billing-email').value;
+            
+            let visibleCheckboxes = [];
+            checkboxes.forEach(box => { visibleCheckboxes.push(box); });
+
+            if (visibleCheckboxes.length === 0) return alert("Please select a module or bundle.");
+            if (!email || !email.includes('@')) return alert("Valid email required.");
+
+            const btn = document.getElementById('pay-btn');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
+            btn.disabled = true;
+
+            try {
+                let total = 0;
+                let items = [];
+                visibleCheckboxes.forEach(box => {
+                    total += parseFloat(box.dataset.price);
+                    items.push(box.dataset.name);
+                });
+
+                // No deposit logic for this quotation, full payment + fee
+                const payAmount = total; 
+                const desc = `WordPress Training: ${items.join(', ')}`;
+                const finalAmountPaid = (payAmount + 2).toFixed(2);
+
+                const isTestMode = testModeToggle.checked;
+                const activeBrandId = isTestMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
+
+                const params = new URLSearchParams({
+                    name: 'WordPress Learner',
+                    email: email,
+                    amount: finalAmountPaid, 
+                    desc: desc,
+                    items: items.join(', '),
+                    subject: "Receipt: WordPress 1:1 Training"
+                }).toString();
+
+                let currentUrl = window.location.href;
+                let successUrl, failureUrl;
+                const resultPage = 'payment-result.html';
+
+                if (window.location.protocol.startsWith('http')) {
+                    const baseUrl = new URL('.', window.location.href).href;
+                    successUrl = new URL(`${resultPage}?${params}`, baseUrl).href;
+                    failureUrl = new URL(`${resultPage}?error=true&${params}`, baseUrl).href;
+                } else {
+                    successUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?${params}`; 
+                    failureUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?error=true&${params}`;
+                }
+
+                const payload = {
+                    action: 'create_payment',
+                    mode: isTestMode ? 'test' : 'live',
+                    brand_id: activeBrandId, 
+                    client: { email: email, first_name: 'WordPress', last_name: 'Learner' },
+                    purchase: {
+                        currency: 'MYR',
+                        products: [
+                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: "Processing Fee", price: 200, quantity: 1 }
+                        ],
+                        notes: desc,
+                        email_subject: "Receipt: WordPress 1:1 Training"
+                    },
+                    success_redirect: successUrl,
+                    failure_redirect: failureUrl
+                };
+
+                const res = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    console.error('Payment Error:', data);
+                    alert('Payment Init Failed. Check Console.');
+                }
+            } catch (e) {
+                alert('Connection Error: ' + e.message);
+                console.error(e);
+            } finally {
+                btn.innerHTML = oldText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
