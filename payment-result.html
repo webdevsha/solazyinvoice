@@ -24,7 +24,7 @@
             <p class="text-gray-500">Please wait while we confirm your transaction.</p>
         </div>
 
-        <!-- Success State -->
+        <!-- Success State (Online Payment) -->
         <div id="status-success" class="hidden">
             <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i data-lucide="check-circle" class="w-10 h-10"></i>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Booking Section -->
+            <!-- Booking Section (Dynamic) -->
             <div id="booking-section" class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
                 <div class="flex items-center justify-center gap-2 text-blue-800 font-bold mb-2">
                     <i data-lucide="calendar-check" class="w-5 h-5"></i>
@@ -60,9 +60,47 @@
                 </div>
                 <p class="text-sm text-blue-600 mb-3">Please book your preferred date and time for the training session included in your package.</p>
                 <a href="https://shafiranoh.com/power-hour.html" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors text-sm">
-                    Book Training Slot
+                    Book Training/ Meeting Slot
                 </a>
             </div>
+
+        <!-- Manual Transfer State -->
+        <div id="status-manual" class="hidden">
+            <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="banknote" class="w-10 h-10"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Manual Transfer Instructions</h2>
+            <p class="text-gray-500 mb-6">Please complete your payment using the details below. Access will be granted once receipt is verified.</p>
+            
+            <!-- Bank Details -->
+            <div class="bg-blue-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-blue-200">
+                <div class="font-mono text-sm text-gray-700 space-y-2">
+                    <div class="flex justify-between"><span>Bank:</span> <strong>Maybank</strong></div>
+                    <div class="flex justify-between"><span>Account:</span> <strong>5628 7051 3533</strong></div>
+                    <div class="flex justify-between"><span>Name:</span> <strong>Cubic Tech</strong></div>
+                </div>
+                
+                <div class="border-t border-blue-200 pt-3">
+                     <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider mb-1">Amount to Transfer</p>
+                     <p class="text-xl font-bold text-blue-700 receipt-amount">RM 0.00</p>
+                </div>
+                
+                 <div>
+                    <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider mb-1">Reference</p>
+                    <p class="text-sm font-medium text-gray-800 leading-snug receipt-desc">Service Description</p>
+                </div>
+            </div>
+
+            <!-- Upload / Next Step -->
+            <div class="mb-6">
+                <p class="text-sm text-gray-600 mb-3"><strong>Final Step:</strong> Email your receipt proof to <a href="mailto:hai@shafiranoh.com" class="text-blue-600 underline">hai@shafiranoh.com</a></p>
+                <a href="mailto:hai@shafiranoh.com?subject=Payment Receipt" class="block w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-3 px-6 rounded-lg transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4 inline mr-2"></i> Send Receipt via Email
+                </a>
+            </div>
+
+            <a href="/" class="text-sm text-gray-400 hover:text-gray-600 underline">Return to Home</a>
+        </div>
 
         <!-- Failure State -->
         <div id="status-error" class="hidden">
@@ -72,7 +110,7 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Payment Failed</h2>
             <p class="text-gray-500 mb-6">We couldn't process your payment. This might be due to a declined card or a network issue.</p>
             
-            <!-- Failure Details (Reusing Logic) -->
+            <!-- Failure Details -->
             <div class="bg-red-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-red-100">
                 <div>
                     <p class="text-xs text-red-400 uppercase font-semibold tracking-wider mb-1">Attempted By</p>
@@ -88,7 +126,7 @@
                 <a href="javascript:history.back()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors">
                     Try Again
                 </a>
-                <a href="mailto:hai@shafiranoh.com" class="flex-1 border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors">
+                <a href="mailto:support@cetalabs.com" class="flex-1 border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors">
                     Contact Support
                 </a>
             </div>
@@ -106,8 +144,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             
-            // Checks for 'error' presence OR specific status
             const isError = urlParams.get('error') || urlParams.get('status') === 'failed';
+            const method = urlParams.get('method'); // Check for 'manual'
             
             // Extract Details
             const txnId = urlParams.get('id') || urlParams.get('payment_id') || 'N/A';
@@ -116,32 +154,33 @@
             const amountStr = urlParams.get('amount') || '0.00';
             const amount = parseFloat(amountStr);
             const description = urlParams.get('desc') || 'Vibe Coding Services';
-            
-            // Dynamic Subject (Fixes the Nurinnai/Aging issue)
             const subject = urlParams.get('subject') || 'Payment Receipt';
 
-            // Select Elements by Class (to update both Success and Failure cards)
+            // Select Elements by Class
             const nameEls = document.querySelectorAll('.receipt-name');
             const amountEls = document.querySelectorAll('.receipt-amount');
             const descEls = document.querySelectorAll('.receipt-desc');
             const txnIdEls = document.querySelectorAll('.txn-id');
 
-            // Populate Data in all Cards
+            // Populate Data
             nameEls.forEach(el => el.innerText = decodeURIComponent(name));
             amountEls.forEach(el => el.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
             descEls.forEach(el => el.innerText = decodeURIComponent(description));
             txnIdEls.forEach(el => el.innerText = txnId !== 'N/A' ? txnId : `TXN-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
 
-            // Toggle Visibility
+            // Toggle State Visibility
             const successEl = document.getElementById('status-success');
+            const manualEl = document.getElementById('status-manual');
             const errorEl = document.getElementById('status-error');
 
             if (isError) {
                 errorEl.classList.remove('hidden');
+            } else if (method === 'manual') {
+                manualEl.classList.remove('hidden');
             } else {
                 successEl.classList.remove('hidden');
                 
-                // Trigger Email Receipt via Worker (Only on Success)
+                // Trigger Email Receipt via Worker (Only on Success/Online)
                 if (email) {
                     sendEmailReceipt(name, email, amountStr, description, subject);
                 }
@@ -159,8 +198,7 @@
                         user_email: email,
                         total_amount: 'RM ' + amount,
                         items_purchased: decodeURIComponent(desc),
-                        // Pass the dynamic subject from URL
-                        email_subject: decodeURIComponent(subject) 
+                        email_subject: decodeURIComponent(subject)
                     })
                 });
                 console.log('Receipt email triggered for: ' + subject);
