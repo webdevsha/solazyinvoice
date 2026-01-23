@@ -32,18 +32,24 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Payment Successful!</h2>
             <p class="text-gray-500 mb-6">Thank you. Your transaction has been completed successfully. A receipt has been sent to your email.</p>
             
-            <!-- Success Details -->
+            <!-- Details Card (Reused via JS) -->
             <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-gray-100">
-                <div>
-                    <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Paid By</p>
-                    <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Paid By</p>
+                        <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Date</p>
+                        <p class="text-sm font-mono text-gray-600">23 Jan 2026</p>
+                    </div>
                 </div>
                 <div>
                     <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider mb-1">Payment For</p>
                     <p class="text-sm font-medium text-gray-800 leading-snug receipt-desc">Service Description</p>
                 </div>
                 <div class="border-t border-gray-200 pt-3 flex justify-between items-center">
-                    <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Total Paid (inc. Fees)</p>
+                    <p class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Total Paid</p>
                     <p class="text-xl font-bold text-green-600 receipt-amount">RM 0.00</p>
                 </div>
                 <div class="pt-1">
@@ -52,8 +58,8 @@
                 </div>
             </div>
 
-            <!-- Booking Section (Dynamic) -->
-            <div id="booking-section" class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+            <!-- Booking Section -->
+            <div id="booking-section-success" class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
                 <div class="flex items-center justify-center gap-2 text-blue-800 font-bold mb-2">
                     <i data-lucide="calendar-check" class="w-5 h-5"></i>
                     <h3>Next Step: Schedule Training</h3>
@@ -64,24 +70,65 @@
                 </a>
             </div>
 
+            <a href="/" class="block w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                Return to Home
+            </a>
+        </div>
+
         <!-- Manual Transfer State -->
         <div id="status-manual" class="hidden">
             <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i data-lucide="banknote" class="w-10 h-10"></i>
             </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">Manual Transfer Submitted</h2>
-            <p class="text-gray-500 mb-6">We have recorded your submission. Please ensure you have emailed the receipt proof to us for faster verification.</p>
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Transfer Submitted</h2>
+            <p class="text-gray-500 mb-6">We have recorded your manual payment details. Please ensure you have transferred the amount below.</p>
             
-            <!-- Booking Section (Also shown for Manual) -->
-            <div class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
-                <div class="flex items-center justify-center gap-2 text-blue-800 font-bold mb-2">
+            <!-- Manual Details Card -->
+            <div class="bg-blue-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-blue-100">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider mb-1">Payer Name</p>
+                        <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider mb-1">Date</p>
+                        <p class="text-sm font-mono text-gray-600">23 Jan 2026</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-blue-200 pt-3">
+                    <div class="flex justify-between items-center mb-2">
+                         <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider">Amount Due</p>
+                         <p class="text-xl font-bold text-blue-700 receipt-amount">RM 0.00</p>
+                    </div>
+                    <div class="text-xs font-mono text-gray-600 bg-white p-3 rounded border border-blue-100">
+                        <p><strong>Bank:</strong> Maybank</p>
+                        <p><strong>Account:</strong> 5628 7051 3533</p>
+                        <p><strong>Name:</strong> Cubic Tech</p>
+                    </div>
+                </div>
+
+                 <div>
+                    <p class="text-xs text-blue-400 uppercase font-semibold tracking-wider mb-1">Reference</p>
+                    <p class="text-sm font-medium text-gray-800 leading-snug receipt-desc">Service Description</p>
+                </div>
+            </div>
+            
+            <!-- Booking Section (Manual) -->
+            <div class="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                <div class="flex items-center justify-center gap-2 text-gray-700 font-bold mb-2">
                     <i data-lucide="calendar-check" class="w-5 h-5"></i>
                     <h3>You Can Book Now</h3>
                 </div>
-                <p class="text-sm text-blue-600 mb-3">You don't have to wait for verification to reserve your slot.</p>
-                <a href="https://shafiranoh.com/power-hour.html" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors text-sm">
+                <p class="text-sm text-gray-500 mb-3">You don't have to wait for verification to reserve your slot.</p>
+                <a href="https://shafiranoh.com/power-hour.html" target="_blank" class="inline-block bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded transition-colors text-sm">
                     Book Training Slot
                 </a>
+            </div>
+
+            <!-- Email Action -->
+            <div class="text-sm text-gray-500 mb-4">
+                Verify faster? Email receipt to <a href="mailto:hai@shafiranoh.com" class="text-blue-600 underline">hai@shafiranoh.com</a>
             </div>
 
             <a href="/" class="text-sm text-gray-400 hover:text-gray-600 underline">Return to Home</a>
@@ -95,6 +142,18 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-2">Payment Failed</h2>
             <p class="text-gray-500 mb-6">We couldn't process your payment. This might be due to a declined card or a network issue.</p>
             
+            <!-- Failure Details -->
+            <div class="bg-red-50 rounded-lg p-6 mb-6 text-left space-y-4 border border-red-100">
+                <div>
+                    <p class="text-xs text-red-400 uppercase font-semibold tracking-wider mb-1">Attempted By</p>
+                    <p class="text-sm font-medium text-gray-800 receipt-name">Client Name</p>
+                </div>
+                <div class="border-t border-red-200 pt-3 flex justify-between items-center">
+                    <p class="text-xs text-red-400 uppercase font-semibold tracking-wider">Amount Failed</p>
+                    <p class="text-xl font-bold text-red-600 receipt-amount">RM 0.00</p>
+                </div>
+            </div>
+
             <div class="flex gap-3">
                 <a href="javascript:history.back()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors">
                     Try Again
@@ -108,37 +167,44 @@
     </div>
 
     <script>
-        // Initialize Icons
-        lucide.createIcons();
-
         // Worker URL for Email Trigger
         const WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Icons safely
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
             const urlParams = new URLSearchParams(window.location.search);
             
+            // Checks for 'error' presence OR specific status
             const isError = urlParams.get('error') || urlParams.get('status') === 'failed';
             const method = urlParams.get('method'); // Check for 'manual'
             
-            // Extract Details
-            const txnId = urlParams.get('id') || urlParams.get('payment_id') || 'N/A';
-            const name = urlParams.get('name') || 'Valued Client';
-            const email = urlParams.get('email');
-            const amountStr = urlParams.get('amount') || '0.00';
-            const amount = parseFloat(amountStr);
-            const description = urlParams.get('desc') || 'Vibe Coding Services';
-            const subject = urlParams.get('subject') || 'Payment Receipt';
+            // Extract Details (Safe Decoding)
+            const getParam = (key, fallback) => {
+                const val = urlParams.get(key);
+                if (!val) return fallback;
+                try { return decodeURIComponent(val.replace(/\+/g, ' ')); } catch(e) { return val; }
+            };
 
-            // Select Elements by Class
+            const txnId = getParam('id', getParam('payment_id', 'N/A'));
+            const name = getParam('name', 'Valued Client');
+            const email = getParam('email', '');
+            const amountStr = getParam('amount', '0.00');
+            const amount = parseFloat(amountStr);
+            const description = getParam('desc', getParam('description', 'Services'));
+            const subject = getParam('subject', 'Payment Receipt');
+
+            // Select Elements by Class (to update multiple instances in Success/Manual/Error cards)
             const nameEls = document.querySelectorAll('.receipt-name');
             const amountEls = document.querySelectorAll('.receipt-amount');
             const descEls = document.querySelectorAll('.receipt-desc');
             const txnIdEls = document.querySelectorAll('.txn-id');
 
             // Populate Data
-            nameEls.forEach(el => el.innerText = decodeURIComponent(name));
+            nameEls.forEach(el => el.innerText = name);
             amountEls.forEach(el => el.innerText = 'RM ' + amount.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-            descEls.forEach(el => el.innerText = decodeURIComponent(description));
+            descEls.forEach(el => el.innerText = description);
             txnIdEls.forEach(el => el.innerText = txnId !== 'N/A' ? txnId : `TXN-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
 
             // Toggle State Visibility
@@ -146,10 +212,14 @@
             const manualEl = document.getElementById('status-manual');
             const errorEl = document.getElementById('status-error');
 
+            // Hide Loading
+            document.getElementById('status-loading').classList.add('hidden');
+
             if (isError) {
                 errorEl.classList.remove('hidden');
             } else if (method === 'manual') {
                 manualEl.classList.remove('hidden');
+                // Trigger "Manual Submitted" Email if needed, or rely on user to email receipt
             } else {
                 successEl.classList.remove('hidden');
                 
@@ -167,11 +237,11 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         action: 'send_email',
-                        user_name: decodeURIComponent(name),
+                        user_name: name,
                         user_email: email,
                         total_amount: 'RM ' + amount,
-                        items_purchased: decodeURIComponent(desc),
-                        email_subject: decodeURIComponent(subject)
+                        items_purchased: desc,
+                        email_subject: subject
                     })
                 });
                 console.log('Receipt email triggered for: ' + subject);
