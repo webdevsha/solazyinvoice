@@ -112,7 +112,7 @@
                         <i data-lucide="file-text" class="w-4 h-4"></i>
                         <span>OFFICIAL QUOTATION</span>
                     </div>
-                    <p class="text-sm text-gray-500 mt-2">Date: January 22, 2026</p>
+                    <p class="text-sm text-gray-500 mt-2">Date: January 23, 2026</p>
                     <p class="text-sm text-gray-500">Ref: VCA-WP-2026-001</p>
                 </div>
             </div>
@@ -210,6 +210,25 @@
                             <p class="text-sm text-gray-600 mb-2">Customizing the look and feel using themes or page builders. Adding specific features like Contact Forms.</p>
                         </div>
                     </details>
+
+                    <!-- Module 4 -->
+                    <details class="group bg-green-50 rounded-xl border border-green-100 open:ring-1 open:ring-green-200 transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-green-100 rounded-lg text-green-800">
+                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-gray-800 text-lg">Module 4: Security & Maintenance (30 Mins)</h3>
+                                    <span class="text-xs font-medium text-green-700 uppercase tracking-wide">Backups, Updates, Safety</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
+                        </summary>
+                        <div class="px-6 pb-6 pt-2 border-t border-green-100/50">
+                            <p class="text-sm text-gray-600 mb-2">Best practices to keep your site safe. Setting up automated backups, handling updates, and basic firewall configuration.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
 
@@ -284,6 +303,16 @@
                             <td class="py-4 px-4">
                                 <strong>Module 3: Design & Features</strong>
                                 <p class="text-xs text-gray-500 mt-1">Theme Customization & UI Builders.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 4: Security & Maintenance" data-price="99" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Module 4: Security & Maintenance</strong>
+                                <p class="text-xs text-gray-500 mt-1">Backups, Updates, Safety.</p>
                             </td>
                             <td class="py-4 px-4 text-right">RM 99.00</td>
                         </tr>
@@ -363,12 +392,6 @@
                     </div>
                     <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
                     
-                    <!-- Deposit Toggle -->
-                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
-                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-brand rounded focus:ring-red-700" onchange="calculateTotal()">
-                        <span class="text-sm font-medium text-gray-700" id="deposit-text">Pay Deposit</span>
-                    </label>
-
                     <!-- Test Mode Toggle -->
                     <label class="flex items-center cursor-pointer relative gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
                         <span class="text-sm font-medium text-gray-700 mr-2">Test Mode</span>
@@ -423,17 +446,26 @@
                 </button>
             </div>
             <div class="p-6 space-y-6">
+                <!-- Total Amount Display -->
                 <div class="text-center">
-                     <p class="text-xs text-gray-500 uppercase font-semibold mb-1">Total Payable</p>
+                     <p class="text-xs text-gray-500 uppercase font-semibold mb-1">Total Payable Now</p>
                      <p class="text-4xl font-bold text-brand" id="modal-total-amount">RM 0.00</p>
                      <p class="text-xs text-gray-400 mt-1" id="modal-deposit-note"></p>
                 </div>
+
+                <!-- Deposit Toggle inside Modal -->
+                <div class="flex justify-center">
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-4 py-2 rounded-full border border-gray-200 hover:bg-gray-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-brand rounded focus:ring-red-700" onchange="calculateTotal()">
+                        <span class="text-sm font-medium text-gray-700">Pay 70% Deposit</span>
+                    </label>
+                </div>
     
-                <!-- Online -->
+                <!-- Online Payment Button -->
                 <button onclick="processOnlinePayment()" class="w-full bg-brand text-white font-bold py-4 px-4 rounded-lg flex items-center justify-center gap-3 hover:bg-red-800 transition-all shadow-md group">
                     <i data-lucide="credit-card" class="w-5 h-5"></i>
                     <span class="flex flex-col items-start leading-tight">
-                        <span class="text-sm">Pay Online (Instant Receipt)</span>
+                        <span class="text-sm">Pay Online (Instant)</span>
                         <span class="text-[10px] opacity-80 font-normal">FPX / Credit Card / E-Wallet</span>
                     </span>
                     <i data-lucide="chevron-right" class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
@@ -445,24 +477,32 @@
                     <div class="relative flex justify-center text-xs uppercase"><span class="px-3 bg-white text-gray-400">Or pay manually</span></div>
                 </div>
     
-                <!-- Manual -->
+                <!-- Manual Transfer Section (Form) -->
                 <details class="group bg-gray-50 rounded-lg border border-gray-200">
                      <summary class="p-4 cursor-pointer font-bold text-gray-700 flex items-center justify-between hover:bg-gray-100 transition-colors rounded-lg">
-                        <span class="flex items-center gap-2"><i data-lucide="banknote" class="w-4 h-4"></i> Manual Bank Transfer</span>
+                        <span class="flex items-center gap-2"><i data-lucide="banknote" class="w-4 h-4"></i> Manual Transfer</span>
                         <i data-lucide="chevron-down" class="w-4 h-4 group-open:rotate-180 transition-transform"></i>
                      </summary>
                      <div class="p-4 border-t border-gray-200 text-sm text-gray-600 bg-white rounded-b-lg">
-                         <p class="mb-3 text-xs text-gray-500">Please transfer the exact amount to:</p>
-                         <ul class="bg-gray-50 p-3 rounded border border-gray-200 space-y-2 font-mono mb-3 text-gray-800">
-                             <li class="flex justify-between"><span>Bank:</span> <strong>Maybank</strong></li>
-                             <li class="flex justify-between"><span>Name:</span> <strong>Shafira Noh</strong></li>
-                             <li class="flex justify-between"><span>Acc:</span> <strong>1621 0666 4444</strong></li>
-                             <li class="flex justify-between"><span>Ref:</span> <strong>WP-Training</strong></li>
-                         </ul>
-                         <p class="text-xs text-gray-500">
-                            <strong>Step 2:</strong> Email your receipt to <a href="mailto:hai@shafiranoh.com" class="text-brand underline font-bold">hai@shafiranoh.com</a>.<br>
-                            Access will be granted within 24 hours of verification.
-                         </p>
+                         <div class="bg-blue-50 p-3 rounded border border-blue-100 mb-4 text-xs font-mono text-blue-900">
+                             <div class="flex justify-between"><span>Bank:</span> <strong>Maybank</strong></div>
+                             <div class="flex justify-between"><span>Account:</span> <strong>5628 7051 3533</strong></div>
+                             <div class="flex justify-between"><span>Name:</span> <strong>Cubic Tech</strong></div>
+                         </div>
+                         
+                         <div class="space-y-3">
+                             <div>
+                                 <label class="block text-xs font-bold text-gray-500 mb-1">Your Name</label>
+                                 <input type="text" id="manual-name" class="w-full p-2 border border-gray-300 rounded text-sm" placeholder="Sender Name">
+                             </div>
+                             <div>
+                                 <label class="block text-xs font-bold text-gray-500 mb-1">Upload Receipt</label>
+                                 <input type="file" id="manual-receipt" class="w-full p-2 border border-gray-300 rounded text-sm bg-white">
+                             </div>
+                             <button onclick="processManualPayment()" class="w-full bg-gray-800 text-white font-bold py-2 rounded hover:bg-gray-900 transition text-xs">
+                                 I have transferred & uploaded receipt
+                             </button>
+                         </div>
                      </div>
                 </details>
             </div>
@@ -476,7 +516,7 @@
 
         document.addEventListener('DOMContentLoaded', () => { 
             if(typeof lucide !== 'undefined') lucide.createIcons();
-            calculateTotal(); // Init calc
+            calculateTotal(); 
         });
 
         function switchTab(tabName) {
@@ -497,12 +537,12 @@
             calculateTotal();
         }
 
-        // Global state for total to pass to modal
+        // Global variables
         let currentTotalPayment = 0; 
-        let currentIsDeposit = false;
+        let currentItems = [];
+        let currentDesc = "";
 
         function calculateTotal() {
-            // Determine active tab to know which checkboxes to count
             const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
             const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
             const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
@@ -510,147 +550,121 @@
             
             const dock = document.getElementById('payment-dock');
             const display = document.getElementById('payment-total');
+            const modalDisplay = document.getElementById('modal-total-amount');
             const depositToggle = document.getElementById('deposit-toggle');
-            const depositLabel = document.getElementById('deposit-label');
-            const depositText = document.getElementById('deposit-text');
+            const depositNote = document.getElementById('modal-deposit-note');
 
             let total = 0;
-            mainCheckboxes.forEach(box => total += parseFloat(box.dataset.price));
-            addonCheckboxes.forEach(box => total += parseFloat(box.dataset.price));
+            currentItems = [];
+            
+            const processBox = (box) => {
+                total += parseFloat(box.dataset.price);
+                currentItems.push(box.dataset.name);
+            };
+            
+            mainCheckboxes.forEach(processBox);
+            addonCheckboxes.forEach(processBox);
 
             if (total > 0) dock.classList.remove('translate-y-full');
             else dock.classList.add('translate-y-full');
 
-            // Deposit Logic: 70% if < 1000, 50% if >= 1000
-            const depositRate = total < 1000 ? 0.7 : 0.5;
-            const percentageText = Math.round(depositRate * 100) + '%';
-            depositText.innerText = `Pay ${percentageText} Deposit`;
-
+            // 70% Deposit Logic
             let finalTotal = total;
-            if (depositToggle.checked) {
-                finalTotal = total * depositRate;
-                depositLabel.innerText = `Deposit (${percentageText}) Applied`;
-                depositLabel.classList.remove('hidden');
+            let isDeposit = depositToggle.checked;
+            
+            if (isDeposit && total < 1000) {
+                finalTotal = total * 0.7;
+                depositNote.innerText = "70% Deposit (Balance due after training)";
             } else {
-                depositLabel.classList.add('hidden');
+                depositNote.innerText = "Full Payment";
+                // If user toggled deposit but amount > 1000, uncheck logic could go here, 
+                // but prompt says "For all under RM 1000, deposit allowed is 70%".
+                // We'll assume full payment for > 1000 or keep it simple.
             }
 
-            if(total > 0) finalTotal += 2; // Processing fee
+            if(total > 0) finalTotal += 2; // Fee
 
             currentTotalPayment = finalTotal;
-            currentIsDeposit = depositToggle.checked;
+            currentDesc = `WordPress Training: ${currentItems.join(', ')} (${isDeposit ? 'Deposit' : 'Full'})`;
 
-            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const formattedTotal = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2 });
+            display.innerText = formattedTotal;
+            modalDisplay.innerText = formattedTotal;
         }
 
-        // Modal Functions
         function openPaymentModal() {
-            const modal = document.getElementById('payment-modal');
-            const modalTotal = document.getElementById('modal-total-amount');
-            const modalNote = document.getElementById('modal-deposit-note');
-            
-            // Check basics
-            const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
-            const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
-            const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
-            const addonCheckboxes = document.querySelectorAll(`#pricing-addons .module-selector:checked`);
-            
-            if (mainCheckboxes.length === 0 && addonCheckboxes.length === 0) {
-                return alert("Please select a module or bundle.");
-            }
+            // Validate first
             const email = document.getElementById('billing-email').value;
+            if (currentItems.length === 0) return alert("Please select a module.");
             if (!email || !email.includes('@')) {
+                 document.getElementById('billing-email').focus();
                  return alert("Please enter a valid email address first.");
             }
-
-            // Populate Modal
-            modalTotal.innerText = 'RM ' + currentTotalPayment.toLocaleString('en-MY', { minimumFractionDigits: 2 });
             
-            if (currentIsDeposit) {
-                const depositLabel = document.getElementById('deposit-label').innerText;
-                modalNote.innerText = `Includes Processing Fee. ${depositLabel}. Balance due upon training completion.`;
-            } else {
-                modalNote.innerText = "Full Payment + Processing Fee.";
-            }
+            // Sync inputs to manual form
+            document.getElementById('manual-name').value = "WordPress Learner"; // Default or pull from somewhere if available
 
-            modal.classList.remove('hidden');
+            document.getElementById('payment-modal').classList.remove('hidden');
         }
 
         function closePaymentModal() {
             document.getElementById('payment-modal').classList.add('hidden');
         }
 
-        async function processOnlinePayment() {
-            const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
-            const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
-            const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
-            const addonCheckboxes = document.querySelectorAll(`#pricing-addons .module-selector:checked`);
-            
-            const depositToggle = document.getElementById('deposit-toggle');
-            const testModeToggle = document.getElementById('test-mode-toggle');
+        // Shared Redirect Logic
+        function getRedirectUrls(isManual = false) {
             const email = document.getElementById('billing-email').value;
+            const name = isManual ? document.getElementById('manual-name').value : 'WordPress Learner';
             
-            // UI Feedback (on the modal button)
+            const params = new URLSearchParams({
+                name: name,
+                email: email,
+                amount: currentTotalPayment.toFixed(2),
+                desc: currentDesc,
+                items: currentItems.join(', '),
+                subject: "Receipt: WordPress 1:1 Training",
+                method: isManual ? 'manual' : 'online'
+            }).toString();
+
+            const resultPage = 'payment-result.html';
+            let successUrl, failureUrl;
+
+            if (window.location.protocol.startsWith('http')) {
+                const baseUrl = new URL('.', window.location.href).href;
+                successUrl = new URL(`${resultPage}?${params}`, baseUrl).href;
+                failureUrl = new URL(`${resultPage}?error=true&${params}`, baseUrl).href;
+            } else {
+                successUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?${params}`; 
+                failureUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?error=true&${params}`;
+            }
+            return { successUrl, failureUrl };
+        }
+
+        // 1. Online Payment Flow
+        async function processOnlinePayment() {
             const btn = document.querySelector('#payment-modal button[onclick="processOnlinePayment()"]');
             const oldContent = btn.innerHTML;
-            btn.innerHTML = `<div class="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div> Processing...`;
+            btn.innerHTML = `Processing...`;
             btn.disabled = true;
 
             try {
-                let total = 0;
-                let items = [];
-                const collectItem = (box) => {
-                    total += parseFloat(box.dataset.price);
-                    items.push(box.dataset.name);
-                };
-                mainCheckboxes.forEach(collectItem);
-                addonCheckboxes.forEach(collectItem);
-
-                const isDeposit = depositToggle.checked;
-                const depositRate = total < 1000 ? 0.7 : 0.5;
-                const payAmount = isDeposit ? total * depositRate : total;
-                const percentLabel = Math.round(depositRate * 100);
-                const desc = `WordPress Training: ${items.join(', ')} (${isDeposit ? `Deposit ${percentLabel}%` : 'Full'})`;
-                
-                const finalAmountPaid = (payAmount + 2).toFixed(2);
-
-                const isTestMode = testModeToggle.checked;
-                const activeBrandId = isTestMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
-
-                const params = new URLSearchParams({
-                    name: 'WordPress Learner',
-                    email: email,
-                    amount: finalAmountPaid, 
-                    desc: desc,
-                    items: items.join(', '),
-                    subject: "Receipt: WordPress 1:1 Training"
-                }).toString();
-
-                let currentUrl = window.location.href;
-                let successUrl, failureUrl;
-                const resultPage = 'payment-result.html';
-
-                if (window.location.protocol.startsWith('http')) {
-                    const baseUrl = new URL('.', window.location.href).href;
-                    successUrl = new URL(`${resultPage}?${params}`, baseUrl).href;
-                    failureUrl = new URL(`${resultPage}?error=true&${params}`, baseUrl).href;
-                } else {
-                    successUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?${params}`; 
-                    failureUrl = `https://webdevsha.github.io/solazyinvoice/${resultPage}?error=true&${params}`;
-                }
+                const { successUrl, failureUrl } = getRedirectUrls(false);
+                const testMode = document.getElementById('test-mode-toggle').checked;
+                const activeBrandId = testMode ? CHIP_IN_BRAND_ID_TEST : CHIP_IN_BRAND_ID_LIVE;
+                const email = document.getElementById('billing-email').value;
 
                 const payload = {
                     action: 'create_payment',
-                    mode: isTestMode ? 'test' : 'live',
+                    mode: testMode ? 'test' : 'live',
                     brand_id: activeBrandId, 
                     client: { email: email, first_name: 'WordPress', last_name: 'Learner' },
                     purchase: {
                         currency: 'MYR',
                         products: [
-                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: currentDesc.substring(0,100), price: Math.round((currentTotalPayment - 2) * 100), quantity: 1 },
                             { name: "Processing Fee", price: 200, quantity: 1 }
                         ],
-                        notes: desc,
+                        notes: currentDesc,
                         email_subject: "Receipt: WordPress 1:1 Training"
                     },
                     success_redirect: successUrl,
@@ -668,17 +682,30 @@
                 if (res.ok && data.checkout_url) {
                     window.location.href = data.checkout_url;
                 } else {
-                    console.error('Payment Error:', data);
                     alert('Payment Init Failed. Check Console.');
+                    console.error(data);
                     btn.innerHTML = oldContent;
                     btn.disabled = false;
                 }
             } catch (e) {
-                alert('Connection Error: ' + e.message);
-                console.error(e);
+                alert('Error: ' + e.message);
                 btn.innerHTML = oldContent;
                 btn.disabled = false;
             }
+        }
+
+        // 2. Manual Payment Flow
+        function processManualPayment() {
+            const name = document.getElementById('manual-name').value;
+            const file = document.getElementById('manual-receipt').value;
+            
+            if(!name) return alert("Please enter your name.");
+            if(!file) return alert("Please select a receipt file.");
+            
+            // Since we can't upload without backend, we just redirect to result page
+            // The result page will instruct them to email the receipt if it wasn't really uploaded
+            const { successUrl } = getRedirectUrls(true);
+            window.location.href = successUrl;
         }
     </script>
 </body>
