@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Description -->
-    <meta name="description" content="1:1 WordPress Training Quotation. Master WordPress from setup to security. Modular sessions (RM 99) or Value Bundle (RM 250) with free premium themes & plugins.">
+    <meta name="description" content="1:1 WordPress Training Quotation. Master WordPress from setup to customization. Modular sessions or Value Bundle with free premium themes & plugins.">
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Quotation: WordPress 1:1 Mastery">
     <meta property="og:description" content="Personalized WordPress training. Choose individual modules or the complete bundle with free gifts.">
-    <meta property="og:image" content="https://ik.imagekit.io/cbctech/Deeptech.jpg"> <!-- Reusing existing asset as placeholder -->
+    <meta property="og:image" content="https://ik.imagekit.io/cbctech/Deeptech.jpg">
     <meta property="og:url" content="https://cetalabs.com">
     <meta property="og:type" content="website">
 
@@ -52,6 +52,12 @@
         details[open] summary ~ * { animation: sweep .3s ease-in-out; }
         @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
         
+        /* Modal Animation */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
+
         @media print {
             body { background-color: white; padding-bottom: 0; }
             .no-print { display: none !important; }
@@ -120,7 +126,7 @@
                 <div class="md:text-right md:max-w-xs">
                     <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Subject</h3>
                     <p class="font-semibold text-brand">WordPress Mastery: Zero to Hero</p>
-                    <p class="text-sm text-gray-500 mt-1">Private coaching covering setup, design, functionality, and security.</p>
+                    <p class="text-sm text-gray-500 mt-1">Private coaching covering setup, design, and automation.</p>
                 </div>
             </div>
         </header>
@@ -134,7 +140,7 @@
                 </button>
                 <button onclick="switchTab('modular')" id="tab-modular" class="tab-inactive py-3 px-6 font-medium text-sm rounded-t-lg border-b-2 focus:outline-none transition-all duration-200 flex items-center gap-2">
                     <i data-lucide="layers" class="w-4 h-4"></i>
-                    Option B: Modular Sessions
+                    Option B: Individual Modules
                 </button>
             </div>
         </div>
@@ -145,7 +151,7 @@
             <div class="mb-10">
                 <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
                     <span class="w-2 h-8 bg-brand rounded-full"></span>
-                    Training Modules
+                    Core Training Syllabus
                 </h2>
                 <div class="space-y-4">
                     <!-- Module 1 -->
@@ -195,32 +201,13 @@
                                 </div>
                                 <div>
                                     <h3 class="font-bold text-gray-800 text-lg">Module 3: Design & Features (30 Mins)</h3>
-                                    <span class="text-xs font-medium text-yellow-700 uppercase tracking-wide">WooCommerce, Forms, Builders</span>
+                                    <span class="text-xs font-medium text-yellow-700 uppercase tracking-wide">Theme Customization, Builders</span>
                                 </div>
                             </div>
                             <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
                         </summary>
                         <div class="px-6 pb-6 pt-2 border-t border-yellow-100/50">
-                            <p class="text-sm text-gray-600 mb-2">Customizing the look and feel using themes or page builders. Adding specific features like Contact Forms or e-Commerce functionality.</p>
-                        </div>
-                    </details>
-
-                    <!-- Module 4 -->
-                    <details class="group bg-green-50 rounded-xl border border-green-100 open:ring-1 open:ring-green-200 transition-all duration-300">
-                        <summary class="flex items-center justify-between p-6 cursor-pointer select-none">
-                            <div class="flex items-center gap-3">
-                                <div class="p-2 bg-green-100 rounded-lg text-green-800">
-                                    <i data-lucide="shield-check" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-gray-800 text-lg">Module 4: Security & Maintenance (30 Mins)</h3>
-                                    <span class="text-xs font-medium text-green-700 uppercase tracking-wide">Backups, Updates, Safety</span>
-                                </div>
-                            </div>
-                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200"></i>
-                        </summary>
-                        <div class="px-6 pb-6 pt-2 border-t border-green-100/50">
-                            <p class="text-sm text-gray-600 mb-2">Best practices to keep your site safe. Setting up automated backups, handling updates, and basic firewall configuration.</p>
+                            <p class="text-sm text-gray-600 mb-2">Customizing the look and feel using themes or page builders. Adding specific features like Contact Forms.</p>
                         </div>
                     </details>
                 </div>
@@ -233,7 +220,7 @@
                 <div class="mb-4 flex items-center justify-between">
                     <div>
                         <h3 class="text-lg font-bold text-gray-800">Option A: The Ultimate Bundle</h3>
-                        <p class="text-sm text-gray-500">Complete 2-hour intensive training + Gifts.</p>
+                        <p class="text-sm text-gray-500">Core training (Modules 1-3) + Gifts.</p>
                     </div>
                     <span class="text-sm bg-brand text-white px-3 py-1 rounded-full shadow-sm">Best Value</span>
                 </div>
@@ -241,18 +228,18 @@
                     <tbody class="text-gray-700">
                         <tr class="border-b border-gray-100 hover:bg-red-50 transition-colors bg-red-50/30">
                             <td class="py-4 px-4 text-center w-12 no-print">
-                                <input type="checkbox" class="custom-checkbox module-selector" data-name="WordPress Ultimate Bundle (4 Modules + Gifts)" data-price="250" checked disabled onchange="calculateTotal()">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="WordPress Ultimate Bundle (3 Modules + Gifts)" data-price="250" checked disabled onchange="calculateTotal()">
                             </td>
                             <td class="py-4 px-4">
                                 <strong>WordPress Mastery: Zero to Hero Bundle</strong>
-                                <p class="text-xs text-gray-500 mt-1">Includes all 4 modules (Setup, 101, Design, Security).</p>
+                                <p class="text-xs text-gray-500 mt-1">Includes Modules 1, 2, and 3.</p>
                                 <div class="mt-2 flex items-center gap-2 text-xs font-bold text-brand">
                                     <i data-lucide="gift" class="w-4 h-4"></i>
                                     <span>FREE GIFT: "My Go-To Plugins + Theme Pack" (Ready to Use)</span>
                                 </div>
                             </td>
                             <td class="py-4 px-4 text-right">
-                                <span class="block text-gray-400 line-through text-xs">RM 396.00</span>
+                                <span class="block text-gray-400 line-through text-xs">RM 297.00</span>
                                 <span class="text-xl font-bold text-gray-800">RM 250.00</span>
                             </td>
                         </tr>
@@ -296,19 +283,54 @@
                             </td>
                             <td class="py-4 px-4">
                                 <strong>Module 3: Design & Features</strong>
-                                <p class="text-xs text-gray-500 mt-1">WooCommerce, Forms, Customization.</p>
+                                <p class="text-xs text-gray-500 mt-1">Theme Customization & UI Builders.</p>
                             </td>
                             <td class="py-4 px-4 text-right">RM 99.00</td>
                         </tr>
-                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                            <td class="py-4 px-4 text-center w-12 no-print">
-                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Module 4: Security & Maintenance" data-price="99" onchange="calculateTotal()">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add-on Courses Section (Available for both tabs) -->
+            <div id="pricing-addons" class="mt-8 border-t-2 border-dashed border-gray-300 pt-6 animate-fade-in">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <span class="bg-gray-800 text-white text-xs font-bold px-2 py-1 rounded mb-1 inline-block">OPTIONAL ADD-ONS</span>
+                        <h3 class="text-lg font-bold text-gray-800">Advanced 1:1 Masterclasses</h3>
+                        <p class="text-sm text-gray-500">Specialized topics to take your site to the next level.</p>
+                    </div>
+                </div>
+                <table class="w-full text-left border-collapse mb-6 bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                    <tbody class="text-gray-700">
+                        <tr class="border-b border-gray-200 hover:bg-white transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print border-r border-gray-200">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Add-on: Automation in WordPress" data-price="250" onchange="calculateTotal()">
                             </td>
                             <td class="py-4 px-4">
-                                <strong>Module 4: Security & Maintenance</strong>
-                                <p class="text-xs text-gray-500 mt-1">Backups, Updates, Safety.</p>
+                                <strong>Automation in WordPress</strong>
+                                <p class="text-xs text-gray-500 mt-1">1 Hour: Connecting forms to emails, auto-replies, and basic CRM flows.</p>
                             </td>
-                            <td class="py-4 px-4 text-right">RM 99.00</td>
+                            <td class="py-4 px-4 text-right font-bold">RM 250.00</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-white transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print border-r border-gray-200">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Add-on: Market-Tested eCommerce" data-price="300" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Full-Fledged eCommerce Setup</strong>
+                                <p class="text-xs text-gray-500 mt-1">1 Hour: WooCommerce setup, payment gateways (ToyyibPay/Stripe), and shipping zones.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right font-bold">RM 300.00</td>
+                        </tr>
+                        <tr class="hover:bg-white transition-colors">
+                            <td class="py-4 px-4 text-center w-12 no-print border-r border-gray-200">
+                                <input type="checkbox" class="custom-checkbox module-selector" data-name="Add-on: Custom Module" data-price="300" onchange="calculateTotal()">
+                            </td>
+                            <td class="py-4 px-4">
+                                <strong>Custom Module / Consultation</strong>
+                                <p class="text-xs text-gray-500 mt-1">1 Hour: Tailored solutions for specific problems or advanced features.</p>
+                            </td>
+                            <td class="py-4 px-4 text-right font-bold">RM 300.00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -329,7 +351,7 @@
 
         </main>
 
-        <!-- Payment Dock -->
+        <!-- Fixed Payment Dock -->
         <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-brand shadow-[0_-5px_20px_rgba(0,0,0,0.1)] p-4 transform translate-y-full transition-transform duration-300 z-40 no-print">
             <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-4">
@@ -337,9 +359,16 @@
                         <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Total Amount</p>
                         <p class="text-2xl font-bold text-gray-800 tabular-nums" id="payment-total">RM 250.00</p>
                         <p class="text-xs text-gray-500 font-medium">+ RM 2.00 Processing Fee</p>
+                        <p class="text-xs text-brand font-medium hidden" id="deposit-label">Deposit Applied</p>
                     </div>
                     <div class="h-10 w-px bg-gray-200 hidden md:block"></div>
                     
+                    <!-- Deposit Toggle -->
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-brand rounded focus:ring-red-700" onchange="calculateTotal()">
+                        <span class="text-sm font-medium text-gray-700" id="deposit-text">Pay Deposit</span>
+                    </label>
+
                     <!-- Test Mode Toggle -->
                     <label class="flex items-center cursor-pointer relative gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition">
                         <span class="text-sm font-medium text-gray-700 mr-2">Test Mode</span>
@@ -350,11 +379,8 @@
                     </label>
                 </div>
                 
-                <button onclick="processPayment()" class="bg-brand text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
-                    <span class="flex flex-col items-start leading-tight">
-                        <span class="text-xs opacity-80 font-normal">Secure Checkout via</span>
-                        <span class="text-sm">Chip-in Asia</span>
-                    </span>
+                <button onclick="openPaymentModal()" class="bg-brand text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg flex items-center gap-3 w-full md:w-auto justify-center group" id="pay-btn">
+                    <span>Proceed to Payment</span>
                     <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </button>
             </div>
@@ -366,9 +392,10 @@
                 <div>
                     <h4 class="font-bold text-white mb-2 uppercase tracking-wide">Terms & Conditions</h4>
                     <ul class="list-disc list-inside space-y-1 text-gray-400">
-                        <li>Payment is non-refundable once session is booked.</li>
+                        <li><strong>Booking:</strong> You will be prompted to book your session immediately after payment.</li>
+                        <li><strong>Balance:</strong> If paying via deposit, remaining balance is due at the end of the session, prior to receiving notes/recordings.</li>
+                        <li><strong>Deposit:</strong> 70% deposit allowed for totals under RM 1,000.</li>
                         <li>Validity: This quotation is valid for 30 days.</li>
-                        <li>Training Platform: Google Meet / Zoom.</li>
                     </ul>
                 </div>
                 <div class="md:text-right flex flex-col justify-between">
@@ -384,6 +411,62 @@
             </div>
         </footer>
 
+    </div>
+
+    <!-- Payment Options Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-slide-up transform transition-all">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-gray-800 text-lg">Choose Payment Method</h3>
+                <button onclick="closePaymentModal()" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-6">
+                <div class="text-center">
+                     <p class="text-xs text-gray-500 uppercase font-semibold mb-1">Total Payable</p>
+                     <p class="text-4xl font-bold text-brand" id="modal-total-amount">RM 0.00</p>
+                     <p class="text-xs text-gray-400 mt-1" id="modal-deposit-note"></p>
+                </div>
+    
+                <!-- Online -->
+                <button onclick="processOnlinePayment()" class="w-full bg-brand text-white font-bold py-4 px-4 rounded-lg flex items-center justify-center gap-3 hover:bg-red-800 transition-all shadow-md group">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    <span class="flex flex-col items-start leading-tight">
+                        <span class="text-sm">Pay Online (Instant Receipt)</span>
+                        <span class="text-[10px] opacity-80 font-normal">FPX / Credit Card / E-Wallet</span>
+                    </span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </button>
+                
+                <!-- Divider -->
+                <div class="relative py-2">
+                    <div class="absolute inset-0 flex items-center"><span class="w-full border-t border-gray-200"></span></div>
+                    <div class="relative flex justify-center text-xs uppercase"><span class="px-3 bg-white text-gray-400">Or pay manually</span></div>
+                </div>
+    
+                <!-- Manual -->
+                <details class="group bg-gray-50 rounded-lg border border-gray-200">
+                     <summary class="p-4 cursor-pointer font-bold text-gray-700 flex items-center justify-between hover:bg-gray-100 transition-colors rounded-lg">
+                        <span class="flex items-center gap-2"><i data-lucide="banknote" class="w-4 h-4"></i> Manual Bank Transfer</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4 group-open:rotate-180 transition-transform"></i>
+                     </summary>
+                     <div class="p-4 border-t border-gray-200 text-sm text-gray-600 bg-white rounded-b-lg">
+                         <p class="mb-3 text-xs text-gray-500">Please transfer the exact amount to:</p>
+                         <ul class="bg-gray-50 p-3 rounded border border-gray-200 space-y-2 font-mono mb-3 text-gray-800">
+                             <li class="flex justify-between"><span>Bank:</span> <strong>Maybank</strong></li>
+                             <li class="flex justify-between"><span>Name:</span> <strong>Shafira Noh</strong></li>
+                             <li class="flex justify-between"><span>Acc:</span> <strong>1621 0666 4444</strong></li>
+                             <li class="flex justify-between"><span>Ref:</span> <strong>WP-Training</strong></li>
+                         </ul>
+                         <p class="text-xs text-gray-500">
+                            <strong>Step 2:</strong> Email your receipt to <a href="mailto:hai@shafiranoh.com" class="text-brand underline font-bold">hai@shafiranoh.com</a>.<br>
+                            Access will be granted within 24 hours of verification.
+                         </p>
+                     </div>
+                </details>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -414,57 +497,121 @@
             calculateTotal();
         }
 
+        // Global state for total to pass to modal
+        let currentTotalPayment = 0; 
+        let currentIsDeposit = false;
+
         function calculateTotal() {
             // Determine active tab to know which checkboxes to count
             const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
             const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
-            const checkboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            const addonCheckboxes = document.querySelectorAll(`#pricing-addons .module-selector:checked`);
             
             const dock = document.getElementById('payment-dock');
             const display = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+            const depositText = document.getElementById('deposit-text');
 
             let total = 0;
-            checkboxes.forEach(box => {
-                total += parseFloat(box.dataset.price);
-            });
+            mainCheckboxes.forEach(box => total += parseFloat(box.dataset.price));
+            addonCheckboxes.forEach(box => total += parseFloat(box.dataset.price));
 
             if (total > 0) dock.classList.remove('translate-y-full');
             else dock.classList.add('translate-y-full');
 
-            display.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            // Deposit Logic: 70% if < 1000, 50% if >= 1000
+            const depositRate = total < 1000 ? 0.7 : 0.5;
+            const percentageText = Math.round(depositRate * 100) + '%';
+            depositText.innerText = `Pay ${percentageText} Deposit`;
+
+            let finalTotal = total;
+            if (depositToggle.checked) {
+                finalTotal = total * depositRate;
+                depositLabel.innerText = `Deposit (${percentageText}) Applied`;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            if(total > 0) finalTotal += 2; // Processing fee
+
+            currentTotalPayment = finalTotal;
+            currentIsDeposit = depositToggle.checked;
+
+            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        async function processPayment() {
-            // Determine active tab to know which checkboxes to collect
+        // Modal Functions
+        function openPaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            const modalTotal = document.getElementById('modal-total-amount');
+            const modalNote = document.getElementById('modal-deposit-note');
+            
+            // Check basics
             const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
             const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
-            const checkboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            const addonCheckboxes = document.querySelectorAll(`#pricing-addons .module-selector:checked`);
             
+            if (mainCheckboxes.length === 0 && addonCheckboxes.length === 0) {
+                return alert("Please select a module or bundle.");
+            }
+            const email = document.getElementById('billing-email').value;
+            if (!email || !email.includes('@')) {
+                 return alert("Please enter a valid email address first.");
+            }
+
+            // Populate Modal
+            modalTotal.innerText = 'RM ' + currentTotalPayment.toLocaleString('en-MY', { minimumFractionDigits: 2 });
+            
+            if (currentIsDeposit) {
+                const depositLabel = document.getElementById('deposit-label').innerText;
+                modalNote.innerText = `Includes Processing Fee. ${depositLabel}. Balance due upon training completion.`;
+            } else {
+                modalNote.innerText = "Full Payment + Processing Fee.";
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+
+        async function processOnlinePayment() {
+            const isBundle = !document.getElementById('pricing-bundle').classList.contains('hidden');
+            const containerId = isBundle ? 'pricing-bundle' : 'pricing-modular';
+            const mainCheckboxes = document.querySelectorAll(`#${containerId} .module-selector:checked`);
+            const addonCheckboxes = document.querySelectorAll(`#pricing-addons .module-selector:checked`);
+            
+            const depositToggle = document.getElementById('deposit-toggle');
             const testModeToggle = document.getElementById('test-mode-toggle');
             const email = document.getElementById('billing-email').value;
             
-            let visibleCheckboxes = [];
-            checkboxes.forEach(box => { visibleCheckboxes.push(box); });
-
-            if (visibleCheckboxes.length === 0) return alert("Please select a module or bundle.");
-            if (!email || !email.includes('@')) return alert("Valid email required.");
-
-            const btn = document.getElementById('pay-btn');
-            const oldText = btn.innerHTML;
-            btn.innerHTML = `<span class="animate-pulse">Processing...</span>`;
+            // UI Feedback (on the modal button)
+            const btn = document.querySelector('#payment-modal button[onclick="processOnlinePayment()"]');
+            const oldContent = btn.innerHTML;
+            btn.innerHTML = `<div class="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div> Processing...`;
             btn.disabled = true;
 
             try {
                 let total = 0;
                 let items = [];
-                visibleCheckboxes.forEach(box => {
+                const collectItem = (box) => {
                     total += parseFloat(box.dataset.price);
                     items.push(box.dataset.name);
-                });
+                };
+                mainCheckboxes.forEach(collectItem);
+                addonCheckboxes.forEach(collectItem);
 
-                // No deposit logic for this quotation, full payment + fee
-                const payAmount = total; 
-                const desc = `WordPress Training: ${items.join(', ')}`;
+                const isDeposit = depositToggle.checked;
+                const depositRate = total < 1000 ? 0.7 : 0.5;
+                const payAmount = isDeposit ? total * depositRate : total;
+                const percentLabel = Math.round(depositRate * 100);
+                const desc = `WordPress Training: ${items.join(', ')} (${isDeposit ? `Deposit ${percentLabel}%` : 'Full'})`;
+                
                 const finalAmountPaid = (payAmount + 2).toFixed(2);
 
                 const isTestMode = testModeToggle.checked;
@@ -523,12 +670,13 @@
                 } else {
                     console.error('Payment Error:', data);
                     alert('Payment Init Failed. Check Console.');
+                    btn.innerHTML = oldContent;
+                    btn.disabled = false;
                 }
             } catch (e) {
                 alert('Connection Error: ' + e.message);
                 console.error(e);
-            } finally {
-                btn.innerHTML = oldText;
+                btn.innerHTML = oldContent;
                 btn.disabled = false;
             }
         }
