@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation: Tuition Sessions 2025 - Cubic Academia</title>
+    
+    <!-- Tailwind CSS & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #FDFCF8;
+            --text-navy: #1E293B;
+            --acc-gold: #B59410;
+            --acc-blue: #2563EB;
+        }
+        body {
+            background-color: var(--bg-cream);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-navy);
+            padding-bottom: 140px;
+        }
+        .font-heading { font-family: 'Playfair Display', serif; }
+        .bg-navy { background-color: #0F172A; }
+        .text-navy { color: #0F172A; }
+        
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #0F172A;
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+        .custom-checkbox:checked { background-color: #0F172A; }
+        .custom-checkbox:checked::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(1);
+            transition: 120ms ease-in-out;
+            box-shadow: inset 1em 1em white;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 99px;
+            border: 2px solid #0F172A;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .filter-btn.active {
+            background-color: #0F172A;
+            color: #fff;
+        }
+        .filter-btn:not(.active) {
+            color: #0F172A;
+            background-color: transparent;
+        }
+        .filter-btn:hover:not(.active) {
+            background-color: rgba(15, 23, 42, 0.05);
+        }
+
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            .border-t-12 { border-top-width: 6px !important; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-t-[12px] border-[#0F172A]">
+        
+        <!-- Header -->
+        <header class="p-8 border-b border-gray-100 bg-white">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-navy flex items-center justify-center rounded-2xl shadow-lg rotate-3">
+                         <span class="text-white font-heading italic text-3xl font-bold">C</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-black text-navy uppercase tracking-tighter">Cubic Academia</h1>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Premium Tuition Services</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-navy font-bold px-4 py-2 bg-slate-100 rounded-full border border-slate-200">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span class="text-xs uppercase tracking-widest">TUITION INVOICE</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 font-bold uppercase">Date: Feb 19, 2026</p>
+                    <p class="text-xs text-gray-500 font-bold uppercase">Ref: CA-TUI-2025-003</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col md:flex-row justify-between gap-6">
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">To Datin Shannise</h3>
+                        <p class="text-base font-bold text-navy">Isaac & Annisaa Sessions</p>
+                    </div>
+                    <div>
+                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">To Puan Shannen</h3>
+                        <p class="text-base font-bold text-navy">Zhi Shan Sessions</p>
+                    </div>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Subject</h3>
+                    <p class="font-bold text-navy text-sm leading-snug">Consolidated Tuition Sessions (Full Year 2025)</p>
+                    <p class="text-xs text-gray-500 mt-2">Rate: RM 50.00 / Hour</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-8">
+            
+            <!-- Student Filters -->
+            <div class="no-print mb-8">
+                <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-3">Filter by Student / Parent</h3>
+                <div class="flex flex-wrap gap-3">
+                    <button onclick="filterSessions('all')" id="btn-all" class="filter-btn active">All Sessions</button>
+                    <button onclick="filterSessions('isaac')" id="btn-isaac" class="filter-btn">Isaac & Annisaa (Datin Shannise)</button>
+                    <button onclick="filterSessions('zhishan')" id="btn-zhishan" class="filter-btn">Zhi Shan (Puan Shannen)</button>
+                </div>
+            </div>
+
+            <!-- Session List Table -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-navy mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-navy rounded-full"></span>
+                    Consolidated Session Breakdown
+                </h2>
+
+                <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm bg-white overflow-x-auto">
+                    <table class="w-full text-left border-collapse" id="session-table">
+                        <thead>
+                            <tr class="bg-navy text-white text-[10px] uppercase tracking-[0.2em]">
+                                <th class="py-4 px-6 font-black w-12 no-print text-center">Select</th>
+                                <th class="py-4 px-6 font-black">Session Date & Student</th>
+                                <th class="py-4 px-6 font-black text-center">Duration</th>
+                                <th class="py-4 px-6 font-black text-right">Fee (RM)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm">
+                            <!-- Zhi Shan Sessions -->
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 08 July" data-price="50.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 08 July 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">50.00</td>
+                            </tr>
+                            <!-- Isaac/Annisaa -->
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="isaac">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Isaac/Annisaa: 12 July" data-price="75.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-navy mr-2">[Isaac/Annisaa]</span> 12 July 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.5 h</td>
+                                <td class="py-3 px-6 text-right font-bold">75.00</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 29 July" data-price="50.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 29 July 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">50.00</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 05 Aug" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 05 Aug 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 12 Aug" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 12 Aug 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="isaac">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Isaac/Annisaa: 15 Aug" data-price="100.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-navy mr-2">[Isaac/Annisaa]</span> 15 Aug 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">2.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">100.00</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 21 Aug" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 21 Aug 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 04 Sep" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 04 Sep 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="isaac">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Isaac/Annisaa: 06 Sep" data-price="100.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-navy mr-2">[Isaac/Annisaa]</span> 06 Sep 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">2.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">100.00</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="isaac">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Isaac/Annisaa: 13 Sep" data-price="100.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-navy mr-2">[Isaac/Annisaa]</span> 13 Sep 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">2.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">100.00</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 18 Sep" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 18 Sep 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 30 Sep" data-price="62.50" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 30 Sep 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.25 h</td>
+                                <td class="py-3 px-6 text-right font-bold">62.50</td>
+                            </tr>
+                            <tr class="border-b border-slate-50 hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 20 Nov" data-price="50.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 20 Nov 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">50.00</td>
+                            </tr>
+                            <tr class="border-b border-navy hover:bg-slate-50/50 transition-colors session-row" data-student="zhishan">
+                                <td class="py-3 px-6 text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="Zhi Shan: 27 Nov" data-price="50.00" onchange="calculateTotal()" checked></td>
+                                <td class="py-3 px-6"><span class="font-bold text-blue-600 mr-2">[Zhi Shan]</span> 27 Nov 2025</td>
+                                <td class="py-3 px-6 text-center text-xs opacity-60">1.0 h</td>
+                                <td class="py-3 px-6 text-right font-bold">50.00</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="bg-slate-50">
+                            <tr>
+                                <td colspan="3" class="py-5 px-6 text-right font-black uppercase text-xs tracking-widest">Subtotal (Visible Sessions)</td>
+                                <td class="py-5 px-6 text-right font-black text-navy text-xl" id="table-subtotal">RM 937.50</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Remarks & Platform Section -->
+            <div class="mt-8 bg-blue-50 border-l-4 border-blue-600 rounded-r-2xl p-6 mb-8 text-left">
+                <h3 class="text-blue-900 font-black uppercase tracking-widest text-xs mb-3 flex items-center gap-2">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    Session Remarks
+                </h3>
+                <ul class="space-y-2 text-sm text-blue-800 font-medium">
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0 mt-1"><i data-lucide="video" class="w-4 h-4"></i></span>
+                        <span>All sessions are conducted <strong>physically</strong>.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0 mt-1"><i data-lucide="check-circle" class="w-4 h-4"></i></span>
+                        <span>Rate confirmed at <strong>RM 50.00</strong> per hour for all listed students.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Manual Transfer Section -->
+            <div class="mt-8 bg-slate-900 rounded-2xl p-8 text-white shadow-lg no-print">
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div>
+                        <h3 class="text-[#B59410] font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <i data-lucide="banknote" class="w-4 h-4"></i>
+                            Manual Transfer Details
+                        </h3>
+                        <div class="font-mono bg-white/10 p-4 rounded-xl border border-white/10">
+                            <p class="text-sm">Account Name: <strong>Cubic Academia</strong></p>
+                            <p class="text-sm">Bank: <strong>Maybank</strong></p>
+                            <p class="text-sm">Account No: <strong>5129-0554-0642</strong></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-[#B59410] font-black uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                            <i data-lucide="smartphone" class="w-4 h-4"></i>
+                            TNG e-Wallet
+                        </h3>
+                        <div class="bg-white/10 p-4 rounded-xl border border-white/10 flex items-center gap-4">
+                            <i data-lucide="qr-code" class="w-10 h-10 text-gold opacity-50"></i>
+                            <p class="text-sm">Transfer via <strong>Touch 'n Go e-Wallet</strong> using DuitNow ID associated with the official contact number.</p>
+                        </div>
+                        <p class="text-[10px] mt-4 opacity-40">Please share your transaction proof via WhatsApp for verification.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-navy shadow-[0_-15px_40px_rgba(15,23,42,0.15)] p-6 transform translate-y-full transition-transform duration-300 z-50 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-6">
+                    <div class="text-right md:text-left">
+                        <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Payable Amount</p>
+                        <p class="text-4xl font-black text-navy tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-[10px] text-gray-500 font-bold">+ RM 2.00 Secure Gateway</p>
+                        <p class="text-[10px] text-blue-600 font-black hidden" id="deposit-label">50% DEPOSIT APPLIED</p>
+                    </div>
+                    <div class="h-14 w-px bg-slate-200 hidden md:block"></div>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-slate-50 px-4 py-2.5 rounded-xl border-2 border-slate-100 hover:bg-slate-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-navy rounded focus:ring-navy" onchange="calculateTotal()">
+                        <span class="text-xs font-black text-navy uppercase tracking-tight">Pay 50% Deposit</span>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-[#0F172A] text-white px-12 py-5 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-blue-700 transition-all shadow-2xl flex items-center gap-4 group border-2 border-navy">
+                    <span>PROSES BAYARAN</span>
+                    <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-navy py-12 px-8 text-center border-t-[16px] border-slate-800 text-white">
+            <h2 class="text-2xl font-black font-heading text-white mb-4">Cubic Academia</h2>
+            <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.5em] mb-12">Empowering Students for a Brighter Future</p>
+            <p class="text-xs opacity-40">&copy; 2026 Cubic Academia by <a href="https://shafiranoh.com" target="_blank" class="underline">Shafira Noh</a>. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            if(typeof lucide !== 'undefined') lucide.createIcons(); 
+            calculateTotal();
+        });
+
+        function filterSessions(type) {
+            // Update button styles
+            const buttons = ['all', 'isaac', 'zhishan'];
+            buttons.forEach(b => {
+                const el = document.getElementById(`btn-${b}`);
+                if (b === type) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+
+            // Filter rows
+            const rows = document.querySelectorAll('.session-row');
+            rows.forEach(row => {
+                if (type === 'all' || row.dataset.student === type) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Recalculate based on visible items
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const dock = document.getElementById('payment-dock');
+            const display = document.getElementById('payment-total');
+            const tableSubtotal = document.getElementById('table-subtotal');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+
+            let total = 0;
+            
+            checkboxes.forEach(box => {
+                const row = box.closest('tr');
+                // Only count checked boxes if the row is visible (display is not 'none')
+                if (window.getComputedStyle(row).display !== 'none') {
+                    total += parseFloat(box.dataset.price);
+                }
+            });
+
+            // Update table subtotal in footer
+            tableSubtotal.innerText = 'RM ' + total.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            // Show/Hide Dock
+            if (total > 0) dock.classList.remove('translate-y-full');
+            else dock.classList.add('translate-y-full');
+
+            let finalTotal = total;
+            if (depositToggle.checked) {
+                finalTotal = total * 0.5;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            if(total > 0) finalTotal += 2; 
+
+            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            
+            // Check only visible ones
+            let visibleItems = [];
+            checkboxes.forEach(box => {
+                const row = box.closest('tr');
+                if (window.getComputedStyle(row).display !== 'none') {
+                    visibleItems.push(box);
+                }
+            });
+
+            if (visibleItems.length === 0) return alert("Please select visible sessions to pay.");
+
+            const email = prompt("Please enter email for receipt delivery:", "client@example.com");
+            if (!email || !email.includes('@')) return alert("Valid email required.");
+
+            const btn = document.querySelector('button[onclick="processPayment()"]');
+            btn.innerHTML = `<span class="animate-pulse">CONNECTING...</span>`;
+            btn.disabled = true;
+
+            try {
+                let total = 0;
+                let items = [];
+                visibleItems.forEach(box => {
+                    total += parseFloat(box.dataset.price);
+                    items.push(box.dataset.name);
+                });
+
+                const isDeposit = depositToggle.checked;
+                const payAmount = isDeposit ? total * 0.5 : total;
+                const desc = `Tuition 2025: ${items.join(', ')} (${isDeposit ? '50% Deposit' : 'Full Payment'})`;
+
+                localStorage.setItem('cetalabs_user_email', email);
+
+                const params = new URLSearchParams({
+                    payment: 'success',
+                    name: 'Datin Shannise / Puan Shannen',
+                    email: email,
+                    amount: (payAmount + 2).toFixed(2), 
+                    desc: desc,
+                    subject: "Receipt: Tuition Sessions 2025"
+                }).toString();
+
+                const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
+                const successUrl = `${baseUrl}/workshop1-success.html?${params}`;
+
+                const payload = {
+                    action: 'create_payment',
+                    mode: 'live',
+                    brand_id: CHIP_IN_BRAND_ID, 
+                    client: { email: email, first_name: 'Datin', last_name: 'Shannise' },
+                    purchase: {
+                        currency: 'MYR',
+                        products: [
+                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: "Secure Gateway", price: 200, quantity: 1 }
+                        ],
+                        notes: desc,
+                        email_subject: "Receipt: Tuition Sessions 2025"
+                    },
+                    success_url: successUrl,
+                    cancel_url: window.location.href
+                };
+
+                const res = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Gateway Error: ' + JSON.stringify(data));
+                    btn.innerHTML = "PROSES BAYARAN";
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                alert('Connection Error: ' + e.message);
+                btn.innerHTML = "PROSES BAYARAN";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
