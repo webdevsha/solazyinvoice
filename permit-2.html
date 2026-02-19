@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebut Harga: Skop Tambahan PermitAkaun - Encik Hazman</title>
+    
+    <!-- Tailwind CSS & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #F6F4DC;
+            --text-basil: #1A4222;
+            --acc-passata: #D95426;
+            --acc-lemons: #E1DC53;
+            --acc-fresh: #339551;
+            --acc-minty: #BEE0C7;
+        }
+        body {
+            background-color: var(--bg-cream);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-basil);
+            padding-bottom: 140px;
+        }
+        .font-heading { font-family: 'Playfair Display', serif; }
+        .bg-brand { background-color: var(--text-basil); }
+        .text-brand { color: var(--text-basil); }
+        .border-brand { border-color: var(--text-basil); }
+        
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            width: 1.25em; height: 1.25em;
+            border: 2px solid var(--text-basil); border-radius: 0.25em;
+            display: grid; place-content: center; cursor: pointer;
+        }
+        .custom-checkbox:checked { background-color: var(--text-basil); }
+        .custom-checkbox:checked::before {
+            content: ""; width: 0.65em; height: 0.65em; transform: scale(1);
+            transition: 120ms ease-in-out; box-shadow: inset 1em 1em white;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        .toggle-checkbox:checked { right: 0; border-color: var(--acc-fresh); }
+        .toggle-checkbox:checked + .toggle-label { background-color: var(--acc-fresh); }
+
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            details { display: block; }
+            details > summary { font-weight: bold; border-bottom: 2px solid var(--text-basil); }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-t-[12px] border-brand">
+        
+        <!-- Header -->
+        <header class="p-8 border-b border-gray-100 bg-white">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-[#1A4222] flex items-center justify-center rounded-xl shadow-lg rotate-3">
+                        <span class="font-serif italic text-2xl text-[#F6F4DC] font-bold">P</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-black text-brand uppercase tracking-tighter">PermitAkaun</h1>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Enhanced Development & Deployment</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-brand font-bold px-4 py-2 bg-minty/30 rounded-full border border-basil/20">
+                        <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                        <span class="text-xs uppercase tracking-widest">SEBUT HARGA TAMBAHAN</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 font-bold uppercase">Tarikh: 23 Jan 2026</p>
+                    <p class="text-xs text-gray-500 font-bold uppercase">Ruj: VCA-HZ-2026-ADD-03</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-[#F6F4DC]/40 rounded-2xl border-2 border-basil/10 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Disediakan Untuk</h3>
+                    <p class="text-lg font-bold text-basil">Encik Hazman</p>
+                    <p class="text-sm text-gray-600 font-medium">PermitAkaun Project Owner</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Objektif</h3>
+                    <p class="font-bold text-basil text-sm leading-snug">Implementasi Maklum Balas: Pengekstrakan Penyata Akaun Lanjutan, Modul Resit Baharu, & Pengujian Pra-Ramadan.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-8">
+            
+            <!-- Items Breakdown -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-basil mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-brand rounded-full"></span>
+                    Perincian Kerja (Detailed Scope)
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- Kategori 1: Akaun & Resit -->
+                    <details open class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-passata rounded-lg text-white"><i data-lucide="banknote" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-basil">Modul Akaun & Penjanaan Dokumen (New)</h3>
+                                    <span class="text-[10px] font-bold text-passata uppercase tracking-widest">Logic Extraction & PDF Engine</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-basil/10">
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Extraction Logic:</strong> Pengekstrakan data akaun mengikut format rujukan YouTube (Akaun Berlapis).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>7 Tabung System:</strong> Pembahagian automatik (Operating, Tax, Zakat, etc) dengan <em>Manual Amount Override</em>.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Resit/Invois/PV Auto:</strong> Penjanaan dokumen kewangan automatik dengan No. Siri (Skop Baharu).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Edit Resit UI:</strong> Penambahan butang 'X' (pangkah) untuk pengurusan imej resit tanpa kehilangan rekod asal.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Company Setting:</strong> Kemaskini profil syarikat, logo, dan pangkalan data inventori stok.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Kategori 2: Permit -->
+                    <details class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-fresh rounded-lg text-white"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-basil">Pengurusan Lokasi & Permit PBT</h3>
+                                    <span class="text-[10px] font-bold text-fresh uppercase tracking-widest">Visualisasi & Digitalisasi Borang</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-basil/10">
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Peta & Visual:</strong> Integrasi Google Maps, gambar lokasi, dan koordinat GPS dalam borang permit.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Kategori Operasi:</strong> Expo, Bazar Ramadhan, Bazar Raya, & Foodtruck (Lori/CBS update).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Kalkulator Anggaran:</strong> Pengiraan sewaan automatik untuk tempoh 4-minggu.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>UI Clean-up:</strong> Buang kolum tambah lokasi pada Tenant (hanya Organizer).</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Kategori 3: Testing & Integrasi -->
+                    <details class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-basil rounded-lg text-white"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-basil">Pengujian & Integrasi Final</h3>
+                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">SLA Pra-Ramadan & Brevo API</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-basil/10">
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Brevo Email Testing:</strong> Konfigurasi API & pengujian penghantaran emel ke emel rasmi Encik Hazman.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>UAT Pra-Ramadan:</strong> Pengujian intensif (2-3 hari) sebelum 5 Ramadan termasuk buffer support.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Strict Validation:</strong> Sekatan pendaftaran nama (Alphabet only) & pembetulan ralat Saving Profile Admin.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Tiered Access:</strong> Integrasi gerbang bayaran (Chip) untuk pelan RM19, RM39, & RM99.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- PRICING TABLE -->
+            <table class="w-full text-left border-collapse mb-8 rounded-2xl overflow-hidden shadow-sm">
+                <thead>
+                    <tr class="bg-basil text-cream text-[10px] uppercase tracking-[0.2em]">
+                        <th class="py-4 px-6 font-black w-12 no-print">Pilih</th>
+                        <th class="py-4 px-6 font-black w-3/5">Perkara / Modul Lanjutan</th>
+                        <th class="py-4 px-6 font-black text-right">Harga (RM)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 bg-white">
+                    <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Logik Akaun YT-Ref" data-price="700" onchange="calculateTotal()" checked>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-basil">Sistem Akaun & Pengekstrakan Penyata (YT-Ref)</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Implementasi logik 7 tabung, override amaun, & pengurusan perbelanjaan syarikat.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">700.00</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Penjanaan Resit Auto" data-price="300" onchange="calculateTotal()" checked>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-passata">Modul Penjanaan Resit, Invois & PV Automatik</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Sistem penjanaan PDF dengan No. Siri untuk Resit Jualan, Invois, & PV (Skop Baharu).</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">300.00</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Permit & Peta" data-price="300" onchange="calculateTotal()" checked>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-basil">Aliran Borang Permit & Integrasi Peta Visual</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Sistem permit (Bazar/Expo/Foodtruck) dengan muat naik gambar & GPS.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">300.00</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Integrasi & Tier" data-price="300" onchange="calculateTotal()" checked>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-basil">Integrasi Gateway & Had Akses Pelan (Tiered)</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Pembetulan Admin Profile, setting syarikat, & sistem langganan Chip.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">300.00</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Pengujian Ramadan" data-price="500" onchange="calculateTotal()" checked>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-basil">Pengujian Lanjutan & Brevo Finalization (Pra-Ramadan)</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Work-sprint (2-3 hari) sebelum 5 Ramadan. Termasuk pengujian API emel.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">500.00</td>
+                    </tr>
+                    <!-- RETAINER OPTIONS (NOT COMPULSORY) -->
+                    <tr class="border-b border-gray-100 bg-orange-50/10 hover:bg-orange-50/20">
+                        <td class="py-5 px-6 text-center no-print text-xs text-gray-400">Pilihan</td>
+                        <td class="py-5 px-6">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="retainer" id="retainer-6" class="custom-checkbox module-selector" data-name="Retainer (6 Bulan)" data-price="2000" onchange="calculateTotal()">
+                                <label for="retainer-6">
+                                    <p class="font-bold text-basil">6-Months Maintenance Retainer (Standby)</p>
+                                    <p class="text-[10px] text-gray-500 mt-1">SLA Urusan Kecemasan (24 jam), Biasa (3 hari). Troubleshooting & updates.</p>
+                                </label>
+                            </div>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">2,000.00</td>
+                    </tr>
+                    <tr class="border-b border-gray-100 bg-blue-50/10 hover:bg-blue-50/20">
+                        <td class="py-5 px-6 text-center no-print text-xs text-gray-400">Pilihan</td>
+                        <td class="py-5 px-6">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="retainer" id="retainer-3" class="custom-checkbox module-selector" data-name="Retainer (3 Bulan)" data-price="1200" onchange="calculateTotal()">
+                                <label for="retainer-3">
+                                    <p class="font-bold text-blue-700">3-Months Maintenance Retainer (Post-Dated)</p>
+                                    <p class="text-[10px] text-blue-500 italic mt-1">*Bayaran boleh dibuat kemudian (Can pay later).</p>
+                                </label>
+                            </div>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold">1,200.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </main>
+
+        <!-- Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-basil shadow-[0_-10px_30px_rgba(26,66,34,0.1)] p-5 transform translate-y-full transition-transform duration-300 z-50 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-6">
+                    <div class="text-right md:text-left">
+                        <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Jumlah Invois Tambahan</p>
+                        <p class="text-3xl font-black text-basil tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-[10px] text-gray-500 font-bold">+ RM 2.00 Caj Gateway</p>
+                        <p class="text-[10px] text-passata font-black hidden" id="deposit-label">50% DEPOSIT DITERAPKAN</p>
+                    </div>
+                    <div class="h-12 w-px bg-basil/10 hidden md:block"></div>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-minty/10 px-4 py-2.5 rounded-xl border-2 border-basil/10 hover:bg-minty/20 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-basil rounded focus:ring-basil" onchange="calculateTotal()">
+                        <span class="text-xs font-black text-basil uppercase tracking-tight">Bayar 50% Deposit</span>
+                    </label>
+
+                    <label class="flex items-center cursor-pointer relative gap-2 bg-[#F6F4DC] px-3 py-2 rounded-xl border border-basil/10">
+                        <span class="text-[10px] font-black text-basil mr-2 uppercase">Test</span>
+                        <div class="relative inline-block w-10 align-middle select-none">
+                            <input type="checkbox" id="test-mode-toggle" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer" checked/>
+                            <label for="test-mode-toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200"></label>
+                        </div>
+                    </label>
+                </div>
+                
+                <!-- Explicit High-Contrast Button for Clarity -->
+                <button onclick="processPayment()" class="bg-[#1A4222] text-[#F6F4DC] px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-[#D95426] transition-all shadow-xl flex items-center gap-3 group border-2 border-[#1A4222]">
+                    <span>Proses Bayaran</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-[#1A4222] py-16 px-8 text-center border-t-[16px] border-[#D95426] text-white">
+            <h2 class="text-3xl font-black font-heading text-[#E1DC53] mb-4">Cubic Tech</h2>
+            <p class="text-[#F6F4DC]/40 text-[10px] uppercase font-black tracking-[0.5em] mb-12">Sovereign Intelligence Cycle</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 text-left text-sm text-[#F6F4DC]/80">
+                <div class="space-y-4">
+                    <h4 class="font-black text-[#E1DC53] uppercase tracking-widest text-xs">Terma & Syarat</h4>
+                    <ul class="list-disc list-inside space-y-1 opacity-70 font-medium text-xs">
+                        <li>Deposit: 50% daripada jumlah keseluruhan.</li>
+                        <li>SLA Penyelenggaraan (Jika Dipilih): Kecemasan (24j), Biasa (3-hari).</li>
+                        <li>Sokongan teknikal (Support) selama 2 minggu selepas sistem 'Live' bagi versi ini adalah termasuk dalam sebut harga ini.</li>
+                        <li>Tarikh Siap: Pengujian tuntas sebelum 5 Ramadan 2026.</li>
+                    </ul>
+                </div>
+                <div class="md:text-right flex flex-col justify-end">
+                    <p class="mb-4 text-xs font-bold opacity-60">Tandatangan Sah:</p>
+                    <div class="h-16 border-b-2 border-[#E1DC53]/30 w-48 ml-auto mb-2"></div>
+                    <p class="font-black text-[#E1DC53] uppercase tracking-widest">Shafira Noh</p>
+                    <p class="text-[10px] opacity-40">Cubic Tech Enterprise</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            if(typeof lucide !== 'undefined') lucide.createIcons(); 
+            calculateTotal();
+        });
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const dock = document.getElementById('payment-dock');
+            const display = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+
+            let total = 0;
+            checkboxes.forEach(box => {
+                total += parseFloat(box.dataset.price);
+            });
+
+            if (total > 0) dock.classList.remove('translate-y-full');
+            else dock.classList.add('translate-y-full');
+
+            // 50% Deposit Logic
+            let finalTotal = total;
+            if (depositToggle.checked) {
+                finalTotal = total * 0.5;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            if(total > 0) finalTotal += 2; 
+
+            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2 });
+        }
+
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const testModeToggle = document.getElementById('test-mode-toggle');
+            
+            if (checkboxes.length === 0) return alert("Sila pilih modul.");
+
+            const email = prompt("Masukkan emel untuk penghantaran resit:", "hazman@example.com");
+            if (!email || !email.includes('@')) return alert("Emel sah diperlukan.");
+
+            const btn = document.querySelector('button[onclick="processPayment()"]');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = `<span class="animate-pulse">Menghubungkan...</span>`;
+            btn.disabled = true;
+
+            try {
+                let total = 0;
+                let items = [];
+                checkboxes.forEach(box => {
+                    total += parseFloat(box.dataset.price);
+                    items.push(box.dataset.name);
+                });
+
+                const isDeposit = depositToggle.checked;
+                const payAmount = isDeposit ? total * 0.5 : total;
+                const desc = `Skop Tambahan PermitAkaun: ${items.join(', ')} (${isDeposit ? 'Deposit 50%' : 'Penuh'})`;
+                const isTest = testModeToggle.checked;
+
+                localStorage.setItem('cetalabs_user_email', email);
+
+                const params = new URLSearchParams({
+                    payment: 'success',
+                    name: 'Encik Hazman',
+                    email: email,
+                    amount: (payAmount + 2).toFixed(2), 
+                    desc: desc,
+                    subject: "Resit: Skop Tambahan PermitAkaun (Cubic Tech)"
+                }).toString();
+
+                const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
+                const successUrl = `${baseUrl}/workshop1-success.html?${params}`;
+
+                const payload = {
+                    action: 'create_payment',
+                    mode: isTest ? 'test' : 'live',
+                    brand_id: CHIP_IN_BRAND_ID, 
+                    client: { email: email, first_name: 'Encik', last_name: 'Hazman' },
+                    purchase: {
+                        currency: 'MYR',
+                        products: [
+                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: "Caj Gateway", price: 200, quantity: 1 }
+                        ],
+                        notes: desc
+                    },
+                    success_url: successUrl,
+                    cancel_url: window.location.href
+                };
+
+                const res = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Gateway Error: ' + JSON.stringify(data));
+                }
+            } catch (e) {
+                alert('Connection Error: ' + e.message);
+            } finally {
+                btn.innerHTML = oldText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
