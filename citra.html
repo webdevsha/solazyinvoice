@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation: Citra Ilmu Website Development</title>
+    
+    <!-- Tailwind CSS & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-pastel-turquoise: #E0F7F9;
+            --color-turquoise-dark: #4DB6AC;
+            --color-turquoise-deep: #00796B;
+            --color-cream: #FFFDF5;
+        }
+        body {
+            background-color: var(--color-pastel-turquoise);
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+            padding-bottom: 140px;
+        }
+        .font-heading { font-family: 'Playfair Display', serif; }
+        .bg-brand { background-color: var(--color-turquoise-deep); }
+        .text-brand { color: var(--color-turquoise-deep); }
+        .border-brand { border-color: var(--color-turquoise-deep); }
+        
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+
+        .custom-checkbox {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            width: 1.25em; height: 1.25em;
+            border: 2px solid var(--color-turquoise-deep); border-radius: 0.25em;
+            display: grid; place-content: center; cursor: pointer;
+        }
+        .custom-checkbox:checked { background-color: var(--color-turquoise-deep); }
+        .custom-checkbox:checked::before {
+            content: ""; width: 0.65em; height: 0.65em; transform: scale(1);
+            transition: 120ms ease-in-out; box-shadow: inset 1em 1em white;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        @media print {
+            body { background-color: white; padding-bottom: 0; }
+            .no-print { display: none !important; }
+            .shadow-xl { box-shadow: none !important; }
+            details { display: block; }
+            details > summary { font-weight: bold; border-bottom: 2px solid var(--color-turquoise-deep); }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-t-[12px] border-brand">
+        
+        <!-- Header -->
+        <header class="p-8 border-b border-gray-100 bg-white">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-[#E0F7F9] flex items-center justify-center rounded-2xl shadow-sm border border-turquoise-dark">
+                         <i data-lucide="palmtree" class="text-turquoise-deep w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-black text-brand uppercase tracking-tighter">Citra Ilmu</h1>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Digital Learning Architecture</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 text-brand font-bold px-4 py-2 bg-teal-50 rounded-full border border-teal-100">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        <span class="text-xs uppercase tracking-widest">OFFICIAL QUOTATION</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 font-bold uppercase">Date: Feb 19, 2026</p>
+                    <p class="text-xs text-gray-500 font-bold uppercase">Ref: VCA-CI-2026-001-REV2</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-teal-50/50 rounded-2xl border border-teal-100 flex flex-col md:flex-row justify-between gap-6">
+                <div>
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Prepared For</h3>
+                    <p class="text-lg font-bold text-brand">Dr. Khalina Mohammed Khalili</p>
+                    <p class="text-sm text-gray-600 font-medium">Founder, Citra Micro School</p>
+                    <p class="text-xs text-gray-500 mt-1">citra.guru</p>
+                </div>
+                <div class="md:text-right md:max-w-xs">
+                    <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Project Scope</h3>
+                    <p class="font-bold text-brand text-sm leading-snug">Website Development: 3-Page Micro School Presence inclusive of annual hosting.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="p-8">
+            
+            <!-- Items Breakdown -->
+            <div class="mb-10">
+                <h2 class="text-xl font-bold text-brand mb-6 flex items-center gap-2">
+                    <span class="w-2 h-8 bg-brand rounded-full"></span>
+                    Detailed Deliverables
+                </h2>
+
+                <div class="space-y-4">
+                    <!-- Page 1 -->
+                    <details open class="group bg-white rounded-2xl border-2 border-teal-50 overflow-hidden shadow-sm">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-teal-50/30 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-teal-100 rounded-lg text-teal-700"><i data-lucide="home" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-teal-900">Page 1: Main Landing Page</h3>
+                                    <span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest">Brand Narrative & Overview</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-teal-50 bg-white">
+                            <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Hero section with "Citra Micro School" positioning.</span></li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Core Pillars Showcase: Literacy, Numeracy, & Vicegerency.</span></li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Curriculum Overview (IGCSE, American, IB-style Integration).</span></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Page 2 -->
+                    <details class="group bg-white rounded-2xl border-2 border-teal-50 overflow-hidden shadow-sm">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-teal-50/30 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-teal-100 rounded-lg text-teal-700"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-teal-900">Page 2: Academic Worldview & Philosophy</h3>
+                                    <span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest">Islamic Cognitive Framework</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-teal-50 bg-white">
+                            <p class="text-xs text-gray-500 mb-4 italic">Deep dive into the teachings of Tan Sri Dr Syed Muhammad Naquib al-Attas.</p>
+                            <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Presentation of the "Worldview of Islam" cognitive framework.</span></li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Integration of Science, Geography, & History with Islamic Foundations.</span></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Page 3 -->
+                    <details class="group bg-white rounded-2xl border-2 border-teal-50 overflow-hidden shadow-sm">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-teal-50/30 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-teal-100 rounded-lg text-teal-700"><i data-lucide="user-plus" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-teal-900">Page 3: Enrollment & Theme-Based Sessions</h3>
+                                    <span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest">Admissions & Inquiries</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-teal-50 bg-white">
+                            <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Specialized sections for traveling parents and exhibitions.</span></li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>Interactive Enrollment Inquiry Form.</span></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- Infrastructure -->
+                    <details open class="group bg-white rounded-2xl border-2 border-teal-50 overflow-hidden shadow-sm">
+                        <summary class="flex items-center justify-between p-5 cursor-pointer select-none hover:bg-teal-50/30 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-teal-100 rounded-lg text-teal-700"><i data-lucide="server" class="w-5 h-5"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-teal-900">Infrastructure & Hosting</h3>
+                                    <span class="text-[10px] font-bold text-teal-600 uppercase tracking-widest">Performance & Security Bundle</span>
+                                </div>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-6 border-t border-teal-50 bg-white">
+                            <ul class="space-y-3 text-sm text-gray-700 font-medium">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>1 Year high-speed web hosting for citra.guru.</span></li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-teal-500 shrink-0"></i> <span>SSL Certificate installation for secure browsing (HTTPS).</span></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- PRICING TABLE -->
+            <table class="w-full text-left border-collapse mb-8 rounded-2xl overflow-hidden shadow-sm bg-white">
+                <thead>
+                    <tr class="bg-teal-800 text-white text-[10px] uppercase tracking-[0.2em]">
+                        <th class="py-4 px-6 font-black w-12 no-print text-center">Select</th>
+                        <th class="py-4 px-6 font-black w-3/5">Item / Service Description</th>
+                        <th class="py-4 px-6 font-black text-right">Price (RM)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-b border-teal-50 hover:bg-teal-50/20 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Web Development (3 Pages)" data-price="350" onchange="calculateTotal()" checked disabled>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-teal-900 text-sm">CitraMicro School Digital Suite (3 Pages)</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Full development of Landing Page, Philosophy, and Admissions Portal.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold text-teal-900">350.00</td>
+                    </tr>
+                    <tr class="border-b border-teal-50 hover:bg-teal-50/20 transition-colors">
+                        <td class="py-5 px-6 text-center no-print">
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Annual Web Hosting" data-price="150" onchange="calculateTotal()" checked disabled>
+                        </td>
+                        <td class="py-5 px-6">
+                            <p class="font-bold text-teal-900 text-sm">Web Hosting & SSL (1 Year)</p>
+                            <p class="text-[11px] text-gray-500 mt-1">Maintenance retainer including server costs and security updates.</p>
+                        </td>
+                        <td class="py-5 px-6 text-right font-bold text-teal-900">150.00</td>
+                    </tr>
+                </tbody>
+                <tfoot class="bg-teal-50/50">
+                    <tr>
+                        <td colspan="2" class="py-4 px-6 text-right font-bold text-teal-900 uppercase text-xs">Total Amount</td>
+                        <td class="py-4 px-6 text-right font-bold text-teal-900 text-lg">RM 500.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <!-- Email Input -->
+            <div class="mt-8 bg-teal-50/30 rounded-2xl p-6 border border-teal-100 shadow-sm no-print text-left">
+                <h3 class="text-teal-900 font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-teal-600"></i>
+                    Receipt Recipient
+                </h3>
+                <div>
+                    <label class="block text-sm font-medium text-teal-700 mb-2">Alamat Emel</label>
+                    <input type="email" id="billing-email" class="w-full md:w-1/2 p-3 border border-teal-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition" placeholder="Masukkan emel Dr. Khalina">
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Payment Dock -->
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-teal-600 shadow-[0_-15px_40px_rgba(0,121,107,0.15)] p-6 transform translate-y-full transition-transform duration-300 z-50 no-print">
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-6">
+                    <div class="text-right md:text-left">
+                        <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Total Payable</p>
+                        <p class="text-4xl font-black text-teal-900 tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-[10px] text-gray-500 font-bold">+ RM 2.00 Secure Gateway</p>
+                        <p class="text-[10px] text-teal-600 font-black hidden" id="deposit-label">70% DEPOSIT APPLIED</p>
+                    </div>
+                    <div class="h-14 w-px bg-teal-100 hidden md:block"></div>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer select-none bg-teal-50 px-4 py-2.5 rounded-xl border-2 border-teal-100 hover:bg-teal-100 transition">
+                        <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-teal-700 rounded focus:ring-teal-500" onchange="calculateTotal()">
+                        <span class="text-xs font-black text-teal-800 uppercase tracking-tight" id="deposit-text">Bayar 70% Deposit</span>
+                    </label>
+                </div>
+                
+                <button onclick="processPayment()" class="bg-[#00796B] text-white px-12 py-5 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-teal-800 transition-all shadow-2xl flex items-center gap-4 group border-2 border-[#004D40]">
+                    <span>PROSES BAYARAN</span>
+                    <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-teal-900 py-16 px-8 text-center border-t-[16px] border-teal-600 text-white">
+            <h2 class="text-3xl font-black font-heading text-teal-100 mb-4">Cetalabs</h2>
+            <p class="text-teal-100/40 text-[10px] uppercase font-black tracking-[0.5em] mb-12">Digital Intelligence for Education</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 text-left text-sm text-teal-50/80">
+                <div class="space-y-4">
+                    <h4 class="font-black text-teal-200 uppercase tracking-widest text-xs">Terms & Conditions</h4>
+                    <ul class="list-disc list-inside space-y-2 opacity-70 font-medium text-xs">
+                        <li>70% deposit required to commence development.</li>
+                        <li>Development Timeline: 1 week from content receipt.</li>
+                        <li>Hosting is renewable annually at RM 150.00.</li>
+                    </ul>
+                </div>
+                <div class="md:text-right flex flex-col justify-end">
+                    <p class="mb-4 text-xs font-bold opacity-60">Authorized Signature:</p>
+                    <div class="h-16 border-b-2 border-teal-200/30 w-48 ml-auto mb-2"></div>
+                    <p class="font-black text-teal-200 uppercase tracking-widest">Shafira Noh</p>
+                    <p class="text-[10px] opacity-40">Founder, Cetalabs</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const CLOUDFLARE_WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const CHIP_IN_BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            if(typeof lucide !== 'undefined') lucide.createIcons(); 
+            calculateTotal();
+        });
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const dock = document.getElementById('payment-dock');
+            const display = document.getElementById('payment-total');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const depositLabel = document.getElementById('deposit-label');
+
+            let total = 0;
+            checkboxes.forEach(box => {
+                total += parseFloat(box.dataset.price);
+            });
+
+            if (total > 0) dock.classList.remove('translate-y-full');
+            else dock.classList.add('translate-y-full');
+
+            let finalTotal = total;
+            if (depositToggle.checked) {
+                finalTotal = total * 0.7;
+                depositLabel.classList.remove('hidden');
+            } else {
+                depositLabel.classList.add('hidden');
+            }
+
+            if(total > 0) finalTotal += 2; 
+
+            display.innerText = 'RM ' + finalTotal.toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        async function processPayment() {
+            const checkboxes = document.querySelectorAll('.module-selector:checked');
+            const depositToggle = document.getElementById('deposit-toggle');
+            const email = document.getElementById('billing-email').value;
+            
+            if (checkboxes.length === 0) return alert("Please select a module.");
+            if (!email || !email.includes('@')) return alert("Valid email required for receipt.");
+
+            const btn = document.querySelector('button[onclick="processPayment()"]');
+            btn.innerHTML = `<span class="animate-pulse">CONNECTING...</span>`;
+            btn.disabled = true;
+
+            try {
+                let total = 0;
+                let items = [];
+                checkboxes.forEach(box => {
+                    total += parseFloat(box.dataset.price);
+                    items.push(box.dataset.name);
+                });
+
+                const isDeposit = depositToggle.checked;
+                const payAmount = isDeposit ? total * 0.7 : total;
+                const desc = `Citra Ilmu: ${items.join(', ')} (${isDeposit ? '70% Deposit' : 'Full Payment'})`;
+
+                localStorage.setItem('cetalabs_user_email', email);
+
+                const params = new URLSearchParams({
+                    payment: 'success',
+                    name: 'Dr. Khalina',
+                    email: email,
+                    amount: (payAmount + 2).toFixed(2), 
+                    desc: desc,
+                    subject: "Resit Rasmi: Pembangunan Web Citra Ilmu"
+                }).toString();
+
+                const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
+                const successUrl = `${baseUrl}/workshop1-success.html?${params}`;
+
+                const payload = {
+                    action: 'create_payment',
+                    mode: 'live', 
+                    brand_id: CHIP_IN_BRAND_ID, 
+                    client: { email: email, first_name: 'Dr.', last_name: 'Khalina' },
+                    purchase: {
+                        currency: 'MYR',
+                        products: [
+                            { name: desc.substring(0,100), price: Math.round(payAmount * 100), quantity: 1 },
+                            { name: "Secure Gateway", price: 200, quantity: 1 }
+                        ],
+                        notes: desc
+                    },
+                    success_url: successUrl,
+                    cancel_url: window.location.href
+                };
+
+                const res = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert('Gateway Error: ' + JSON.stringify(data));
+                    btn.innerHTML = "PROSES BAYARAN";
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                alert('Connection Error: ' + e.message);
+                btn.innerHTML = "PROSES BAYARAN";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
