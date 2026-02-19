@@ -75,16 +75,16 @@
                     </div>
                     <div>
                         <h1 class="text-2xl font-black text-brand uppercase tracking-tighter">PermitAkaun</h1>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Enhanced Development & Deployment</p>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Feedback Implementation & Final UAT</p>
                     </div>
                 </div>
                 <div class="text-right">
                     <div class="inline-flex items-center gap-2 text-brand font-bold px-4 py-2 bg-minty/30 rounded-full border border-basil/20">
                         <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
-                        <span class="text-xs uppercase tracking-widest">SEBUT HARGA TAMBAHAN</span>
+                        <span class="text-xs uppercase tracking-widest">SEBUT HARGA FINAL SKOP TAMBAHAN</span>
                     </div>
                     <p class="text-xs text-gray-500 mt-2 font-bold uppercase">Tarikh: 23 Jan 2026</p>
-                    <p class="text-xs text-gray-500 font-bold uppercase">Ruj: VCA-HZ-2026-ADD-03</p>
+                    <p class="text-xs text-gray-500 font-bold uppercase">Ruj: VCA-HZ-2026-ADD-FINAL</p>
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
                 </div>
                 <div class="md:text-right md:max-w-xs">
                     <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Objektif</h3>
-                    <p class="font-bold text-basil text-sm leading-snug">Implementasi Maklum Balas: Pengekstrakan Penyata Akaun Lanjutan, Modul Resit Baharu, & Pengujian Pra-Ramadan.</p>
+                    <p class="font-bold text-basil text-sm leading-snug">Penyelesaian Menyeluruh: Integrasi Penyata Lanjutan, Sistem Dokumen Auto, & Pembersihan UI/UX Tenant.</p>
                 </div>
             </div>
         </header>
@@ -107,73 +107,76 @@
             <div class="mb-10">
                 <h2 class="text-xl font-bold text-basil mb-6 flex items-center gap-2">
                     <span class="w-2 h-8 bg-brand rounded-full"></span>
-                    Perincian Kerja (Detailed Scope)
+                    Perincian Senarai Semak (Detailed Feedback List)
                 </h2>
 
                 <div class="space-y-4">
-                    <!-- Kategori 1: Akaun & Resit -->
+                    <!-- Kategori 1: Kewangan -->
                     <details open class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
                         <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="p-2 bg-passata rounded-lg text-white"><i data-lucide="banknote" class="w-5 h-5"></i></div>
                                 <div>
-                                    <h3 class="font-bold text-basil">Modul Akaun & Penjanaan Dokumen (New)</h3>
-                                    <span class="text-[10px] font-bold text-passata uppercase tracking-widest">Logic Extraction & PDF Engine</span>
+                                    <h3 class="font-bold text-basil">1. Modul Kewangan & Akaun (YT-Reference)</h3>
+                                    <span class="text-[10px] font-bold text-passata uppercase tracking-widest">Accounting Logic & Cash Flow Fix</span>
                                 </div>
                             </div>
                             <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-6 border-t border-basil/10">
-                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Extraction Logic:</strong> Pengekstrakan data akaun mengikut format rujukan YouTube (Akaun Berlapis).</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>7 Tabung System:</strong> Pembahagian automatik (Operating, Tax, Zakat, etc) dengan <em>Manual Amount Override</em>.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Resit/Invois/PV Auto:</strong> Penjanaan dokumen kewangan automatik dengan No. Siri (Skop Baharu).</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Edit Resit UI:</strong> Penambahan butang 'X' (pangkah) untuk pengurusan imej resit tanpa kehilangan rekod asal.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Company Setting:</strong> Kemaskini profil syarikat, logo, dan pangkalan data inventori stok.</li>
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-xs text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Logik Penyata Lanjutan: Ekstraksi data mengikut rujukan YouTube (Operating, Tax, Zakat, etc).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Manual Amount Override: Edit bahagian Amount tabung secara manual (tanpa paksaan genap 100%).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Cash-In Fix (RM5k): Mengalihkan data RM5k ke bawah 'Perbelanjaan Syarikat' (Ganti Operasi Akaun).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Resit UI Fix: Tambah butang 'X' (pangkah) pada resit yang diupload supaya imej tidak hilang masa edit.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Penjanaan Dokumen Auto: Jana Resit Jualan, Invois, & Payment Voucher (No. Siri unik).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Inventori Stok & Database Pengguna: Integrasi modul pengurusan stok dan pangkalan data pelanggan.</li>
                             </ul>
                         </div>
                     </details>
 
-                    <!-- Kategori 2: Permit -->
+                    <!-- Kategori 2: Permit & UI -->
                     <details class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
                         <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="p-2 bg-fresh rounded-lg text-white"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
                                 <div>
-                                    <h3 class="font-bold text-basil">Pengurusan Lokasi & Permit PBT</h3>
-                                    <span class="text-[10px] font-bold text-fresh uppercase tracking-widest">Visualisasi & Digitalisasi Borang</span>
+                                    <h3 class="font-bold text-basil">2. Lokasi, Permit & Reka Bentuk Tenant</h3>
+                                    <span class="text-[10px] font-bold text-fresh uppercase tracking-widest">UI/UX Cleaning & Location Logic</span>
                                 </div>
                             </div>
                             <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-6 border-t border-basil/10">
-                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Peta & Visual:</strong> Integrasi Google Maps, gambar lokasi, dan koordinat GPS dalam borang permit.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Kategori Operasi:</strong> Expo, Bazar Ramadhan, Bazar Raya, & Foodtruck (Lori/CBS update).</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Kalkulator Anggaran:</strong> Pengiraan sewaan automatik untuk tempoh 4-minggu.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>UI Clean-up:</strong> Buang kolum tambah lokasi pada Tenant (hanya Organizer).</li>
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-xs text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Permohonan Permit Lengkap: Integrasi Maps, Koordinat, dan Gambar Lokasi dalam borang.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Kategori Operasi: Tambah Foodtruck, Buang CBS (Lori), & Pilih kategori (Expo, Bazar Ramadan, etc).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Kalkulator 4-Minggu: Sistem kiraan anggaran bulanan untuk khemah/lot.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Tenant UI Clean-up: Buang kolum 'Tambah Lokasi' (Organizer sahaja ditetapkan).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Lokasi Search: Tenant boleh melihat & mencari semua lokasi sewa tapak yang disediakan.</li>
                             </ul>
                         </div>
                     </details>
 
-                    <!-- Kategori 3: Testing & Integrasi -->
+                    <!-- Kategori 3: Integrasi & Settings -->
                     <details class="group bg-white rounded-2xl border-2 border-basil/10 overflow-hidden">
                         <summary class="flex items-center justify-between p-5 cursor-pointer select-none bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-3">
-                                <div class="p-2 bg-basil rounded-lg text-white"><i data-lucide="activity" class="w-5 h-5"></i></div>
+                                <div class="p-2 bg-basil rounded-lg text-white"><i data-lucide="settings" class="w-5 h-5"></i></div>
                                 <div>
-                                    <h3 class="font-bold text-basil">Pengujian & Integrasi Final</h3>
-                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">SLA Pra-Ramadan & Brevo API</span>
+                                    <h3 class="font-bold text-basil">3. Sistem, Integrasi & PBT Compliance</h3>
+                                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Bug Fixes & Registration Flow</span>
                                 </div>
                             </div>
                             <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
                         </summary>
                         <div class="p-6 border-t border-basil/10">
-                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-gray-700 font-medium">
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Brevo Email Testing:</strong> Konfigurasi API & pengujian penghantaran emel ke emel rasmi Encik Hazman.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>UAT Pra-Ramadan:</strong> Pengujian intensif (2-3 hari) sebelum 5 Ramadan termasuk buffer support.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Strict Validation:</strong> Sekatan pendaftaran nama (Alphabet only) & pembetulan ralat Saving Profile Admin.</li>
-                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-fresh shrink-0"></i> <strong>Tiered Access:</strong> Integrasi gerbang bayaran (Chip) untuk pelan RM19, RM39, & RM99.</li>
+                            <ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-xs text-gray-700 font-medium">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Fix Admin Profile: Pembetulan ralat 'Error Saving Profile'.</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Company Settings: Modul kemaskini profil syarikat & Logo (besarkan di Landing Page).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Nama Pendaftaran: Sekatan pengesahan (Huruf sahaja, tiada nombor keliru).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Flow Tenant Baharu: Log masuk -> Pilih Pakej Akaun -> Organizer Validation (Auto ID dari emel).</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-3 h-3 text-fresh shrink-0"></i> Brevo SMTP: Konfigurasi API emel rasmi untuk kelulusan PBT.</li>
                             </ul>
                         </div>
                     </details>
@@ -185,48 +188,48 @@
                 <thead>
                     <tr class="bg-basil text-cream text-[10px] uppercase tracking-[0.2em]">
                         <th class="py-4 px-6 font-black w-12 no-print">Pilih</th>
-                        <th class="py-4 px-6 font-black w-3/5">Perkara / Modul Lanjutan</th>
+                        <th class="py-4 px-6 font-black w-3/5">Perkara / Modul</th>
                         <th class="py-4 px-6 font-black text-right">Harga (RM)</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700 bg-white">
                     <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
                         <td class="py-5 px-6 text-center no-print">
-                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Logik Akaun YT-Ref" data-price="700" onchange="calculateTotal()" checked>
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Logik Akaun & Kewangan" data-price="700" onchange="calculateTotal()" checked>
                         </td>
                         <td class="py-5 px-6">
-                            <p class="font-bold text-basil">Sistem Akaun & Pengekstrakan Penyata (YT-Ref)</p>
-                            <p class="text-[11px] text-gray-500 mt-1">Implementasi logik 7 tabung, override amaun, & pengurusan perbelanjaan syarikat.</p>
+                            <p class="font-bold text-basil text-sm">Sistem Akaun & Pengekstrakan Penyata (YT-Ref)</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Implementasi logik 7 tabung, override amaun, & pengurusan perbelanjaan syarikat.</p>
                         </td>
                         <td class="py-5 px-6 text-right font-bold">700.00</td>
                     </tr>
                     <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
                         <td class="py-5 px-6 text-center no-print">
-                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Penjanaan Resit Auto" data-price="300" onchange="calculateTotal()" checked>
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Penjanaan Dokumen Auto" data-price="300" onchange="calculateTotal()" checked>
                         </td>
                         <td class="py-5 px-6">
-                            <p class="font-bold text-passata">Modul Penjanaan Resit, Invois & PV Automatik</p>
-                            <p class="text-[11px] text-gray-500 mt-1">Sistem penjanaan PDF dengan No. Siri untuk Resit Jualan, Invois, & PV (Skop Baharu).</p>
+                            <p class="font-bold text-passata text-sm">Modul Penjanaan Resit, Invois & PV Automatik</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Sistem penjanaan PDF dengan No. Siri untuk dokumen jualan & bayaran.</p>
                         </td>
                         <td class="py-5 px-6 text-right font-bold">300.00</td>
                     </tr>
                     <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
                         <td class="py-5 px-6 text-center no-print">
-                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Permit & Peta" data-price="300" onchange="calculateTotal()" checked>
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Permit & Peta Visual" data-price="300" onchange="calculateTotal()" checked>
                         </td>
                         <td class="py-5 px-6">
-                            <p class="font-bold text-basil">Aliran Borang Permit & Integrasi Peta Visual</p>
-                            <p class="text-[11px] text-gray-500 mt-1">Sistem permit (Bazar/Expo/Foodtruck) dengan muat naik gambar & GPS.</p>
+                            <p class="font-bold text-basil text-sm">Aliran Borang Permit & Integrasi Peta Visual</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Sistem permit (Bazar/Expo/Foodtruck) dengan muat naik gambar & GPS.</p>
                         </td>
                         <td class="py-5 px-6 text-right font-bold">300.00</td>
                     </tr>
                     <tr class="border-b border-gray-100 hover:bg-minty/5 transition-colors">
                         <td class="py-5 px-6 text-center no-print">
-                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Integrasi & Tier" data-price="300" onchange="calculateTotal()" checked>
+                            <input type="checkbox" class="custom-checkbox module-selector" data-name="Integrasi & Fixes" data-price="300" onchange="calculateTotal()" checked>
                         </td>
                         <td class="py-5 px-6">
-                            <p class="font-bold text-basil">Integrasi Gateway & Had Akses Pelan (Tiered)</p>
-                            <p class="text-[11px] text-gray-500 mt-1">Pembetulan Admin Profile, setting syarikat, & sistem langganan Chip.</p>
+                            <p class="font-bold text-basil text-sm">Integrasi Sistem, Bug Fixes & Settings</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Pembetulan Admin Profile, logo branding, & flow pendaftaran Tenant.</p>
                         </td>
                         <td class="py-5 px-6 text-right font-bold">300.00</td>
                     </tr>
@@ -235,20 +238,20 @@
                             <input type="checkbox" class="custom-checkbox module-selector" data-name="Pengujian Ramadan" data-price="500" onchange="calculateTotal()" checked>
                         </td>
                         <td class="py-5 px-6">
-                            <p class="font-bold text-basil">Pengujian Lanjutan & Brevo Finalization (Pra-Ramadan)</p>
-                            <p class="text-[11px] text-gray-500 mt-1">Work-sprint (2-3 hari) sebelum 5 Ramadan. Termasuk pengujian API emel.</p>
+                            <p class="font-bold text-basil text-sm">Pengujian Lanjutan & Brevo API (Pra-Ramadan)</p>
+                            <p class="text-[10px] text-gray-500 mt-1">Sesi UAT tuntas (2-3 hari) sebelum 5 Ramadan & pengaktifan notifikasi emel.</p>
                         </td>
                         <td class="py-5 px-6 text-right font-bold">500.00</td>
                     </tr>
-                    <!-- RETAINER OPTIONS (NOT COMPULSORY) -->
+                    <!-- RETAINER OPTIONS -->
                     <tr class="border-b border-gray-100 bg-orange-50/10 hover:bg-orange-50/20">
                         <td class="py-5 px-6 text-center no-print text-xs text-gray-400">Pilihan</td>
                         <td class="py-5 px-6">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="retainer" id="retainer-6" class="custom-checkbox module-selector" data-name="Retainer (6 Bulan)" data-price="2000" onchange="calculateTotal()">
+                                <input type="radio" name="retainer" id="retainer-6" class="custom-checkbox module-selector" data-name="Maintenance (6 Bulan)" data-price="2000" onchange="calculateTotal()">
                                 <label for="retainer-6">
-                                    <p class="font-bold text-basil">6-Months Maintenance Retainer (Standby)</p>
-                                    <p class="text-[10px] text-gray-500 mt-1">SLA Urusan Kecemasan (24 jam), Biasa (3 hari). Troubleshooting & updates.</p>
+                                    <p class="font-bold text-basil text-sm">6-Months Maintenance Retainer (Standby)</p>
+                                    <p class="text-[10px] text-gray-500 mt-1">SLA Urusan Kecemasan (24j), Biasa (3-hari). Troubleshooting & updates.</p>
                                 </label>
                             </div>
                         </td>
@@ -258,10 +261,10 @@
                         <td class="py-5 px-6 text-center no-print text-xs text-gray-400">Pilihan</td>
                         <td class="py-5 px-6">
                             <div class="flex items-center gap-3">
-                                <input type="radio" name="retainer" id="retainer-3" class="custom-checkbox module-selector" data-name="Retainer (3 Bulan)" data-price="1200" onchange="calculateTotal()">
+                                <input type="radio" name="retainer" id="retainer-3" class="custom-checkbox module-selector" data-name="Maintenance (3 Bulan)" data-price="1200" onchange="calculateTotal()">
                                 <label for="retainer-3">
-                                    <p class="font-bold text-blue-700">3-Months Maintenance Retainer (Post-Dated)</p>
-                                    <p class="text-[10px] text-blue-500 italic mt-1">*Bayaran boleh dibuat kemudian (Can pay later).</p>
+                                    <p class="font-bold text-blue-700 text-sm">3-Months Maintenance Retainer (Post-Dated)</p>
+                                    <p class="text-[10px] text-blue-500 italic mt-1">*Bayaran boleh dibuat kemudian mengikut persetujuan.</p>
                                 </label>
                             </div>
                         </td>
@@ -273,16 +276,16 @@
         </main>
 
         <!-- Payment Dock -->
-        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-basil shadow-[0_-10px_30px_rgba(26,66,34,0.1)] p-5 transform translate-y-full transition-transform duration-300 z-50 no-print">
+        <div id="payment-dock" class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-basil shadow-[0_-15px_40px_rgba(26,66,34,0.15)] p-6 transform translate-y-full transition-transform duration-300 z-50 no-print">
             <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex items-center gap-6">
                     <div class="text-right md:text-left">
-                        <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Jumlah Invois Tambahan</p>
-                        <p class="text-3xl font-black text-basil tabular-nums" id="payment-total">RM 0.00</p>
+                        <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Invois Final Skop Tambahan</p>
+                        <p class="text-4xl font-black text-basil tabular-nums" id="payment-total">RM 0.00</p>
                         <p class="text-[10px] text-gray-500 font-bold">+ RM 2.00 Caj Gateway</p>
                         <p class="text-[10px] text-passata font-black hidden" id="deposit-label">50% DEPOSIT DITERAPKAN</p>
                     </div>
-                    <div class="h-12 w-px bg-basil/10 hidden md:block"></div>
+                    <div class="h-14 w-px bg-basil/10 hidden md:block"></div>
                     
                     <label class="flex items-center gap-2 cursor-pointer select-none bg-minty/10 px-4 py-2.5 rounded-xl border-2 border-basil/10 hover:bg-minty/20 transition">
                         <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-basil rounded focus:ring-basil" onchange="calculateTotal()">
@@ -298,10 +301,9 @@
                     </label>
                 </div>
                 
-                <!-- Explicit High-Contrast Button for Clarity -->
-                <button onclick="processPayment()" class="bg-[#1A4222] text-[#F6F4DC] px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-[#D95426] transition-all shadow-xl flex items-center gap-3 group border-2 border-[#1A4222]">
-                    <span>Proses Bayaran</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                <button onclick="processPayment()" class="bg-[#1A4222] text-[#F6F4DC] px-12 py-5 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-[#D95426] transition-all shadow-2xl flex items-center gap-4 group border-2 border-[#1A4222]">
+                    <span>PROSES BAYARAN</span>
+                    <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform"></i>
                 </button>
             </div>
         </div>
@@ -309,16 +311,16 @@
         <!-- Footer -->
         <footer class="bg-[#1A4222] py-16 px-8 text-center border-t-[16px] border-[#D95426] text-white">
             <h2 class="text-3xl font-black font-heading text-[#E1DC53] mb-4">Cubic Tech</h2>
-            <p class="text-[#F6F4DC]/40 text-[10px] uppercase font-black tracking-[0.5em] mb-12">Sovereign Intelligence Cycle</p>
+            <p class="text-[#F6F4DC]/40 text-[10px] uppercase font-black tracking-[0.5em] mb-12">Empowering Digital Governance</p>
             
             <div class="grid md:grid-cols-2 gap-12 text-left text-sm text-[#F6F4DC]/80">
                 <div class="space-y-4">
                     <h4 class="font-black text-[#E1DC53] uppercase tracking-widest text-xs">Terma & Syarat</h4>
-                    <ul class="list-disc list-inside space-y-1 opacity-70 font-medium text-xs">
-                        <li>Deposit: 50% daripada jumlah keseluruhan.</li>
-                        <li>SLA Penyelenggaraan (Jika Dipilih): Kecemasan (24j), Biasa (3-hari).</li>
-                        <li>Sokongan teknikal (Support) selama 2 minggu selepas sistem 'Live' bagi versi ini adalah termasuk dalam sebut harga ini.</li>
+                    <ul class="list-disc list-inside space-y-2 opacity-70 font-medium text-xs">
+                        <li>Deposit: 50% daripada jumlah keseluruhan dipersetujui.</li>
+                        <li>Sokongan teknikal (Support) selama 2 minggu selepas sistem 'Live' bagi versi ini adalah percuma.</li>
                         <li>Tarikh Siap: Pengujian tuntas sebelum 5 Ramadan 2026.</li>
+                        <li>PBT Compliance: Dokumentasi emel (Brevo) akan dikonfigurasi untuk kelulusan rasmi.</li>
                     </ul>
                 </div>
                 <div class="md:text-right flex flex-col justify-end">
@@ -395,7 +397,7 @@
 
                 const isDeposit = depositToggle.checked;
                 const payAmount = isDeposit ? total * 0.5 : total;
-                const desc = `Skop Tambahan PermitAkaun: ${items.join(', ')} (${isDeposit ? 'Deposit 50%' : 'Penuh'})`;
+                const desc = `Skop Tambahan PermitAkaun (FINAL): ${items.join(', ')} (${isDeposit ? 'Deposit 50%' : 'Penuh'})`;
                 const isTest = testModeToggle.checked;
 
                 localStorage.setItem('cetalabs_user_email', email);
@@ -406,7 +408,7 @@
                     email: email,
                     amount: (payAmount + 2).toFixed(2), 
                     desc: desc,
-                    subject: "Resit: Skop Tambahan PermitAkaun (Cubic Tech)"
+                    subject: "Resit FINAL: Skop Tambahan PermitAkaun (Cubic Tech)"
                 }).toString();
 
                 const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
