@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Receipt - CA-PERMIT-2025-REC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; }
+        
+        .quotation-header { display: flex; align-items: center; margin-bottom: 2rem; border-left: 8px solid #0F172A; padding-left: 1rem; }
+        .quotation-title { font-size: 2.5rem; font-weight: 700; color: #0F172A; letter-spacing: 0.1em; margin: 0; }
+        
+        .meta-item { text-align: right; margin: 0.5rem 0; }
+        .meta-label { font-weight: 600; color: #0F172A; display: block; font-size: 0.85rem; }
+        
+        .parties-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 0.5rem; }
+        .party-info h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #0F172A; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .party-info p { margin: 0.25rem 0; font-size: 0.9rem; color: #333; line-height: 1.5; }
+        
+        .items-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        .items-table thead { background: #0F172A; color: white; }
+        .items-table th { padding: 1rem; text-align: left; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .items-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e0e0e0; font-size: 0.85rem; vertical-align: top; }
+        .items-table tbody tr:last-child td { border-bottom: 2px solid #0F172A; }
+        .items-table tbody tr:nth-child(even) { background: #f9f9f9; }
+        
+        .amount-section { display: flex; justify-content: flex-end; margin-bottom: 2rem; gap: 3rem; flex-wrap: wrap; }
+        .amount-box { display: flex; flex-direction: column; gap: 0.5rem; text-align: right; }
+        .amount-label { font-size: 0.9rem; font-weight: 600; color: #666; }
+        .amount-value { font-size: 1.5rem; font-weight: 700; color: #0F172A; }
+        
+        .status-badge { position: absolute; top: 2rem; right: 2rem; border: 4px solid #16a34a; color: #16a34a; padding: 0.5rem 1rem; font-weight: 900; font-size: 1.5rem; border-radius: 0.5rem; transform: rotate(-15deg); opacity: 0.8; }
+        
+        .footer-section { border-top: 2px solid #0F172A; padding-top: 1.5rem; margin-top: 2rem; font-size: 0.85rem; color: #666; line-height: 1.6; }
+        .qr-note { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem; color: #166534; }
+        
+        .no-print-btn { background: #0F172A; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 0.5rem; font-weight: bold; cursor: pointer; display: block; margin: 1rem auto; transition: opacity 0.2s; }
+        .no-print-btn:hover { opacity: 0.9; }
+
+        @media print {
+            body { padding: 0; background: white; }
+            .container { box-shadow: none; padding: 1rem; margin: 0; max-width: 100%; }
+            .no-print-btn { display: none; }
+            .items-table th { background: #0F172A !important; color: white !important; -webkit-print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <button class="no-print-btn" onclick="window.print()">Download as PDF / Print</button>
+
+    <div class="container">
+        <div class="status-badge">PAID</div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+            <div class="quotation-header">
+                <h1 class="quotation-title">OFFICIAL RECEIPT</h1>
+            </div>
+            <div style="text-align: right;">
+                <div class="meta-item">
+                    <span class="meta-label">DATE:</span>
+                    20 FEB 2026
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">RECEIPT NO:</span>
+                    CA-PERMIT-2025-REC
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">REF QUOTATION:</span>
+                    WEBAKMM0125
+                </div>
+            </div>
+        </div>
+
+        <div class="parties-section">
+            <div class="party-info">
+                <h4>VENDOR</h4>
+                <p><strong>Cubic Tech Enterprise</strong></p>
+                <p>Jalan Ros, Batu 9 Sijangkang</p>
+                <p>Selangor, Malaysia</p>
+            </div>
+            <div class="party-info">
+                <h4>BILLED TO</h4>
+                <p><strong>Encik Hazman</strong></p>
+                <p>+60 19-990-0141</p>
+                <p>PermitAkaun System Development</p>
+            </div>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">CODE</th>
+                    <th>ITEM DESCRIPTION</th>
+                    <th style="text-align: right; width: 120px;">PRICE (RM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fasa 1 -->
+                <tr><td>M1</td><td><strong>Pangkalan Data & Profil Peniaga</strong><br><small>Pendaftaran penuh, muat naik SSM/IC, & paparan sejarah penyewa.</small></td><td style="text-align: right;">500.00</td></tr>
+                <tr><td>M1</td><td><strong>Pengurusan Lokasi & Acara</strong><br><small>Fungsi cipta acara, peta kawasan, & pengurusan jumlah lot.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Modul Sewaan & Bayaran (Cash In)</strong><br><small>Sistem jana sewa, rekod bayaran permit, & muat naik resit.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Modul Belian & Pengurusan Resit (Cash Out)</strong><br><small>Rekod kos operasi & muat naik imej resit.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Dashboard Pemantauan & Laporan</strong><br><small>Ringkasan kutipan, tunggakan, & senarai penyewa.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Sesi Konsultasi & Setup Database</strong><br><small>Perancangan struktur data awal permitakaun.kumim.my.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Ujian (Testing) & Debugging</strong><br><small>Ujian kefungsian penuh sebelum serahan.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M1</td><td><strong>Sistem Akaun Berlapis</strong><br><small>Pembahagian automatik (Operating, Tax, Zakat, Saving).</small></td><td style="text-align: right;">250.00</td></tr>
+                
+                <!-- Fasa 2 -->
+                <tr><td>M2</td><td><strong>Sistem Langganan & Integrasi Bayaran</strong><br><small>Payment gateway integration (Pelan RM19, RM39, RM99).</small></td><td style="text-align: right;">500.00</td></tr>
+                <tr><td>M2</td><td><strong>Kawalan Akses & Had Pelan (Tiered)</strong><br><small>Sekatan data berdasarkan tahap langganan.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M2</td><td><strong>Portal Organizer & Pengurusan Penyewa</strong><br><small>Pengurusan permit PBT & sejarah penyewa oleh Organizer.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M2</td><td><strong>Balance Sheet & Cashflow (Akaun)</strong><br><small>Laporan kewangan & kebolehan muat turun laporan.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M2</td><td><strong>Sistem Notifikasi</strong><br><small>Setup Brevo, emel domain kumim.my, & notifikasi automatik.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M2</td><td><strong>Konsultasi Strategi & Setup Hosting</strong><br><small>Infrastruktur pelayan & konfigurasi domain.</small></td><td style="text-align: right;">250.00</td></tr>
+                <tr><td>M2</td><td><strong>Ujian Beban & Keselamatan</strong><br><small>Kestabilan sistem untuk trafik tinggi secara serentak.</small></td><td style="text-align: right;">250.00</td></tr>
+            </tbody>
+        </table>
+
+        <div class="amount-section">
+            <div class="amount-box">
+                <div class="amount-label">SUBTOTAL</div>
+                <div class="amount-value" style="font-size: 1.1rem; color: #666;">RM 4,250.00</div>
+            </div>
+            <div class="amount-box">
+                <div class="amount-label">GRAND TOTAL PAID</div>
+                <div class="amount-value">RM 4,250.00</div>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="qr-note">
+                <strong>📝 Payment Confirmation:</strong>
+                <p>This payment has been confirmed and settled. No signature is required as this is a computer-generated receipt.</p>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: #999; text-align: center;">
+                Sovereign Intelligence & Automation Solutions<br>
+                Generated by Cubic Tech Enterprise
+            </p>
+        </div>
+    </div>
+</body>
+</html>
