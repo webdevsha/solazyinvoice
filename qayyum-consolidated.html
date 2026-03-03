@@ -22,8 +22,8 @@
             font-family: 'Inter', sans-serif; 
             background-color: var(--bg-cream); 
             color: var(--text-navy); 
-            /* High padding bottom to prevent floating dock from blocking the content */
-            padding-bottom: 300px; 
+            /* High padding bottom to prevent floating dock from blocking content and footer */
+            padding-bottom: 420px; 
         }
         .font-heading { font-family: 'Space Grotesk', sans-serif; }
         
@@ -55,6 +55,24 @@
             clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
         }
 
+        .pay-option-btn {
+            border: 2px solid #E2E8F0;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-align: center;
+        }
+        .pay-option-btn.active {
+            background-color: #1E293B;
+            color: white;
+            border-color: #1E293B;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+
         /* PDF A4 Optimization */
         .pdf-mode { width: 794px !important; padding: 20px !important; background: white !important; margin: 0 !important; }
         .pdf-mode .no-print { display: none !important; }
@@ -66,7 +84,7 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         @media (max-width: 640px) {
-            body { padding-bottom: 380px; }
+            body { padding-bottom: 500px; }
         }
     </style>
 </head>
@@ -83,7 +101,7 @@
 
         <!-- Main Header -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6 border-b-4 border-black pb-8">
-            <div class="w-full md:w-auto">
+            <div class="w-full md:w-auto text-left">
                 <div class="flex items-center gap-2 mb-4">
                     <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center rotate-3 shadow-lg">
                         <i data-lucide="calculator" class="text-white w-6 h-6"></i>
@@ -101,7 +119,7 @@
         </header>
 
         <!-- Recipient Card -->
-        <div class="neo-card bg-slate-900 text-white p-6 rounded-3xl mb-8 flex justify-between items-center">
+        <div class="neo-card bg-slate-900 text-white p-6 rounded-3xl mb-8 flex justify-between items-center text-left">
             <div>
                 <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">To Respected Parents</h3>
                 <p class="text-xl font-bold">Puan Aida & Tuan Syed</p>
@@ -113,7 +131,7 @@
         </div>
 
         <!-- 1. ARREARS (2024 & BEFORE) -->
-        <details open class="mb-8 group">
+        <details open class="mb-8 group text-left">
             <summary class="neo-card p-4 flex items-center justify-between hover:bg-slate-50 transition-all bg-red-50/20">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 bg-red-700 text-white rounded-lg flex items-center justify-center group-open:rotate-180 transition-transform">
@@ -162,7 +180,7 @@
         </details>
 
         <!-- 2. CURRENT SESSIONS (2025 - ALL 50 SESSIONS) -->
-        <details open class="mb-8 group">
+        <details open class="mb-8 group text-left">
             <summary class="neo-card p-4 flex items-center justify-between hover:bg-slate-50 transition-all bg-blue-50/20">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 bg-navy text-white rounded-lg flex items-center justify-center group-open:rotate-180 transition-transform">
@@ -197,7 +215,6 @@
                             <tr class="bg-blue-50/50"><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-P01" data-price="70.00" onchange="calculateTotal()" checked></td><td>2025-04-19 (Physical Session)</td><td class="text-center">1.75 h</td><td class="text-right font-bold">70.00</td></tr>
                             <tr><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-S07" data-price="50.67" onchange="calculateTotal()" checked></td><td>2025-04-22: 18:00 - 19:17</td><td class="text-center">76 min</td><td class="text-right font-bold">50.67</td></tr>
                             <tr><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-S08" data-price="26.00" onchange="calculateTotal()" checked></td><td>2025-04-29: 18:31 - 19:10</td><td class="text-center">39 min</td><td class="text-right font-bold">26.00</td></tr>
-                            <tr><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-S09" data-price="16.00" onchange="calculateTotal()" checked></td><td>2025-04-29: 19:11 - 19:35</td><td class="text-center">24 min</td><td class="text-right font-bold">16.00</td></tr>
                             <tr class="bg-blue-50/50"><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-P02" data-price="70.00" onchange="calculateTotal()" checked></td><td>2025-05-04 (Physical Session)</td><td class="text-center">1.75 h</td><td class="text-right font-bold">70.00</td></tr>
                             <tr><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-S10" data-price="54.00" onchange="calculateTotal()" checked></td><td>2025-05-06: 20:03 - 21:24</td><td class="text-center">81 min</td><td class="text-right font-bold">54.00</td></tr>
                             <tr><td class="text-center no-print"><input type="checkbox" class="custom-checkbox module-selector" data-name="2025-S11" data-price="52.00" onchange="calculateTotal()" checked></td><td>2025-05-11: 09:13 - 10:31</td><td class="text-center">78 min</td><td class="text-right font-bold">52.00</td></tr>
@@ -245,9 +262,9 @@
         </details>
 
         <!-- 3. PAYMENT HISTORY (DEDUCTIONS) -->
-        <div class="mb-8">
+        <div class="mb-8 text-left">
             <h2 class="text-xl font-bold text-basil mb-4 flex items-center gap-2">
-                <span class="w-2 h-8 bg-fresh rounded-full"></span>
+                <span class="w-2 h-8 bg-green-600 rounded-full"></span>
                 Payment History (Deductions)
             </h2>
             <div class="neo-card bg-green-50/20 overflow-hidden">
@@ -267,7 +284,7 @@
         </div>
 
         <!-- GRAND CONSOLIDATED BALANCE CARD -->
-        <div class="neo-card bg-black text-white p-8 flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+        <div class="neo-card bg-black text-white p-8 flex flex-col md:flex-row justify-between items-center gap-6 mb-12 text-left">
             <div class="text-center md:text-left">
                 <h3 class="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-1">Grand Consolidated Balance</h3>
                 <p class="text-sm italic opacity-60">(Arrears + 2025 Cycle - Payments)</p>
@@ -284,14 +301,14 @@
                 <div class="text-[9px] text-slate-600 space-y-2">
                     <p class="tc-item"><strong>1. Balance Due:</strong> RM 4,239.33 is the net outstanding after deducting RM 700 total payments received.</p>
                     <p class="tc-item"><strong>2. Rate Logic:</strong> Online sessions are RM 40/hr. Physical sessions are fixed 1.75-hr blocks (RM 70).</p>
-                    <p class="tc-item"><strong>3. Installment Mode:</strong> 50% deposit mode is enabled below for easier settlement of large arrears.</p>
+                    <p class="tc-item"><strong>3. Installment Options:</strong> Use the dock below to settle the balance in portions (15%, 25%, 50%) or in full.</p>
                 </div>
             </div>
             <div class="neo-card p-6 bg-slate-50 border-dashed" id="bank-info">
-                <div class="flex justify-between items-center gap-4 text-left">
+                <div class="flex justify-between items-center gap-4">
                     <div>
                         <p class="text-[9px] font-bold text-slate-500 uppercase mb-1">Manual Bank Transfer</p>
-                        <p class="font-heading font-bold text-lg leading-tight text-navy">Cubic Academia</p>
+                        <p class="font-heading font-bold text-lg leading-tight">Cubic Academia</p>
                         <p class="font-mono text-xl font-black text-red-700 tracking-tighter">5129-0554-0642</p>
                         <p class="text-[8px] text-slate-400 mt-1 uppercase font-bold">Maybank Islamic</p>
                     </div>
@@ -302,33 +319,37 @@
             </div>
         </div>
 
-        <!-- END OF DOCUMENT FOOTER -->
+        <!-- END OF DOCUMENT FOOTER (Visible Spacer) -->
         <div class="mt-20 py-10 border-t border-slate-100 flex justify-between items-center opacity-40">
             <span class="text-[9px] font-black uppercase tracking-widest text-navy">Cetalabs • Statement Verification</span>
             <span class="text-[9px] font-serif italic text-navy">Verified by Shafira Noh</span>
         </div>
+
+        <div class="h-20 no-print"></div> <!-- Extra spacer for scrollability -->
 
     </div>
 
     <!-- Payment Dock -->
     <div id="payment-dock" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-4xl z-[100] no-print">
         <div class="neo-card bg-white p-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-            <div class="flex items-center gap-6 w-full md:w-auto">
+            <div class="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto">
                 <div class="text-left">
-                    <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Current Amount Payable</p>
+                    <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Amount to Pay Now</p>
                     <div class="flex items-baseline gap-2">
-                        <span class="text-3xl md:text-4xl font-black text-black tabular-nums" id="dock-amount">RM 4,239.33</span>
+                        <span class="text-3xl md:text-4xl font-black text-black tabular-nums" id="dock-amount">RM 0.00</span>
                         <span class="text-[10px] text-gray-400 font-bold uppercase">+ RM 2 Gateway</span>
                     </div>
                 </div>
                 <div class="h-10 w-px bg-slate-200 hidden md:block"></div>
-                <label class="flex items-center gap-2 cursor-pointer select-none bg-red-50 px-4 py-2 rounded-xl border border-red-100 hover:bg-red-100 transition">
-                    <input type="checkbox" id="deposit-toggle" class="w-4 h-4 text-red-600 rounded focus:ring-red-600" onchange="calculateTotal()">
-                    <span class="text-xs font-black text-red-700 uppercase">Apply 50% Deposit</span>
-                </label>
+                <div class="flex gap-2 w-full md:w-auto">
+                    <button onclick="setDeposit(0.15)" class="pay-option-btn flex-1 md:flex-none" id="opt-15">15%</button>
+                    <button onclick="setDeposit(0.25)" class="pay-option-btn flex-1 md:flex-none" id="opt-25">25%</button>
+                    <button onclick="setDeposit(0.50)" class="pay-option-btn flex-1 md:flex-none" id="opt-50">50%</button>
+                    <button onclick="setDeposit(1.00)" class="pay-option-btn flex-1 md:flex-none active" id="opt-100">Full</button>
+                </div>
             </div>
             <button onclick="handlePayment()" id="pay-btn" class="w-full md:w-auto bg-slate-900 text-white px-10 py-4 rounded-xl font-black uppercase text-sm tracking-widest hover:bg-black transition-all shadow-[6px_6px_0px_#ccc] flex items-center justify-center gap-3">
-                <span>Secure Checkout</span>
+                <span id="pay-btn-text">Pay Now</span>
                 <i data-lucide="arrow-right" class="w-5 h-5 text-red-500"></i>
             </button>
         </div>
@@ -346,25 +367,36 @@
         const WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
         const BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
         
-        // Base Clean Grand Total after RM700 deduction
-        const BASE_CLEAN_TOTAL = 4239.33; 
+        let currentSubtotal = 0;
+        let depositRate = 1.0;
 
         lucide.createIcons();
+
+        function setDeposit(rate) {
+            depositRate = rate;
+            
+            // Update UI buttons
+            document.querySelectorAll('.pay-option-btn').forEach(btn => btn.classList.remove('active'));
+            if(rate === 0.15) document.getElementById('opt-15').classList.add('active');
+            if(rate === 0.25) document.getElementById('opt-25').classList.add('active');
+            if(rate === 0.50) document.getElementById('opt-50').classList.add('active');
+            if(rate === 1.00) document.getElementById('opt-100').classList.add('active');
+            
+            calculateTotal();
+        }
 
         function calculateTotal() {
             const checkboxes = document.querySelectorAll('.module-selector:checked');
             const dock = document.getElementById('payment-dock');
             const dockAmountDisplay = document.getElementById('dock-amount');
-            const depositToggle = document.getElementById('deposit-toggle');
+            const payBtnText = document.getElementById('pay-btn-text');
 
             let selectionTotal = 0;
             checkboxes.forEach(box => {
                 selectionTotal += parseFloat(box.dataset.price);
             });
 
-            // Deduction Logic: RM 700 always subtracted from the sum of checked items
-            // However, to keep it simple and aligned with "Grand Consolidated Balance":
-            // If all items are checked (default), cleanTotal is 4239.33.
+            // Deduction Logic: RM 700 subtracted from the selected sum
             let netTotal = selectionTotal - 700.00;
 
             if (netTotal > 0) {
@@ -375,12 +407,11 @@
                 dock.style.opacity = '0';
             }
 
-            let finalPayAmount = netTotal;
-            if (depositToggle.checked) {
-                finalPayAmount = netTotal * 0.5;
-            }
+            let finalPayAmount = netTotal * depositRate;
+            currentSubtotal = netTotal; // Store current total for payment processing
 
             dockAmountDisplay.innerText = `RM ${finalPayAmount.toLocaleString('en-MY', {minimumFractionDigits: 2})}`;
+            payBtnText.innerText = depositRate < 1 ? `Pay ${Math.round(depositRate * 100)}% Deposit` : "Pay In Full";
         }
 
         async function handlePayment() {
@@ -388,18 +419,10 @@
             if (!email || !email.includes('@')) return alert("Valid email is required.");
 
             const overlay = document.getElementById('overlay');
-            const depositToggle = document.getElementById('deposit-toggle');
             overlay.classList.remove('hidden');
 
-            // Recalculate current checked total
-            const checkboxes = document.querySelectorAll('.module-selector:checked');
-            let selectionTotal = 0;
-            checkboxes.forEach(box => selectionTotal += parseFloat(box.dataset.price));
-            
-            let netTotal = selectionTotal - 700.00;
-            const isDeposit = depositToggle.checked;
-            const payAmount = isDeposit ? netTotal * 0.5 : netTotal;
-            const desc = `Consolidated Tuition: Qayyum (Net Balance) ${isDeposit ? '- 50% Deposit' : '- Full'}`;
+            const payAmount = currentSubtotal * depositRate;
+            const desc = `Consolidated Tuition: Qayyum (Net Balance) ${depositRate < 1 ? `- ${Math.round(depositRate * 100)}% Deposit` : '- Full Payment'}`;
 
             try {
                 const res = await fetch(WORKER_URL, {
@@ -424,7 +447,7 @@
                 });
 
                 const data = await res.json();
-                if (data.checkout_url) window.location.href = data.checkout_url;
+                if (res.ok && data.checkout_url) window.location.href = data.checkout_url;
                 else alert("Gateway initialization failed.");
             } catch (e) {
                 alert("Network connection failed.");
