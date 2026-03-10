@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resit Rasmi - Zeaty Khalif & Asyraf Rosli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS Khusus untuk Cetakan PDF */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0; /* Membuang header/footer browser (URL, Tarikh) */
+            }
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact; /* Mengekalkan warna/background dalam PDF */
+                print-color-adjust: exact;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .page-container {
+                padding: 20mm !important; /* Margin dalaman kertas */
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: none !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        /* Styling untuk paparan skrin sahaja */
+        .page-container {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans p-4 sm:p-8 text-gray-800">
+
+    <!-- Tombol Cetak -->
+    <div class="max-w-4xl mx-auto no-print mb-6 flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+        <div class="text-sm text-gray-500">
+            <span class="font-bold text-blue-600 uppercase">Tip:</span> Pilih "Save as PDF" dan pastikan "Headers and footers" dinyah-tanda (unchecked) jika perlu.
+        </div>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg shadow-md flex items-center transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2 2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Simpan Resit (PDF)
+        </button>
+    </div>
+
+    <!-- RESIT 1: HAMPER VVIP -->
+    <div class="max-w-4xl mx-auto bg-white p-12 shadow-md border-t-8 border-blue-600 mb-10 page-container page-break">
+        <div class="flex justify-between items-start mb-12">
+            <div>
+                <h1 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Resit Rasmi</h1>
+                <div class="mt-4 space-y-1">
+                    <p class="text-gray-500 font-mono text-sm">NO: #RES-001</p>
+                    <p class="text-gray-500 font-mono text-sm">TARIKH: <span class="currentDate"></span></p>
+                </div>
+            </div>
+            <div class="text-right">
+                <h2 class="font-bold text-sm text-blue-600 uppercase tracking-widest mb-2">Daripada:</h2>
+                <p class="text-gray-900 font-bold text-lg uppercase">Zeaty Khalif & Asyraf Rosli</p>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    3-05-11, ASPIRE RESIDENCE,<br>
+                    PERSIARAN ASPIRASI, 63000<br>
+                    CYBERJAYA SELANGOR
+                </p>
+            </div>
+        </div>
+
+        <div class="mb-10 bg-gray-50 p-6 rounded-lg border-l-4 border-blue-600">
+            <h2 class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-1">Kepada:</h2>
+            <p class="text-gray-900 font-bold text-xl">Muslimat Masjid Al Najihin</p>
+        </div>
+
+        <table class="w-full mb-10">
+            <thead>
+                <tr class="text-left border-b-2 border-gray-200">
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs">Butiran Item</th>
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs text-center">Unit</th>
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs text-right">Harga (RM)</th>
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs text-right">Jumlah (RM)</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <tr>
+                    <td class="py-6 px-2 text-gray-800 font-medium">4 Set Hamper VVIP Biskut Raya</td>
+                    <td class="py-6 px-2 text-gray-600 text-center font-mono">1</td>
+                    <td class="py-6 px-2 text-gray-600 text-right font-mono">450.00</td>
+                    <td class="py-6 px-2 text-gray-900 text-right font-bold font-mono">450.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex justify-end mb-16">
+            <div class="w-full sm:w-64 space-y-3">
+                <div class="flex justify-between text-gray-500 text-sm">
+                    <span>Subtotal:</span>
+                    <span>RM 450.00</span>
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t-2 border-gray-900">
+                    <span class="font-bold text-gray-900 uppercase">Total:</span>
+                    <span class="font-black text-2xl text-blue-600 font-mono text-right">RM 450.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-12 pt-10">
+            <div class="text-center">
+                <div class="border-b border-gray-300 mb-3 h-12"></div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Tandatangan Penerima</p>
+            </div>
+            <div class="text-center">
+                <div class="border-b border-gray-300 mb-3 h-12 flex items-end justify-center">
+                    <span class="text-gray-300 italic text-sm mb-1">Dikeluarkan secara digital</span>
+                </div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Tandatangan Pengeluar</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESIT 2: KUIH RAYA COOKIE SERKUT -->
+    <div class="max-w-4xl mx-auto bg-white p-12 shadow-md border-t-8 border-green-600 page-container">
+        <div class="flex justify-between items-start mb-12">
+            <div>
+                <h1 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">Resit Rasmi</h1>
+                <div class="mt-4 space-y-1">
+                    <p class="text-gray-500 font-mono text-sm">NO: #RES-002</p>
+                    <p class="text-gray-500 font-mono text-sm">TARIKH: <span class="currentDate"></span></p>
+                </div>
+            </div>
+            <div class="text-right">
+                <h2 class="font-bold text-sm text-green-600 uppercase tracking-widest mb-2">Daripada:</h2>
+                <p class="text-gray-900 font-bold text-lg uppercase">Zeaty Khalif & Asyraf Rosli</p>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    3-05-11, ASPIRE RESIDENCE,<br>
+                    PERSIARAN ASPIRASI, 63000<br>
+                    CYBERJAYA SELANGOR
+                </p>
+            </div>
+        </div>
+
+        <div class="mb-10 bg-gray-50 p-6 rounded-lg border-l-4 border-green-600">
+            <h2 class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-1">Kepada:</h2>
+            <p class="text-gray-900 font-bold text-xl">Muslimat Masjid Al Najihin</p>
+        </div>
+
+        <table class="w-full mb-10">
+            <thead>
+                <tr class="text-left border-b-2 border-gray-200">
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs">Butiran Item</th>
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs text-center">Unit</th>
+                    <th class="py-4 px-2 font-bold text-gray-700 uppercase text-xs text-right">Harga (RM)</th>
+                    <th class="py-3 px-2 font-bold text-gray-700 uppercase text-xs text-right">Jumlah (RM)</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <tr>
+                    <td class="py-6 px-2 text-gray-800 font-medium">17 blg Kuih Raya Cookie Serkut</td>
+                    <td class="py-6 px-2 text-gray-600 text-center font-mono">17</td>
+                    <td class="py-6 px-2 text-gray-600 text-right font-mono">38.00</td>
+                    <td class="py-6 px-2 text-gray-900 text-right font-bold font-mono">646.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex justify-end mb-16">
+            <div class="w-full sm:w-64 space-y-3">
+                <div class="flex justify-between text-gray-500 text-sm">
+                    <span>Subtotal:</span>
+                    <span>RM 646.00</span>
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t-2 border-gray-900">
+                    <span class="font-bold text-gray-900 uppercase">Total:</span>
+                    <span class="font-black text-2xl text-green-600 font-mono text-right">RM 646.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-12 pt-10">
+            <div class="text-center">
+                <div class="border-b border-gray-300 mb-3 h-12"></div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Tandatangan Penerima</p>
+            </div>
+            <div class="text-center">
+                <div class="border-b border-gray-300 mb-3 h-12 flex items-end justify-center">
+                    <span class="text-gray-300 italic text-sm mb-1">Dikeluarkan secara digital</span>
+                </div>
+                <p class="text-[10px] text-gray-400 uppercase tracking-[0.2em]">Tandatangan Pengeluar</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set tarikh hari ini secara automatik
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        const today = new Date().toLocaleDateString('ms-MY', options);
+        document.querySelectorAll('.currentDate').forEach(el => {
+            el.innerText = today;
+        });
+    </script>
+</body>
+</html>
