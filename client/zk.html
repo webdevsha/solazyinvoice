@@ -3,175 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resit Rasmi - Zeaty Khalif & Asyraf Rosli</title>
+    <title>Resit Jualan - Teras Legacy Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
         @media print {
-            /* Memastikan butang dan elemen tidak berkaitan disembunyikan sepenuhnya */
-            .no-print {
-                display: none !important;
-            }
-            .page-break {
-                page-break-after: always;
+            @page {
+                size: A4;
+                margin: 0;
             }
             body {
                 background-color: white;
                 padding: 0;
-                margin: 0;
             }
-            /* Menghilangkan margin kelabu di sekeliling kertas pada sesetengah browser */
-            .max-w-4xl {
-                max-width: 100% !important;
-                width: 100% !important;
+            .no-print {
+                display: none !important;
+            }
+            .receipt-card {
                 box-shadow: none !important;
-                border-top: 8px solid; /* Kekalkan warna border */
+                border: 1px solid #e2e8f0 !important;
+                margin: 0 !important;
+                padding: 20mm !important;
+                width: 100% !important;
+                max-width: none !important;
+                page-break-after: always;
             }
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans p-4 sm:p-8 text-gray-800">
+<body class="bg-slate-50 p-4 md:p-10 text-slate-900">
 
-    <!-- Tombol Cetak (Akan disembunyikan semasa cetak) -->
-    <div class="max-w-4xl mx-auto no-print mb-6 flex justify-end">
-        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg flex items-center transition duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2 2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-            </svg>
-            Simpan sebagai PDF / Cetak
+    <!-- Action Bar -->
+    <div class="max-w-4xl mx-auto no-print mb-8 flex justify-between items-center bg-white p-5 rounded-2xl shadow-lg border border-slate-200">
+        <div>
+            <h3 class="font-bold text-slate-800 italic">Resit Jualan: Teras Legacy Group</h3>
+            <p class="text-xs text-slate-500">Sedia untuk dimuat turun sebagai PDF dengan teks boleh salin.</p>
+        </div>
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+            Simpan PDF / Cetak
         </button>
     </div>
 
-    <!-- RESIT 1: HAMPER VVIP -->
-    <div class="max-w-4xl mx-auto bg-white p-8 shadow-md border-t-8 border-blue-600 mb-10 page-break">
-        <div class="flex justify-between items-start mb-8">
+    <!-- RESIT 1: TLG-001 -->
+    <div class="max-w-4xl mx-auto bg-white p-12 mb-10 shadow-sm border border-slate-200 receipt-card">
+        <div class="flex justify-between items-start mb-10">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-tight">Resit Rasmi</h1>
-                <p class="text-gray-500 mt-1 italic">No. Resit: #CYZA261</p>
-                <p class="text-gray-500">Tarikh: <span class="currentDate"></span></p>
+                <h1 class="text-3xl font-black text-slate-900 uppercase tracking-tighter mb-1">Resit Jualan</h1>
+                <p class="text-sm font-bold text-slate-400">NO. RESIT: <span class="text-slate-900">TLG-001</span></p>
+                <p class="text-sm font-bold text-slate-400">TARIKH: <span class="text-slate-900">7/3/2026</span></p>
             </div>
             <div class="text-right">
-                <h2 class="font-bold text-lg text-blue-600">DARIPADA:</h2>
-                <p class="text-gray-700 font-semibold uppercase">Zeaty Khalif & Asyraf Rosli</p>
-                <p class="text-gray-600 text-sm">3-05-11, ASPIRE RESIDENCE,</p>
-                <p class="text-gray-600 text-sm">PERSIARAN ASPIRASI, 63000</p>
-                <p class="text-gray-600 text-sm">CYBERJAYA SELANGOR</p>
+                <h2 class="font-black text-lg text-slate-900 uppercase">Teras Legacy Group</h2>
+                <p class="text-xs text-slate-500 leading-relaxed uppercase font-semibold">
+                    3-05-11, ASPIRE RESIDENCE,<br>
+                    PERSIARAN ASPIRASI, 63000<br>
+                    CYBERJAYA SELANGOR
+                </p>
             </div>
         </div>
 
-        <div class="mb-8 border-b border-gray-100 pb-4">
-            <h2 class="font-bold text-gray-800 mb-2 uppercase text-sm tracking-wide">Kepada:</h2>
-            <p class="text-gray-700 font-medium text-lg">Muslimat Masjid Al Najihin</p>
+        <div class="mb-10 border-l-4 border-slate-900 pl-6 py-2 bg-slate-50">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Penerima:</h3>
+            <p class="text-lg font-bold text-slate-900">Muslimat Masjid Al Najihin</p>
         </div>
 
-        <table class="w-full mb-8">
+        <table class="w-full mb-10">
             <thead>
-                <tr class="bg-gray-50 text-left">
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b">Butiran / Item</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-center">Kuantiti</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-right">Harga Unit (RM)</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-right">Jumlah (RM)</th>
+                <tr class="text-left border-b-2 border-slate-900">
+                    <th class="py-4 font-black text-xs uppercase tracking-wider">Perkara</th>
+                    <th class="py-4 text-center font-black text-xs uppercase tracking-wider">Kuantiti</th>
+                    <th class="py-4 text-right font-black text-xs uppercase tracking-wider">Harga (RM)</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-slate-100">
                 <tr>
-                    <td class="py-4 px-4 text-gray-700 border-b italic font-medium">4 Set Hamper VVIP Biskut Raya</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-center">1</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-right">450.00</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-right font-semibold">450.00</td>
+                    <td class="py-6 font-medium text-slate-800 italic">Hamper VVIP (Biskut Raya)</td>
+                    <td class="py-6 text-center text-slate-600">4 Set</td>
+                    <td class="py-6 text-right font-bold text-slate-900">440.00</td>
                 </tr>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="3" class="py-6 text-right font-bold text-gray-800 text-lg uppercase pr-4">Jumlah Keseluruhan:</td>
-                    <td class="py-6 text-right font-bold text-blue-600 text-xl border-b-2 border-blue-600">RM 450.00</td>
+                <tr class="border-t-2 border-slate-100">
+                    <td colspan="2" class="py-6 text-right font-black text-slate-400 uppercase text-xs tracking-widest">Jumlah Bayaran:</td>
+                    <td class="py-6 text-right font-black text-2xl text-slate-900">RM 440.00</td>
                 </tr>
             </tfoot>
         </table>
 
-        <div class="mt-20 flex justify-between">
-            <div class="text-center w-48">
-                <div class="border-b border-gray-400 mb-2 h-10"></div>
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Tandatangan Penerima</p>
+        <div class="flex justify-between items-end">
+            <div class="space-y-1">
+                <p class="text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2 py-1 inline-block rounded">Status: Telah Diterima</p>
             </div>
-            <div class="text-center w-48">
-                <div class="border-b border-gray-400 mb-2 h-10 flex items-end justify-center">
-                    <span class="text-gray-400 italic text-sm mb-1 font-serif">Zeaty & Asyraf</span>
-                </div>
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Tandatangan Pengeluar</p>
+            <div class="text-center w-64">
+                <div class="border-b border-slate-300 mb-2 h-10"></div>
+                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Tandatangan</p>
             </div>
         </div>
-        <p class="text-center text-gray-400 text-xs mt-16 font-light">Terima kasih atas sokongan anda!</p>
     </div>
 
-    <!-- RESIT 2: KUIH RAYA COOKIE SERKUT -->
-    <div class="max-w-4xl mx-auto bg-white p-8 shadow-md border-t-8 border-green-600">
-        <div class="flex justify-between items-start mb-8">
+    <!-- RESIT 2: TLG-002 -->
+    <div class="max-w-4xl mx-auto bg-white p-12 shadow-sm border border-slate-200 receipt-card">
+        <div class="flex justify-between items-start mb-10">
             <div>
-                <h1 class="text-3xl font-bold text-gray-800 uppercase tracking-tight">Resit Rasmi</h1>
-                <p class="text-gray-500 mt-1 italic">No. Resit: #CYZA262</p>
-                <p class="text-gray-500">Tarikh: <span class="currentDate"></span></p>
+                <h1 class="text-3xl font-black text-slate-900 uppercase tracking-tighter mb-1">Resit Jualan</h1>
+                <p class="text-sm font-bold text-slate-400">NO. RESIT: <span class="text-slate-900">TLG-002</span></p>
+                <p class="text-sm font-bold text-slate-400">TARIKH: <span class="text-slate-900">7/3/2026</span></p>
             </div>
             <div class="text-right">
-                <h2 class="font-bold text-lg text-green-600">DARIPADA:</h2>
-                <p class="text-gray-700 font-semibold uppercase">Zeaty Khalif & Asyraf Rosli</p>
-                <p class="text-gray-600 text-sm">3-05-11, ASPIRE RESIDENCE,</p>
-                <p class="text-gray-600 text-sm">PERSIARAN ASPIRASI, 63000</p>
-                <p class="text-gray-600 text-sm">CYBERJAYA SELANGOR</p>
+                <h2 class="font-black text-lg text-slate-900 uppercase">Teras Legacy Group</h2>
+                <p class="text-xs text-slate-500 leading-relaxed uppercase font-semibold">
+                    3-05-11, ASPIRE RESIDENCE,<br>
+                    PERSIARAN ASPIRASI, 63000<br>
+                    CYBERJAYA SELANGOR
+                </p>
             </div>
         </div>
 
-        <div class="mb-8 border-b border-gray-100 pb-4">
-            <h2 class="font-bold text-gray-800 mb-2 uppercase text-sm tracking-wide">Kepada:</h2>
-            <p class="text-gray-700 font-medium text-lg">Muslimat Masjid Al Najihin</p>
+        <div class="mb-10 border-l-4 border-slate-900 pl-6 py-2 bg-slate-50">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Penerima:</h3>
+            <p class="text-lg font-bold text-slate-900">Muslimat Masjid Al Najihin</p>
         </div>
 
-        <table class="w-full mb-8">
+        <table class="w-full mb-10">
             <thead>
-                <tr class="bg-gray-50 text-left">
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b">Butiran / Item</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-center">Kuantiti</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-right">Harga Unit (RM)</th>
-                    <th class="py-3 px-4 font-bold text-gray-700 uppercase text-xs border-b text-right">Jumlah (RM)</th>
+                <tr class="text-left border-b-2 border-slate-900">
+                    <th class="py-4 font-black text-xs uppercase tracking-wider">Perkara</th>
+                    <th class="py-4 text-center font-black text-xs uppercase tracking-wider">Kuantiti</th>
+                    <th class="py-4 text-right font-black text-xs uppercase tracking-wider">Jumlah (RM)</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-slate-100">
                 <tr>
-                    <td class="py-4 px-4 text-gray-700 border-b font-medium italic text-sm">Kuih Raya Cookie Serkut</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-center italic">17 balang</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-right">38.00</td>
-                    <td class="py-4 px-4 text-gray-700 border-b text-right font-semibold">646.00</td>
+                    <td class="py-6 font-medium text-slate-800 italic">Kuih Raya Cookies Sekut</td>
+                    <td class="py-6 text-center text-slate-600">17 Balang</td>
+                    <td class="py-6 text-right font-bold text-slate-900">646.00</td>
                 </tr>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="3" class="py-6 text-right font-bold text-gray-800 text-lg uppercase pr-4">Jumlah Keseluruhan:</td>
-                    <td class="py-6 text-right font-bold text-green-600 text-xl border-b-2 border-green-600">RM 646.00</td>
+                <tr class="border-t-2 border-slate-100">
+                    <td colspan="2" class="py-6 text-right font-black text-slate-400 uppercase text-xs tracking-widest">Jumlah Bayaran:</td>
+                    <td class="py-6 text-right font-black text-2xl text-slate-900">RM 646.00</td>
                 </tr>
             </tfoot>
         </table>
 
-        <div class="mt-20 flex justify-between">
-            <div class="text-center w-48">
-                <div class="border-b border-gray-400 mb-2 h-10"></div>
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Tandatangan Penerima</p>
+        <div class="flex justify-between items-end">
+            <div class="space-y-1">
+                <p class="text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2 py-1 inline-block rounded">Status: Telah Diterima</p>
             </div>
-            <div class="text-center w-48">
-                <div class="border-b border-gray-400 mb-2 h-10 flex items-end justify-center">
-                    <span class="text-gray-400 italic text-sm mb-1 font-serif">Zeaty & Asyraf</span>
-                </div>
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Tandatangan Pengeluar</p>
+            <div class="text-center w-64">
+                <div class="border-b border-slate-300 mb-2 h-10"></div>
+                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Tandatangan</p>
             </div>
         </div>
-        <p class="text-center text-gray-400 text-xs mt-16 font-light">Terima kasih atas sokongan anda!</p>
     </div>
 
-    <script>
-        // Set tarikh hari ini secara automatik untuk semua elemen tarikh
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        const today = new Date().toLocaleDateString('ms-MY', options);
-        document.querySelectorAll('.currentDate').forEach(el => {
-            el.innerText = today;
-        });
-    </script>
 </body>
 </html>
