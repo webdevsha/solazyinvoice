@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation: Retreat & Conference Commerce System - MySuhba</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official quotation for MySuhba Retreat & Conference Commerce System. Custom donation portal and multi-product management with secure checkout. Built by Cubic Tech.">
+    <meta name="keywords" content="MySuhba, Donation Forms, Product Management, E-commerce, Cubic Tech">
+    <meta name="author" content="Shafira Noh - Cubic Tech">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Quotation: MySuhba Retreat Commerce System - Cubic Tech">
+    <meta property="og:description" content="Comprehensive donation and product management system for MySuhba's retreat and conference programs.">
+    <meta property="og:image" content="https://ik.imagekit.io/cbctech/Deeptech.jpg?updatedAt=1769046304784">
+    <meta property="og:url" content="https://cetalabs.com/">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Quotation: MySuhba Retreat Commerce System - Cubic Tech">
+    <meta property="twitter:image" content="https://ik.imagekit.io/cbctech/Deeptech.jpg?updatedAt=1769046304784">
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FDFCF8;
+            --text-navy: #1E293B;
+            --acc-amber: #B45309;
+            --border-heavy: 2px solid #1E293B;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-cream); 
+            color: var(--text-navy); 
+            padding-bottom: 280px; 
+        }
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        
+        .neo-card { 
+            background: white; 
+            border: var(--border-heavy); 
+            box-shadow: 4px 4px 0px var(--text-navy); 
+        }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: #f1f5f9; text-align: left; padding: 12px; border-bottom: var(--border-heavy); font-family: 'Space Grotesk', sans-serif; font-size: 11px; text-transform: uppercase; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+
+        .scope-list { list-style: none; padding: 0; margin-top: 8px; }
+        .scope-list li { font-size: 10px; color: #64748b; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px; }
+        .scope-list li::before { content: "•"; color: var(--acc-amber); font-weight: bold; }
+
+        .optional-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* PDF Optimization */
+        .pdf-mode { width: 794px !important; padding: 40px !important; background: white !important; margin: 0 !important; }
+        .pdf-mode .no-print { display: none !important; }
+        .pdf-mode .neo-card { box-shadow: none !important; border-width: 1px !important; }
+        .pdf-mode h1 { font-size: 28px !important; }
+        .pdf-mode th, .pdf-mode td { font-size: 9px !important; padding: 10px !important; }
+
+        .spinner { width: 30px; height: 30px; border: 3px solid #f3f3f3; border-top: 3px solid var(--acc-amber); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .checkbox-container { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+        .checkbox-container input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+        .checkbox-container label { font-size: 11px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body class="p-4 md:p-8 antialiased">
+
+    <div class="max-w-4xl mx-auto print-container" id="quotation-root">
+        
+        <!-- Header Actions -->
+        <div class="no-print flex flex-col sm:flex-row justify-end items-stretch sm:items-center mb-8 gap-3 text-left">
+            <button onclick="generatePDF()" class="bg-white border-2 border-black px-4 py-2 font-bold text-sm flex items-center justify-center gap-2 hover:bg-slate-50 transition-all text-navy">
+                <i data-lucide="file-down" class="w-4 h-4"></i> Save Quotation PDF
+            </button>
+        </div>
+
+        <!-- Main Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6 border-b-4 border-black pb-8 text-left">
+            <div class="w-full md:w-auto">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center rotate-3 shadow-lg">
+                        <i data-lucide="shopping-cart" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="font-heading font-bold text-xl tracking-tighter uppercase text-navy">Cubic Tech</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-heading font-bold uppercase leading-none text-slate-800">Quotation <br><span class="text-amber-700">Retreat Commerce System</span></h1>
+                <p class="text-slate-500 mt-2 text-sm italic">Donation Portal & Multi-Product Management for MySuhba Programs</p>
+            </div>
+            <div class="w-full md:text-right text-left">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ref No.</p>
+                <p class="font-heading font-bold text-lg text-slate-800 uppercase">CT-MS-RETREAT-2026-V1</p>
+                <p class="text-[10px] text-slate-500 font-bold uppercase">Date: April 8, 2026</p>
+            </div>
+        </header>
+
+        <!-- Brief Section -->
+        <div class="p-6 bg-slate-900 text-white rounded-3xl mb-8 flex justify-between items-center text-left">
+            <div>
+                <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Project Scope</h3>
+                <p class="text-lg font-bold">Integrated Commerce & Donation Infrastructure</p>
+                <p class="text-xs text-slate-400 max-w-lg mt-2">Building a dual-purpose platform: flexible donation/sponsorship forms with manual and automated payment options, plus a comprehensive product catalog system for retreat and conference registrations with custom cart and checkout.</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <i data-lucide="package" class="w-12 h-12 text-amber-500 opacity-30"></i>
+            </div>
+        </div>
+
+        <!-- PRICING TABLE -->
+        <div class="neo-card overflow-x-auto mb-10 text-left">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th width="15%">Code</th>
+                        <th width="65%">Service Details & Comprehensive Scope</th>
+                        <th width="20%" class="text-right">Amount (RM)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr id="row-donation">
+                        <td class="font-bold">RC-01</td>
+                        <td>
+                            <strong class="text-navy uppercase text-xs">Donation & Sponsorship Form System</strong>
+                            <span class="optional-badge">Optional Module</span>
+                            <ul class="scope-list">
+                                <li>Dual-mode donation interface: Manual poster display OR Chip-in integrated payment.</li>
+                                <li>Toggle-based architecture allowing admins to enable/disable automated gateway.</li>
+                                <li>Custom sponsorship tier selection with predefined amounts and open-value options.</li>
+                                <li>High-resolution poster upload capability for manual bank transfer instructions.</li>
+                                <li>Donor information capture: Name, email, contact, organization, dedication message.</li>
+                                <li>Automated receipt generation when using Chip-in payment gateway.</li>
+                                <li>Administrative dashboard integration for donation tracking and reporting.</li>
+                            </ul>
+                            <div class="checkbox-container no-print">
+                                <input type="checkbox" id="include-donation" checked onchange="updatePricing()">
+                                <label for="include-donation">Include this module in quotation</label>
+                            </div>
+                        </td>
+                        <td class="text-right font-black text-lg text-navy" id="price-donation">250.00</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">RC-02</td>
+                        <td>
+                            <strong class="text-navy uppercase text-xs">Multi-Product Commerce Engine</strong>
+                            <ul class="scope-list">
+                                <li>Comprehensive product catalog for retreat packages and conference tickets.</li>
+                                <li>Real-time stock management system with inventory tracking and sold-out indicators.</li>
+                                <li>Variant management: Multiple ticket tiers, room types, meal preferences, add-ons.</li>
+                                <li>Dynamic pricing engine supporting early-bird rates and tiered pricing structures.</li>
+                                <li>Custom shopping cart with quantity controls and package bundling logic.</li>
+                                <li>Secure checkout page with guest profiling and order summary visualization.</li>
+                                <li>Payment gateway integration (Chip-in/FPX) with order confirmation workflow.</li>
+                                <li>Automated email notifications: Order confirmation, payment receipt, event reminders.</li>
+                                <li>Backend order management dashboard with export functionality to Google Sheets.</li>
+                                <li>Mobile-optimized responsive design for seamless smartphone purchasing.</li>
+                            </ul>
+                        </td>
+                        <td class="text-right font-black text-lg text-navy">500.00</td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">RC-03</td>
+                        <td>
+                            <strong class="text-navy uppercase text-xs">Testing, Integration & Quality Assurance</strong>
+                            <ul class="scope-list">
+                                <li>End-to-end transaction flow testing across all payment scenarios.</li>
+                                <li>Stock depletion simulation and concurrent purchase conflict resolution.</li>
+                                <li>Cross-browser and cross-device compatibility verification.</li>
+                                <li>Security audit: Data encryption, SQL injection prevention, CSRF protection.</li>
+                                <li>Load testing for high-traffic registration periods (retreat launches).</li>
+                                <li>User Acceptance Testing (UAT) with MySuhba team for workflow validation.</li>
+                                <li>Performance optimization for page load speed and checkout conversion.</li>
+                            </ul>
+                        </td>
+                        <td class="text-right font-black text-lg text-navy">250.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="bg-black text-white">
+                        <td colspan="2" class="font-heading font-bold text-right py-6 px-6 uppercase text-sm">Total Digital Investment</td>
+                        <td class="font-heading font-bold text-right py-6 px-6 text-2xl" id="total-amount">RM 1,000.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- TERMS -->
+        <div id="terms-section" class="grid md:grid-cols-2 gap-10 text-left border-t-2 border-slate-200 pt-10">
+            <div>
+                <h3 class="font-heading font-bold uppercase text-[10px] tracking-widest mb-4 text-slate-400">Payment Terms & Timeline</h3>
+                <div class="text-[10px] text-slate-600 space-y-3">
+                    <p class="border-b border-dashed border-slate-200 pb-2"><strong>1. 70% Deposit:</strong> An initial payment of <span id="deposit-amount">RM 700.00</span> is required to secure the build slot.</p>
+                    <p class="border-b border-dashed border-slate-200 pb-2"><strong>2. Modular Pricing:</strong> RC-01 (Donation Forms) is optional and can be excluded if not required. The quotation will adjust accordingly.</p>
+                    <p class="border-b border-dashed border-slate-200 pb-2"><strong>3. Integrated Timeline:</strong> The development and delivery of this system will be synchronized with the <strong>MySuhba Main Page project</strong> timeline.</p>
+                    <p class="border-b border-dashed border-slate-200 pb-2"><strong>4. Remaining 30%:</strong> Final payment of <span id="balance-amount">RM 300.00</span> due upon completion and user acceptance testing approval.</p>
+                </div>
+            </div>
+            <div class="neo-card p-6 bg-slate-50 border-dashed" id="bank-info">
+                <div class="flex justify-between items-center gap-4 text-left">
+                    <div>
+                        <p class="text-[9px] font-bold text-slate-500 uppercase mb-1">Manual Bank Transfer</p>
+                        <p class="font-heading font-bold text-lg leading-tight">Cubic Tech</p>
+                        <p class="font-mono text-xl font-black text-amber-700 tracking-tighter">5628-7051-3533</p>
+                        <p class="text-[8px] text-slate-400 mt-1 uppercase font-bold">Maybank Islamic</p>
+                    </div>
+                    <div class="bg-white p-1.5 border border-slate-200 rounded shrink-0 grayscale opacity-40">
+                        <img src="https://ik.imagekit.io/cbctech/QR-Cubictech.png?updatedAt=1771605189108" alt="QR" class="w-14 h-14 object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-20 py-10 border-t border-slate-100 flex justify-between items-center opacity-40 text-navy">
+            <span class="text-[9px] font-black uppercase tracking-widest text-left">Generated by Cetalabs Ecosystem</span>
+            <span class="text-[9px] font-serif italic text-right">Prepared by Shafira Noh - Cubic Tech</span>
+        </div>
+
+    </div>
+
+    <!-- Payment Dock -->
+    <div id="payment-dock" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-4xl z-[100] no-print text-left">
+        <div class="neo-card bg-white p-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+            <div class="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto text-left">
+                <div class="text-left">
+                    <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">Initial Payment (70% Deposit)</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl md:text-4xl font-black text-black tabular-nums" id="dock-deposit">RM 700.00</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">+ RM 2 Gateway</span>
+                    </div>
+                </div>
+                <div class="h-10 w-px bg-slate-200 hidden md:block"></div>
+                <div class="flex flex-col text-left">
+                    <span class="text-[10px] font-black text-amber-700 uppercase mb-1">Project Status</span>
+                    <span class="text-[11px] font-bold text-slate-600">Awaiting Deposit to Commence</span>
+                </div>
+            </div>
+            <button onclick="handlePayment()" id="pay-btn" class="w-full md:w-auto bg-slate-900 text-white px-12 py-4 rounded-xl font-black uppercase text-sm tracking-widest hover:bg-black transition-all shadow-[6px_6px_0px_#ccc] flex items-center justify-center gap-3 border-2 border-black">
+                <span>Secure Checkout</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 text-amber-500"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black/90 hidden z-[200] flex items-center justify-center backdrop-blur-sm">
+        <div class="text-center p-6">
+            <div class="spinner mx-auto mb-6"></div>
+            <p class="text-white font-heading font-bold uppercase tracking-widest text-sm">Connecting to Gateway...</p>
+        </div>
+    </div>
+
+    <script>
+        const WORKER_URL = 'https://flat-haze-25a0.shalomshafa.workers.dev';
+        const BRAND_ID = '9dd18261-e178-43a2-8e66-c175e92bfaca'; 
+        
+        lucide.createIcons();
+
+        let currentTotal = 1000;
+        let currentDeposit = 700;
+        let currentBalance = 300;
+
+        function updatePricing() {
+            const includeDonation = document.getElementById('include-donation').checked;
+            
+            if (includeDonation) {
+                currentTotal = 1000;
+                document.getElementById('price-donation').textContent = '250.00';
+                document.getElementById('row-donation').style.opacity = '1';
+            } else {
+                currentTotal = 750;
+                document.getElementById('price-donation').textContent = '0.00';
+                document.getElementById('row-donation').style.opacity = '0.5';
+            }
+
+            currentDeposit = Math.round(currentTotal * 0.7);
+            currentBalance = currentTotal - currentDeposit;
+
+            document.getElementById('total-amount').textContent = `RM ${currentTotal.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('deposit-amount').textContent = `RM ${currentDeposit.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('balance-amount').textContent = `RM ${currentBalance.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('dock-deposit').textContent = `RM ${currentDeposit.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+
+        async function handlePayment() {
+            const email = prompt("Please enter your email for the official receipt:", "admin@mysuhba.com");
+            if (!email || !email.includes('@')) return alert("A valid email is required.");
+
+            const overlay = document.getElementById('overlay');
+            overlay.classList.remove('hidden');
+
+            const includeDonation = document.getElementById('include-donation').checked;
+            const desc = includeDonation 
+                ? `70% Deposit: MySuhba Retreat Commerce System (Full Package)`
+                : `70% Deposit: MySuhba Retreat Commerce System (Product Management Only)`;
+
+            try {
+                const res = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'create_payment',
+                        mode: 'live',
+                        brand_id: BRAND_ID,
+                        client: { email: email, first_name: 'Admin', last_name: 'MySuhba' },
+                        purchase: {
+                            currency: 'MYR',
+                            products: [
+                                { name: desc.substring(0, 100), price: Math.round(currentDeposit * 100), quantity: 1 },
+                                { name: "Secure Gateway Fee", price: 200, quantity: 1 }
+                            ],
+                            notes: desc,
+                            email_subject: "Receipt: MySuhba Retreat System Deposit"
+                        },
+                        success_url: window.location.href + '?status=success',
+                        cancel_url: window.location.href
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert("Gateway Error: " + JSON.stringify(data));
+                    overlay.classList.add('hidden');
+                }
+            } catch (e) {
+                alert("Network Connection Error.");
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('quotation-root');
+            element.classList.add('pdf-mode');
+            
+            const includeDonation = document.getElementById('include-donation').checked;
+            const filename = includeDonation 
+                ? `Quotation_MySuhba_RetreatSystem_Full_2026.pdf`
+                : `Quotation_MySuhba_RetreatSystem_ProductOnly_2026.pdf`;
+            
+            const opt = {
+                margin: [5, 5, 5, 5],
+                filename: filename,
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { 
+                    scale: 3, 
+                    useCORS: true,
+                    letterRendering: true,
+                    scrollY: 0
+                },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.classList.remove('pdf-mode');
+                lucide.createIcons();
+            });
+        }
+
+        // Handle success callback
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('status') === 'success') {
+            alert('Payment successful! Thank you for your deposit. We will begin development shortly.');
+        }
+    </script>
+</body>
+</html>
