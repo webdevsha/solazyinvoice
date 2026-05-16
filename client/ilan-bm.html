@@ -309,7 +309,9 @@
                 const baseUrl = window.location.href.split('/').slice(0, -1).join('/');
                 const successUrl = `${baseUrl}/payment-success.html?${params}`;
                 const payload = {
-                    action: 'create_payment', mode: 'live', brand_id: CHIP_IN_BRAND_ID, 
+                    action: 'create_payment', 
+                    mode: 'live', // Switched to live mode
+                    brand_id: CHIP_IN_BRAND_ID, 
                     client: { email: email, first_name: 'Parent', last_name: 'Ilan BM' },
                     purchase: {
                         currency: 'MYR',
