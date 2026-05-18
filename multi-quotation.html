@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAQIS Web Portal Maintenance - 2026/2027 Quotations & Terms</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for absolute branding separation -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Dashboard and UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Robust Client-Side PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        cubic: ['Inter', 'sans-serif'],
+                        damar: ['Playfair Display', 'serif'],
+                        zk: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Interactive Tabs and State Indicators */
+        .tab-active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        /* Standard A4 Sizing & Realistic Layout Mockup on Screen */
+        .paper-sheet {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 20mm;
+            margin: 1.5rem auto;
+            background: #ffffff;
+            box-sizing: border-box;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        /* Screen spacing indicators for multi-page flow */
+        .page-indicator {
+            user-select: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* High-Fidelity Multi-page Print Directives */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            /* Cleanly hide interactive settings panel */
+            #dashboard-ui, .no-print, .page-indicator {
+                display: none !important;
+            }
+            #print-container {
+                display: block !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .paper-sheet {
+                display: block !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                padding: 15mm 15mm !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                box-sizing: border-box !important;
+                background: white !important;
+            }
+            /* Avoid page break inside structural list items or tables */
+            tr, li, .no-break {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            /* Print background enforcement */
+            .print-bg-brand-cubic {
+                background-color: #f5f3ff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .print-bg-brand-damar {
+                background-color: #f0fdf4 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .print-bg-brand-zk {
+                background-color: #fffbeb !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .text-brand-cubic {
+                color: #4f46e5 !important;
+            }
+            .text-brand-damar {
+                color: #047857 !important;
+            }
+            .text-brand-zk {
+                color: #d97706 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen font-sans antialiased">
+
+    <!-- INTERACTIVE DASHBOARD CONTAINER (Screen only) -->
+    <div id="dashboard-ui" class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        
+        <!-- Header Panel -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-200 pb-6 mb-8">
+            <div>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 mb-2 border border-indigo-200">
+                    <i class="fa-solid fa-file-signature mr-1.5"></i> Web Support Fiscal Cycle 2026 - 2027
+                </span>
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">MAQIS Portal Service Agreements</h1>
+                <p class="text-slate-500 mt-1">Configure, customize dates, compare deliverables, and print legal contracts for Jabatan Perkhidmatan Kuarantin dan Pemeriksaan Malaysia.</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex flex-wrap gap-3">
+                <!-- Direct PDF Download Trigger -->
+                <button onclick="downloadPDF()" class="inline-flex items-center px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md hover:shadow-lg transition-all duration-150">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i> Download PDF Document
+                </button>
+                <!-- Native System Dialog Fallback -->
+                <button onclick="window.print()" class="inline-flex items-center px-4 py-3 bg-slate-600 hover:bg-slate-700 text-white font-semibold rounded-xl text-sm shadow-md hover:shadow-lg transition-all duration-150">
+                    <i class="fa-solid fa-print mr-2"></i> Print / AirPrint
+                </button>
+            </div>
+        </div>
+
+        <!-- Comparative Summary Cards (Vendor Highlights) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            
+            <!-- Cubic Tech Highlight Card -->
+            <div class="relative bg-white border-2 border-indigo-500 rounded-2xl p-6 shadow-md transition-all hover:shadow-lg overflow-hidden">
+                <div class="absolute top-0 right-0 bg-indigo-600 text-white text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-bl-xl font-bold">
+                    <i class="fa-solid fa-star mr-1"></i> Best Rate & SLA
+                </div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="h-10 w-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 font-extrabold text-sm">CT</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Cubic Tech</h3>
+                        <p class="text-xs text-indigo-600 font-medium">Enterprise Developer SLA</p>
+                    </div>
+                </div>
+                <hr class="border-slate-100 my-3" />
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between"><span class="text-slate-400">Monthly Contract:</span><span class="font-semibold text-slate-800">RM 1,400 /mo</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Yearly Contract:</span><span class="font-bold text-emerald-600">RM 15,000 /yr</span></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Direct Discount:</span><span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">Save RM 1,800 (~10.7%)</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">SLA Critical Path:</span><span class="font-bold text-indigo-600"><i class="fa-solid fa-bolt mr-1"></i> 1-Hour SLA Guarantee</span></div>
+                </div>
+                <button onclick="switchTab('cubic')" class="mt-5 w-full py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-lg text-xs transition-colors">
+                    Preview Interactive Proposal
+                </button>
+            </div>
+
+            <!-- Damar Tanjung Highlight Card -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm transition-all hover:shadow-md">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="h-10 w-10 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-700 font-bold text-sm">DT</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Damar Tanjung Enterprise</h3>
+                        <p class="text-xs text-emerald-700">Government Vendor Style</p>
+                    </div>
+                </div>
+                <hr class="border-slate-100 my-3" />
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between"><span class="text-slate-400">Monthly Contract:</span><span class="font-semibold text-slate-800">RM 1,850 /mo</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Yearly Contract:</span><span class="font-bold text-slate-800">RM 18,500 /yr (+tax)</span></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Direct Discount:</span><span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">Save RM 3,700 (~16.6%)</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">SLA Response:</span><span class="font-medium text-slate-600">Next Business Day</span></div>
+                </div>
+                <button onclick="switchTab('damar')" class="mt-5 w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold rounded-lg text-xs transition-colors">
+                    Preview Interactive Proposal
+                </button>
+            </div>
+
+            <!-- ZK Global Highlight Card -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm transition-all hover:shadow-md">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="h-10 w-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-700 font-bold text-sm">ZK</div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">ZK Global Enterprise</h3>
+                        <p class="text-xs text-amber-700">Digital Agency Partner</p>
+                    </div>
+                </div>
+                <hr class="border-slate-100 my-3" />
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between"><span class="text-slate-400">Monthly Contract:</span><span class="font-semibold text-slate-800">RM 1,800 /mo</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">Yearly Contract:</span><span class="font-bold text-slate-800">RM 19,500 /yr</span></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Direct Discount:</span><span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-bold">Save RM 2,100 (~9.7%)</span></div>
+                    <div class="flex justify-between"><span class="text-slate-400">SLA Response:</span><span class="font-medium text-slate-600">48-Hour Response Time</span></div>
+                </div>
+                <button onclick="switchTab('zk')" class="mt-5 w-full py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold rounded-lg text-xs transition-colors">
+                    Preview Interactive Proposal
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Master View Controls & Settings -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 mb-8 shadow-sm">
+            <h2 class="text-base font-bold text-slate-900 mb-4 flex items-center">
+                <i class="fa-solid fa-sliders text-indigo-600 mr-2"></i> Dynamic Quotation Control Center
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Toggle Rate Configuration -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Scope Plan Payment Mode</label>
+                    <div class="grid grid-cols-2 gap-2 bg-slate-100 p-1 rounded-lg">
+                        <button onclick="setRateMode('monthly')" id="btn-mode-monthly" class="py-2.5 text-xs font-bold rounded-md transition-all text-slate-600 hover:text-slate-900 font-semibold font-sans">
+                            Monthly Cycle
+                        </button>
+                        <button onclick="setRateMode('yearly')" id="btn-mode-yearly" class="py-2.5 text-xs font-bold rounded-md transition-all bg-white text-indigo-700 shadow-sm font-bold font-sans">
+                            Yearly Agreement
+                        </button>
+                    </div>
+                </div>
+                <!-- Interactive Metadata Tuning (Scoped to Selected Vendor) -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                        <span id="date-label-vendor" class="text-indigo-600 font-bold">Cubic Tech</span> Issue Date
+                    </label>
+                    <input type="date" id="input-date" onchange="handleDateChange()" class="w-full text-sm border-slate-200 rounded-lg p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 border font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                        Proposal Expiry Date
+                    </label>
+                    <input type="date" id="input-valid" onchange="handleDateChange()" class="w-full text-sm border-slate-200 rounded-lg p-2.5 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 border font-mono">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Bar Navigation -->
+        <div class="flex border-b border-slate-200 mb-6 overflow-x-auto">
+            <button onclick="switchTab('cubic')" id="tab-cubic" class="tab-active px-6 py-4 text-sm font-bold whitespace-nowrap focus:outline-none transition-all flex items-center font-sans">
+                <i class="fa-solid fa-cube mr-2"></i> 1. Cubic Tech
+            </button>
+            <button onclick="switchTab('damar')" id="tab-damar" class="px-6 py-4 text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap focus:outline-none transition-all flex items-center font-sans">
+                <i class="fa-solid fa-tree mr-2"></i> 2. Damar Tanjung Enterprise
+            </button>
+            <button onclick="switchTab('zk')" id="tab-zk" class="px-6 py-4 text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap focus:outline-none transition-all flex items-center font-sans">
+                <i class="fa-solid fa-globe mr-2"></i> 3. ZK Global
+            </button>
+        </div>
+
+    </div>
+
+    <!-- DOCUMENT PREVIEW WRAPPER -->
+    <div id="print-container" class="pb-16">
+        
+        <!-- ============================================== -->
+        <!-- PROPOSAL 1: CUBIC TECH (INTERACTIVE / PRINTABLE) -->
+        <!-- ============================================== -->
+        <div id="wrapper-cubic" class="transition-all duration-300">
+            
+            <!-- Cubic Tech: PAGE 1 (Quotation) -->
+            <div class="page-indicator">Cubic Tech — Page 1 (Financial Breakdown)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-cubic flex flex-col justify-between" id="cubic-page-1">
+                <div>
+                    <!-- Header Block -->
+                    <div class="grid grid-cols-2 gap-4 pb-6 border-b-2 border-slate-100">
+                        <div>
+                            <!-- Corporate Identity -->
+                            <div class="flex items-center space-x-2 text-indigo-700 mb-3">
+                                <i class="fa-solid fa-cube text-4xl"></i>
+                                <div>
+                                    <span class="text-2xl font-black tracking-tight font-cubic">CUBIC TECH</span>
+                                    <span class="block text-[8px] tracking-widest text-slate-400 font-bold uppercase">ENTERPRISE (003194012-A)</span>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-cubic">
+                                Lot 1261 Jalan Ros Sijangkang,<br>
+                                Telok Panglima Garang, 42500 Selangor.<br>
+                                <span class="font-semibold text-slate-700">Web:</span> https://shafiranoh.com<br>
+                                <span class="font-semibold text-slate-700">Phone:</span> (601) 4-2020-212
+                            </p>
+                        </div>
+                        <div class="text-right flex flex-col justify-between">
+                            <div>
+                                <h2 class="text-2xl font-black text-slate-900 tracking-tight uppercase">QUOTATION</h2>
+                                <span class="text-indigo-600 font-bold text-xs font-mono tracking-wider" id="cubic-series">SERIES: WEBMQS0226</span>
+                            </div>
+                            <div class="text-xs text-slate-500 space-y-0.5 mt-2">
+                                <div><strong class="text-slate-700">DATE:</strong> <span class="cubic-date-val">18/05/2026</span></div>
+                                <div><strong class="text-slate-700">VALID UNTIL:</strong> <span class="cubic-valid-val">18/07/2026</span></div>
+                                <div><strong class="text-slate-700">CLIENT ID:</strong> MAQIS-CT-2026</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client Assignment -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5 text-xs">
+                        <div class="bg-indigo-50/50 print-bg-brand-cubic rounded-lg p-4 border border-indigo-100/50">
+                            <h3 class="font-bold text-indigo-900 uppercase tracking-wider text-[10px] mb-1">ADDRESSED TO</h3>
+                            <p class="font-bold text-slate-900">Jabatan Perkhidmatan Kuarantin dan Pemeriksaan Malaysia (MAQIS)</p>
+                            <p class="text-slate-500 leading-relaxed mt-1">
+                                Aras 4 MENARA 4G1, 28, Persiaran Perdana, Presint 4, 62624, Putrajaya.
+                            </p>
+                        </div>
+                        <div class="border border-slate-100 rounded-lg p-4 flex flex-col justify-center">
+                            <h3 class="font-bold text-slate-500 uppercase tracking-wider text-[10px] mb-1">CONTRACT METRICS</h3>
+                            <p class="text-sm font-extrabold text-slate-800">Support Window: 2026 – 2027</p>
+                            <p class="text-xs text-slate-500 mt-1">Includes unlimited phone, email, core testing, and remote optimization.</p>
+                        </div>
+                    </div>
+
+                    <!-- Deliverable / Cost Table -->
+                    <div class="my-3">
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr class="border-b-2 border-slate-200 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                                    <th class="py-3 w-12 text-center">ITEM</th>
+                                    <th class="py-3">SERVICE DESCRIPTION & TECHNICAL SCOPE</th>
+                                    <th class="py-3 text-center w-16">QTY</th>
+                                    <th class="py-3 text-right w-24">UNIT PRICE (RM)</th>
+                                    <th class="py-3 text-right w-28">TOTAL (RM)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-700" id="cubic-items-table">
+                                <!-- JS Dynamic Injection -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Grand Totals Structure -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t-2 border-slate-100">
+                    <div class="text-xs text-slate-500 leading-relaxed pr-6 flex flex-col justify-end">
+                        <p class="italic text-slate-400">Please review detailed Service Level Agreements and Client Obligations on Page 2.</p>
+                    </div>
+                    <div class="text-right flex flex-col justify-end space-y-1 text-xs">
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span class="text-slate-500">Subtotal Contract Value:</span>
+                            <span class="font-semibold text-slate-800 font-mono" id="cubic-subtotal">RM 15,000.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span class="text-slate-500">Tax / SST (0% Exempt Support):</span>
+                            <span class="font-semibold text-slate-800">RM 0.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1 bg-indigo-50/40 print-bg-brand-cubic p-1.5 rounded">
+                            <span class="text-slate-700 font-bold">Monthly Rate:</span>
+                            <span class="font-extrabold text-indigo-700 font-mono" id="cubic-monthly-rate">RM 1,400.00 / mo</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1">
+                            <span class="font-bold text-slate-900">GRAND TOTAL:</span>
+                            <span class="font-black text-indigo-700 text-base font-mono" id="cubic-grand-total">RM 15,000.00</span>
+                        </div>
+                        <div class="text-[10px] text-emerald-600 font-bold" id="cubic-discount-notice">
+                            <!-- JS Discount Promo -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Break For html2pdf Generator -->
+            <div class="html2pdf__page-break"></div>
+
+            <!-- Cubic Tech: PAGE 2 (Comprehensive SLA & T&C) -->
+            <div class="page-indicator">Cubic Tech — Page 2 (SLA & Terms of Service)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-cubic flex flex-col justify-between" id="cubic-page-2">
+                <div>
+                    <!-- Section Header -->
+                    <div class="pb-4 border-b border-slate-100 mb-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 tracking-wider uppercase">SERVICE AGREEMENT</span>
+                            <h3 class="text-lg font-black text-slate-900 uppercase">Terms & Conditions (SLA-CT26)</h3>
+                        </div>
+                        <i class="fa-solid fa-scale-balanced text-indigo-200 text-2xl"></i>
+                    </div>
+
+                    <!-- Detailed Legal and Operational Clauses -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-[10px] text-slate-600 leading-relaxed font-cubic">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">1. Professional Service Level Agreement (SLA) Matrix</h4>
+                                <p class="mb-1">Cubic Tech warrants critical system response thresholds classified by request severity:</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li><strong>Urgent Status (Server Down / Major Hack):</strong> 1-Hour initial response, 4-Hour fix deployment target.</li>
+                                    <li><strong>High Status (Broken Features / Mail Failures):</strong> 4-Hour response, 12-Hour fix deployment target.</li>
+                                    <li><strong>Normal Status (Content / Layout updates):</strong> 12-Hour response, 3-business day deployment.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">2. Core WordPress Testing & Safe Deployments</h4>
+                                <p>To prevent live system outages, Cubic Tech runs a parallel local staging sandbox to test plugin compatibility, security logs, and custom patch modules. Updates are safely deployed after offsite backups run successfully.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">3. Automated Performance & Cache Protocols</h4>
+                                <p>Performance runs monthly and includes asset optimization (image compression, code minification, DB indexing, database garbage collection, and browser caching checks) to maintain an optimal Google PageSpeed score for MAQIS.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">4. System Security & Zero-Day Threat Actions</h4>
+                                <p>Our team deploys continuous remote threat detection, brute-force security layers, and daily spam remediation. Zero-day core vulnerability updates are patched immediately upon vendor release.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">5. Automated Offsite Backup Schedules</h4>
+                                <p>Cubic Tech implements encrypted remote daily snapshots of database states and public portal elements. Backup states are archived inside secure cloud clusters with a rolling 30-day retention loop.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">6. Instant Intellectual Property Transfer</h4>
+                                <p>Any specific scripts, documentation, and database adjustments tailored by Cubic Tech under this SLA transfer entirely to Jabatan Perkhidmatan Kuarantin (MAQIS) immediately upon matching contract payments.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">7. Confidentiality & Non-Disclosure (NDA)</h4>
+                                <p>Under strict non-disclosure bounds, Cubic Tech ensures zero leak of structural directory schemas, security setups, or customer transaction databases to any external party for 5 years after the service life.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 uppercase tracking-wide border-l-2 border-indigo-600 pl-2 mb-1">8. Governing Legislation & Settlements</h4>
+                                <p>This agreement is construed under Selangor/Malaysian digital commerce laws. Payment cycles must be settled to designated Maybank structures within 30 days of invoice dates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Legal Signs Block -->
+                <div class="mt-12 grid grid-cols-2 gap-8 pt-6 border-t border-slate-100 text-xs no-break">
+                    <div>
+                        <p class="text-slate-400 mb-10">Executed on behalf of Cubic Tech:</p>
+                        <div class="border-b border-slate-300 w-48 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans">Nurshafira Noh</p>
+                        <p class="text-[9px] text-slate-500 font-mono">Principal Technical Consultant, Cubic Tech</p>
+                    </div>
+                    <div class="text-right flex flex-col items-end">
+                        <p class="text-slate-400 mb-10 text-left">Acknowledged & Accepted by MAQIS Authority:</p>
+                        <div class="border-b border-slate-300 w-48 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans">Jabatan Perkhidmatan Kuarantin</p>
+                        <p class="text-[9px] text-slate-500 font-sans">Authorized Officer Signatory & Stamp</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PROPOSAL 2: DAMAR TANJUNG (INTERACTIVE / PRINTABLE) -->
+        <!-- ============================================== -->
+        <div id="wrapper-damar" class="transition-all duration-300 hidden">
+            
+            <!-- Damar Tanjung: PAGE 1 (Quotation) -->
+            <div class="page-indicator">Damar Tanjung — Page 1 (Quotation)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-damar flex flex-col justify-between" id="damar-page-1">
+                <div>
+                    <!-- Elegant Serif Double Border Header -->
+                    <div class="pb-6 border-b-4 border-double border-emerald-700 flex justify-between items-start">
+                        <div>
+                            <h1 class="text-2xl font-bold text-emerald-950 uppercase tracking-tight">DAMAR TANJUNG ENTERPRISE</h1>
+                            <p class="text-[9px] font-sans text-slate-500 uppercase tracking-wider mb-2">MoF/Govt Vendor Registration: 003712123-W</p>
+                            <p class="text-xs font-sans text-slate-500 leading-relaxed">
+                                OSTIA Business Avenue, Seksyen 14,<br>
+                                43650 Bandar Baru Bangi, Selangor.
+                            </p>
+                        </div>
+                        <div class="text-right font-sans text-xs">
+                            <span class="bg-emerald-50 text-emerald-800 font-bold px-3 py-1 rounded text-[10px] tracking-wider uppercase border border-emerald-200">QUOTATION</span>
+                            <div class="mt-3 space-y-0.5 text-slate-600">
+                                <div><strong>Ref:</strong> MQS0126</div>
+                                <div><strong>Date:</strong> <span class="damar-date-val">10/05/2026</span></div>
+                                <div><strong>Valid Until:</strong> <span class="damar-valid-val">10/07/2026</span></div>
+                                <div><strong>Customer ID:</strong> MQS0126</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Addressed block -->
+                    <div class="my-5 p-4 bg-emerald-50/40 print-bg-brand-damar rounded border border-emerald-100 font-sans text-xs">
+                        <span class="block text-[9px] font-bold text-emerald-800 tracking-wider uppercase mb-1">CLIENT ORGANIZATION</span>
+                        <p class="font-bold text-emerald-950 text-sm">Jabatan Perkhidmatan Kuarantin dan Pemeriksaan Malaysia (MAQIS)</p>
+                        <p class="text-slate-600 mt-0.5">Aras 4 MENARA 4G1, 28, Persiaran Perdana, Presint 4, 62624, Putrajaya.</p>
+                    </div>
+
+                    <!-- Items Table with comprehensive, explicit detail mapping to Page 2 requirements -->
+                    <div class="my-4">
+                        <table class="w-full text-left font-sans text-xs">
+                            <thead>
+                                <tr class="bg-emerald-800 print-bg-brand-damar text-white font-bold uppercase tracking-wider text-[10px] border-b border-emerald-900">
+                                    <th class="p-3 w-12 text-center text-white text-brand-damar">NO</th>
+                                    <th class="p-3 text-white text-brand-damar">TECHNICAL DESCRIPTION</th>
+                                    <th class="p-3 text-center w-16 text-white text-brand-damar">QTY</th>
+                                    <th class="p-3 text-right w-24 text-white text-brand-damar">RATE (RM)</th>
+                                    <th class="p-3 text-right w-28 text-white text-brand-damar">TOTAL (RM)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700" id="damar-items-table">
+                                <!-- JS Dynamic Injection -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer Summary -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 font-sans text-xs">
+                    <div class="text-slate-400 italic flex items-end">
+                        Please proceed to Page 2 for MoF procurement directives and general contract clauses.
+                    </div>
+                    <div class="text-right flex flex-col justify-end space-y-1">
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>Subtotal Contract:</span>
+                            <span class="font-semibold text-slate-800 font-mono" id="damar-subtotal">RM 18,500.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1">
+                            <span>SST Service Tax (8%):</span>
+                            <span class="font-semibold text-rose-600 font-mono" id="damar-tax">RM 1,480.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-100 pb-1 bg-emerald-50/40 print-bg-brand-damar p-1.5 rounded">
+                            <span class="text-emerald-950 font-bold">Monthly Rate:</span>
+                            <span class="font-extrabold text-emerald-850 font-mono" id="damar-monthly-rate">RM 1,850.00 / mo</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1">
+                            <span class="font-bold text-slate-900 font-sans">TOTAL COST VALUE:</span>
+                            <span class="font-bold text-emerald-800 text-base font-mono" id="damar-grand-total">RM 19,980.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Break For html2pdf Generator -->
+            <div class="html2pdf__page-break"></div>
+
+            <!-- Damar Tanjung: PAGE 2 (Terms & Conditions) -->
+            <div class="page-indicator">Damar Tanjung — Page 2 (Terms & Conditions)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-damar flex flex-col justify-between" id="damar-page-2">
+                <div>
+                    <!-- Page Header -->
+                    <div class="pb-3 border-b-2 border-emerald-800 mb-6">
+                        <span class="text-xs font-sans font-bold text-emerald-800 tracking-wider uppercase">DMT PROCUREMENT TERMS</span>
+                        <h3 class="text-lg font-bold text-emerald-950">Terma-Terma Perjanjian (General Clauses)</h3>
+                    </div>
+
+                    <!-- Government-centric Standard bumiputera clauses -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-[11px] text-slate-600 leading-relaxed font-sans">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">1. Ambil Maklum Waktu Bekerja (Business Hours)</h4>
+                                <p>Semua sokongan melalui telefon, emel, dan on-site dijalankan strictly dalam waktu pejabat biasa sahaja iaitu dari Isnin hingga Jumaat (9:00 Pagi - 5:00 Petang). Tidak termasuk cuti am negeri Selangor dan Wilayah Persekutuan.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">2. Pematuhan Cukai Perkhidmatan SST</h4>
+                                <p>Harga draf sebut harga adalah tertakluk kepada pengiraan Cukai Perkhidmatan (SST) sebanyak 8% selaras dengan dasar Kastam Diraja Malaysia. Tiada sebarang pengecualian cukai diberikan melainkan wujud dokumen rujukan rasmi kementerian.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">3. Had Lawatan Fizikal (On-Site Audits)</h4>
+                                <p>Sebut harga ini mengehadkan lawatan on-site kepada maksimum dua (2) kali setahun untuk Pre-emptive maintenance. Sebarang permintaan lawatan fizikal kecemasan tambahan akan dikenakan caj berasingan bernilai RM 500.00 setiap lawatan.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">4. Kelepasan Force Majeure</h4>
+                                <p>Damar Tanjung Enterprise dilepaskan dari sebarang penalti kelewatan jika kegagalan membaik pulih berpunca daripada bencana alam, gangguan elektrik kebangsaan, kejatuhan hos server di luar kawalan, atau sekatan dari pihak berkuasa.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">5. Tempoh Penyelesaian Tiket Sederhana</h4>
+                                <p>Semua laporan kerosakan standard (bukan kritikal) akan diselesaikan dalam masa 48 jam bekerja. Bagi sebarang pengubahsuaian kod berstruktur baru, draf rujukan masa 7 hari diperlukan.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-emerald-950 uppercase border-b border-emerald-100 pb-1 mb-1">6. Struktur Dokumen & Pesanan Kerajaan</h4>
+                                <p>Semua proses bayaran tertakluk kepada Local Order (LO) kerajaan negeri/persekutuan dan hendaklah ditandatangani serta disahkan dalam tempoh 14 hari dari tarikh penyerahan sebut harga ini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sign Offs -->
+                <div class="mt-12 grid grid-cols-2 gap-8 pt-6 border-t border-slate-200 font-sans text-xs no-break">
+                    <div>
+                        <p class="text-slate-400 mb-10 font-sans">Disediakan Oleh:</p>
+                        <div class="border-b border-slate-300 w-44 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans">Damar Tanjung Enterprise</p>
+                        <p class="text-[9px] text-slate-400 font-sans">Wakil Pengurusan Kontrak</p>
+                    </div>
+                    <div class="text-right flex flex-col items-end">
+                        <p class="text-slate-400 mb-10 text-left font-sans">Persetujuan & Penerimaan Syarat:</p>
+                        <div class="border-b border-slate-300 w-44 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans">Saksi Jabatan (MAQIS)</p>
+                        <p class="text-[9px] text-slate-400 font-sans">Nama, Jawatan Rasmi & Cap</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PROPOSAL 3: ZK GLOBAL (INTERACTIVE / PRINTABLE) -->
+        <!-- ============================================== -->
+        <div id="wrapper-zk" class="transition-all duration-300 hidden">
+            
+            <!-- ZK Global: PAGE 1 (Quotation) -->
+            <div class="page-indicator">ZK Global — Page 1 (Quotation)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-zk text-neutral-800 flex flex-col justify-between" id="zk-page-1">
+                <div>
+                    <!-- Layout Grid Bold Modern style -->
+                    <div class="grid grid-cols-3 gap-4 pb-6 border-b border-neutral-200">
+                        <div class="col-span-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-amber-600 font-zk">PROPOSAL REPORT</span>
+                            <h1 class="text-2xl font-black text-neutral-900 mt-1">ZK GLOBAL ENTERPRISE</h1>
+                            <p class="text-xs text-neutral-500 mt-1 font-sans">Digital Infrastructure & Media Agency</p>
+                            <p class="text-[11px] text-neutral-400 mt-3 leading-relaxed font-sans">
+                                Aras 4, Menara 4G1, 28, Persiaran Perdana, Presint 4, Putrajaya.<br>
+                                Support channels include client ticketing panel & graphic design desk.
+                            </p>
+                        </div>
+                        <div class="text-right flex flex-col justify-between font-sans text-xs">
+                            <div>
+                                <span class="text-neutral-400 font-semibold uppercase text-[10px]">Reference</span>
+                                <h3 class="text-md font-bold text-neutral-800">#MAQISZK26</h3>
+                            </div>
+                            <div class="text-neutral-500 space-y-0.5 mt-4">
+                                <div><strong>Issued:</strong> <span class="zk-date-val">15/05/2026</span></div>
+                                <div><strong>Valid to:</strong> <span class="zk-valid-val">15/07/2026</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client and Project Terms info -->
+                    <div class="my-5 grid grid-cols-2 gap-4 text-xs font-sans">
+                        <div>
+                            <span class="text-neutral-400 font-bold uppercase tracking-wider text-[9px]">ORGANIZATION REPRESENTED</span>
+                            <p class="font-bold text-neutral-900 mt-0.5 font-sans">Jabatan Perkhidmatan Kuarantin & Pemeriksaan (MAQIS)</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-neutral-400 font-bold uppercase tracking-wider text-[9px]">SLA DESIGNATION</span>
+                            <p class="font-bold text-neutral-900 mt-0.5 font-sans">Support Agreement Period: 2026-2027</p>
+                        </div>
+                    </div>
+
+                    <!-- Items Table -->
+                    <div class="my-3">
+                        <table class="w-full text-left text-xs font-sans">
+                            <thead>
+                                <tr class="bg-neutral-900 print-bg-brand-zk text-white font-semibold tracking-wider text-[10px] uppercase">
+                                    <th class="p-3">SCOPE / DELIVERABLES</th>
+                                    <th class="p-3 text-center w-16 text-white text-brand-zk">QTY</th>
+                                    <th class="p-3 text-right w-24 text-white text-brand-zk font-bold">UNIT (RM)</th>
+                                    <th class="p-3 text-right w-28 text-white text-brand-zk font-bold">TOTAL (RM)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-neutral-200 text-neutral-700" id="zk-items-table">
+                                <!-- JS Dynamic Injection -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footnotes & Subtotals -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-200 text-xs font-sans">
+                    <div class="text-neutral-400 italic flex items-end">
+                        Detailed agency policies, design boundaries and IP lock structures on Page 2.
+                    </div>
+                    <div class="text-right flex flex-col justify-end space-y-1">
+                        <div class="flex justify-between border-b border-neutral-100 pb-1">
+                            <span class="text-neutral-400">Services Subtotal:</span>
+                            <span class="font-semibold text-neutral-700 font-mono" id="zk-subtotal">RM 19,500.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-200 pb-1 bg-amber-50/40 print-bg-brand-zk p-1.5 rounded">
+                            <span class="text-neutral-700 font-bold">Monthly Rate:</span>
+                            <span class="font-extrabold text-amber-600 font-mono" id="zk-monthly-rate">RM 1,800.00 / mo</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-1">
+                            <span class="font-bold text-neutral-900">GRAND TOTAL:</span>
+                            <span class="font-bold text-amber-600 text-base font-mono" id="zk-grand-total">RM 19,500.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Break For html2pdf Generator -->
+            <div class="html2pdf__page-break"></div>
+
+            <!-- ZK Global: PAGE 2 (Terms & Conditions) -->
+            <div class="page-indicator">ZK Global — Page 2 (Terms & Conditions)</div>
+            <div class="paper-sheet shadow-lg rounded-xl font-zk text-neutral-800 flex flex-col justify-between" id="zk-page-2">
+                <div>
+                    <!-- Page Header -->
+                    <div class="pb-3 border-b-2 border-amber-500 mb-6">
+                        <span class="text-xs font-sans font-bold text-amber-600 tracking-wider uppercase">AGENCY TERMS</span>
+                        <h3 class="text-lg font-black text-neutral-900 uppercase">ZK Enterprise Rules & Exclusions</h3>
+                    </div>
+
+                    <!-- Agency Specific Creative Limitation T&C -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-[11px] text-neutral-500 leading-relaxed font-sans">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">1. Creative & Custom Development Caps</h4>
+                                <p>Custom development work requested under this maintenance agreement is strictly capped to a maximum of 3 hours per month. Any advanced design overages or structural redesign request is charged hourly at RM 250.00.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">2. Support Feedback Limits</h4>
+                                <p>For non-emergency requests, ZK Global guarantees feedback and ticket status updates within 48 business hours. Live immediate support is not provided unless explicitly scheduled beforehand.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">3. Late Payment Surcharges</h4>
+                                <p>Invoices remaining unpaid for more than 30 business days from receipt will be subject to a compound late payment surcharge of 2.5% per month, calculated starting from the billing due date.</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">4. Intellectual Property Release Lock</h4>
+                                <p>Intellectual property title, layout adjustments, and custom frameworks designed by ZK Global will not transfer ownership to MAQIS until all outstanding contract invoices are paid in full.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">5. Exclusions of Third-Party Expenses</h4>
+                                <p>Fees quoted strictly cover retainer support. Any third-party costs (including paid WordPress plugin renewals, font licenses, or custom cloud storage subscriptions) must be purchased directly by MAQIS.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-neutral-900 uppercase tracking-wider mb-1">6. Limitation of Technical Liability</h4>
+                                <p>ZK Global is not responsible for lost business revenue, website data alterations, or downtime events resulting from hosting server provider failures or third-party DNS changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signs block -->
+                <div class="mt-12 grid grid-cols-2 gap-8 pt-6 border-t border-neutral-200 font-sans text-xs no-break">
+                    <div>
+                        <p class="text-neutral-400 mb-10 font-sans">Prepared By:</p>
+                        <div class="border-b-2 border-neutral-300 w-44 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans font-medium">Account Lead, ZK Global</p>
+                    </div>
+                    <div class="text-right flex flex-col items-end">
+                        <p class="text-neutral-400 mb-10 text-left font-sans font-medium">Acknowledged By:</p>
+                        <div class="border-b-2 border-neutral-300 w-44 mb-1"></div>
+                        <p class="font-bold text-slate-800 font-sans">Client Signatory Authority</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT LOGIC FOR DYNAMIC PRICING AND PRESENTATION -->
+    <script>
+        // Global State Variables
+        let currentTab = 'cubic';
+        let rateMode = 'yearly'; // default mode
+
+        // Vendor-specific Distinct Dates Setup (All in May 2026, Cubic Tech = 18th May 2026)
+        let vendorDates = {
+            cubic: { issue: "2026-05-18", valid: "2026-07-18" },
+            damar: { issue: "2026-05-10", valid: "2026-07-10" },
+            zk: { issue: "2026-05-15", valid: "2026-07-15" }
+        };
+
+        // Comprehensive Dataset for all 3 vendors (2026 - 2027)
+        const quotationData = {
+            cubic: {
+                monthly: {
+                    subtotal: 16800, // 1,400 * 12
+                    monthlyRate: 1400,
+                    tax: 0,
+                    grandTotal: 16800,
+                    items: [
+                        { no: "1.1", desc: "WordPress premium plugin updates, configuration audits, security log analysis, and local sandbox staging checks", qty: 12, unit: "600.00", total: "7,200.00" },
+                        { no: "1.2", desc: "Minor web portal feature adjustments, layout adjustments, daily backup retention testing, anti-spam block rules, & database maintenance", qty: 12, unit: "550.00", total: "6,600.00" },
+                        { no: "1.3", desc: "Technical system log updates, client SLA management documentation, secure server resource reporting, and emergency support", qty: 12, unit: "250.00", total: "3,000.00" }
+                    ],
+                    discountNotice: ""
+                },
+                yearly: {
+                    subtotal: 15000, // Best Value price (maintaining 2025 yearly price)
+                    monthlyRate: 1250, // amortized equivalent (15,000 / 12)
+                    tax: 0,
+                    grandTotal: 15000,
+                    items: [
+                        { no: "1.1", desc: "WordPress premium plugin updates, configuration audits, security log analysis, and local sandbox staging checks", qty: 12, unit: "500.00", total: "6,000.00" },
+                        { no: "1.2", desc: "Minor web portal feature adjustments, layout adjustments, daily backup retention testing, anti-spam block rules, & database maintenance", qty: 12, unit: "500.00", total: "6,000.00" },
+                        { no: "1.3", desc: "Technical system log updates, client SLA management documentation, secure server resource reporting, and emergency support", qty: 12, unit: "250.00", total: "3,000.00" }
+                    ],
+                    discountNotice: "★ Exclusive Offer: Choosing the Yearly SLA saves your department RM 1,800.00 instantly."
+                }
+            },
+            damar: {
+                monthly: {
+                    subtotal: 22200, // 1,850 * 12
+                    monthlyRate: 1850,
+                    tax: 1776, // 8% SST
+                    grandTotal: 23976,
+                    items: [
+                        { no: "1.1", desc: "Sokongan Sistem & On-Site Pre-emptive Maintenance (Plugin compatibility checks, security scans, database tuning, monthly server alerts)", qty: 12, unit: "900.00", total: "10,800.00" },
+                        { no: "1.2", desc: "WordPress Core, Theme & Plugin Updates, backup setup, diagnostic logging, phone & email client management support", qty: 12, unit: "650.00", total: "7,800.00" },
+                        { no: "1.3", desc: "Security hardening updates, uptime checks monitoring, response testing, and delivery patch schedules documentation", qty: 12, unit: "300.00", total: "3,600.00" }
+                    ],
+                    discountNotice: ""
+                },
+                yearly: {
+                    subtotal: 18500, // 2025 rate maintained
+                    monthlyRate: 1541.67, // amortized (18500 / 12)
+                    tax: 1480, // 8% SST
+                    grandTotal: 19980,
+                    items: [
+                        { no: "1.1", desc: "Penyelenggaraan portal rasmi (SLA Onsite & Remote Support, 12-Month contract block)", qty: 1, unit: "10,500.00", total: "10,500.00" },
+                        { no: "1.2", desc: "WordPress Core & Plugin configuration updates, database checkups, regular daily backup & disaster recovery checks", qty: 1, unit: "5,000.00", total: "5,000.00" },
+                        { no: "1.3", desc: "Security hardiness, ongoing optimizations, documentation, and technical support desk ticketing", qty: 1, unit: "3,000.00", total: "3,000.00" }
+                    ],
+                    discountNotice: "★ Saved RM 3,700.00 by utilizing the consolidated Annual Government PO."
+                }
+            },
+            zk: {
+                monthly: {
+                    subtotal: 21600, // Adjusted to be closer to RM 20k target (1,800 * 12)
+                    monthlyRate: 1800,
+                    tax: 0,
+                    grandTotal: 21600,
+                    items: [
+                        { no: "1.1", desc: "Custom WordPress portal updates, ticker systems adjustments, slide editing work, manual translation entries, & graphic design layout adaptations", qty: 12, unit: "450.00", total: "5,400.00" },
+                        { no: "1.2", desc: "Backend integrity sweeps, database query optimizations, security log checks, vulnerability protection scripts, & directory security audit setup", qty: 12, unit: "450.00", total: "5,400.00" },
+                        { no: "1.3", desc: "Compliance technical reporting, delivery order system logs, SLA support communication, and weekly ticketing response", qty: 12, unit: "300.00", total: "3,600.00" },
+                        { no: "1.4", desc: "Yearly Technical Support framework retainer, server configuration remote monitoring, and automated daily backup routines", qty: 12, unit: "600.00", total: "7,200.00" }
+                    ],
+                    discountNotice: ""
+                },
+                yearly: {
+                    subtotal: 19500, // Adjusted down close to RM 20,000 target (highly competitive but slightly premium over Cubic Tech to justify extras)
+                    monthlyRate: 1625, // amortized equivalent (19500 / 12)
+                    tax: 0,
+                    grandTotal: 19500,
+                    items: [
+                        { no: "1.1", desc: "Custom WordPress portal updates, ticker systems adjustments, slide editing work, manual translation entries, & graphic design layout adaptations", qty: 1, unit: "4,500.00", total: "4,500.00" },
+                        { no: "1.2", desc: "Backend integrity sweeps, database query optimizations, security log checks, vulnerability protection scripts, & directory security audit setup", qty: 1, unit: "4,500.00", total: "4,500.00" },
+                        { no: "1.3", desc: "Compliance technical reporting, delivery order system logs, SLA support communication, and weekly ticketing response", qty: 1, unit: "3,300.00", total: "3,300.00" },
+                        { no: "1.4", desc: "Yearly Technical Support framework retainer, server configuration remote monitoring, and automated daily backup routines", qty: 12, unit: "600.00", total: "7,200.00" }
+                    ],
+                    discountNotice: "★ Combined Discount: Saved RM 2,100.00 on Year-long Retainer Contract."
+                }
+            }
+        };
+
+        // Formats YYYY-MM-DD input structure to legal DD/MM/YYYY presentation format
+        function formatFriendlyDate(dStr) {
+            if(!dStr) return "";
+            const parts = dStr.split('-');
+            if(parts.length !== 3) return dStr;
+            return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        }
+
+        // Pull core dates from individual vendor states and sync them to UI elements
+        function renderDates() {
+            // 1. Sync Inputs to match active vendor configuration
+            document.getElementById('input-date').value = vendorDates[currentTab].issue;
+            document.getElementById('input-valid').value = vendorDates[currentTab].valid;
+            
+            // 2. Set Active label header
+            const labels = {
+                cubic: "Cubic Tech",
+                damar: "Damar Tanjung",
+                zk: "ZK Global"
+            };
+            document.getElementById('date-label-vendor').textContent = labels[currentTab];
+
+            // 3. Cascade formats strictly into each respective proposal print element
+            const formattedCubicIssue = formatFriendlyDate(vendorDates.cubic.issue);
+            const formattedCubicValid = formatFriendlyDate(vendorDates.cubic.valid);
+            document.querySelectorAll('.cubic-date-val').forEach(el => el.textContent = formattedCubicIssue);
+            document.querySelectorAll('.cubic-valid-val').forEach(el => el.textContent = formattedCubicValid);
+
+            const formattedDamarIssue = formatFriendlyDate(vendorDates.damar.issue);
+            const formattedDamarValid = formatFriendlyDate(vendorDates.damar.valid);
+            document.querySelectorAll('.damar-date-val').forEach(el => el.textContent = formattedDamarIssue);
+            document.querySelectorAll('.damar-valid-val').forEach(el => el.textContent = formattedDamarValid);
+
+            const formattedZkIssue = formatFriendlyDate(vendorDates.zk.issue);
+            const formattedZkValid = formatFriendlyDate(vendorDates.zk.valid);
+            document.querySelectorAll('.zk-date-val').forEach(el => el.textContent = formattedZkIssue);
+            document.querySelectorAll('.zk-valid-val').forEach(el => el.textContent = formattedZkValid);
+        }
+
+        // Listen to active vendor input changes and save state back
+        function handleDateChange() {
+            vendorDates[currentTab].issue = document.getElementById('input-date').value;
+            vendorDates[currentTab].valid = document.getElementById('input-valid').value;
+            renderDates();
+        }
+
+        // Handle navigation between proposals smoothly on UI
+        function switchTab(vendor) {
+            currentTab = vendor;
+            
+            const tabs = ['cubic', 'damar', 'zk'];
+            tabs.forEach(tab => {
+                const el = document.getElementById(`tab-${tab}`);
+                if(tab === vendor) {
+                    el.className = "tab-active px-6 py-4 text-sm font-bold whitespace-nowrap focus:outline-none transition-all flex items-center font-sans";
+                } else {
+                    el.className = "px-6 py-4 text-sm font-semibold text-slate-500 hover:text-slate-900 whitespace-nowrap focus:outline-none transition-all flex items-center font-sans";
+                }
+            });
+
+            // Toggle wrapper wrappers including Page 1 & Page 2 layouts
+            tabs.forEach(tab => {
+                const doc = document.getElementById(`wrapper-${tab}`);
+                if(tab === vendor) {
+                    doc.classList.remove('hidden');
+                } else {
+                    doc.classList.add('hidden');
+                }
+            });
+
+            renderDates();
+            renderQuotationData();
+        }
+
+        // Change Payment mode (Monthly / Yearly configurations)
+        function setRateMode(mode) {
+            rateMode = mode;
+            
+            const btnMonthly = document.getElementById('btn-mode-monthly');
+            const btnYearly = document.getElementById('btn-mode-yearly');
+
+            if (mode === 'monthly') {
+                btnMonthly.className = "py-2.5 text-xs font-bold rounded-md transition-all bg-white text-indigo-700 shadow-sm font-bold font-sans";
+                btnYearly.className = "py-2.5 text-xs font-bold rounded-md transition-all text-slate-600 hover:text-slate-900 font-sans";
+            } else {
+                btnYearly.className = "py-2.5 text-xs font-bold rounded-md transition-all bg-white text-indigo-700 shadow-sm font-bold font-sans";
+                btnMonthly.className = "py-2.5 text-xs font-bold rounded-md transition-all text-slate-600 hover:text-slate-900 font-sans";
+            }
+
+            renderQuotationData();
+        }
+
+        // Populate table records and run calculations programmatically
+        function renderQuotationData() {
+            // 1. Cubic Tech Renderer
+            const cubicInfo = quotationData.cubic[rateMode];
+            const cubicTbody = document.getElementById('cubic-items-table');
+            cubicTbody.innerHTML = '';
+            cubicInfo.items.forEach(item => {
+                cubicTbody.innerHTML += `
+                    <tr class="hover:bg-indigo-50/20 transition-colors">
+                        <td class="py-3 text-center text-slate-400 font-semibold font-mono">${item.no}</td>
+                        <td class="py-3 font-medium text-slate-800 pr-4 leading-relaxed">${item.desc}</td>
+                        <td class="py-3 text-center font-semibold text-slate-600 font-mono">${item.qty}</td>
+                        <td class="py-3 text-right text-slate-600 font-mono">${item.unit}</td>
+                        <td class="py-3 text-right font-bold text-slate-900 font-mono">RM ${item.total}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('cubic-subtotal').textContent = `RM ${cubicInfo.subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('cubic-monthly-rate').textContent = `RM ${cubicInfo.monthlyRate.toLocaleString('en-US', {minimumFractionDigits: 2})} / mo` + (rateMode === 'yearly' ? ' (Prepaid Equivalent)' : ' (Due Monthly)');
+            document.getElementById('cubic-grand-total').textContent = `RM ${cubicInfo.grandTotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('cubic-discount-notice').textContent = cubicInfo.discountNotice;
+
+            // 2. Damar Tanjung Renderer
+            const damarInfo = quotationData.damar[rateMode];
+            const damarTbody = document.getElementById('damar-items-table');
+            damarTbody.innerHTML = '';
+            damarInfo.items.forEach((item) => {
+                damarTbody.innerHTML += `
+                    <tr class="hover:bg-emerald-50/10 transition-colors">
+                        <td class="p-3 text-center text-slate-400 font-bold font-mono">${item.no}</td>
+                        <td class="p-3 text-slate-800 leading-relaxed font-sans font-medium">${item.desc}</td>
+                        <td class="p-3 text-center font-semibold text-slate-600 font-sans font-mono">${item.qty}</td>
+                        <td class="p-3 text-right text-slate-600 font-mono font-sans">${item.unit}</td>
+                        <td class="p-3 text-right font-bold text-slate-900 font-mono font-sans">RM ${item.total}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('damar-subtotal').textContent = `RM ${damarInfo.subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('damar-tax').textContent = `RM ${damarInfo.tax.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('damar-monthly-rate').textContent = `RM ${damarInfo.monthlyRate.toLocaleString('en-US', {minimumFractionDigits: 2})} / mo` + (rateMode === 'yearly' ? ' (Prepaid Equivalent)' : ' (Due Monthly)');
+            document.getElementById('damar-grand-total').textContent = `RM ${damarInfo.grandTotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+
+            // 3. ZK Global Renderer
+            const zkInfo = quotationData.zk[rateMode];
+            const zkTbody = document.getElementById('zk-items-table');
+            zkTbody.innerHTML = '';
+            zkInfo.items.forEach((item) => {
+                zkTbody.innerHTML += `
+                    <tr class="hover:bg-amber-50/10 transition-colors">
+                        <td class="p-3 text-slate-800 leading-relaxed font-sans">
+                            <span class="block text-[9px] text-amber-600 uppercase font-bold tracking-wider font-sans">Scope Division ${item.no}</span>
+                            <span class="font-medium text-neutral-850">${item.desc}</span>
+                        </td>
+                        <td class="p-3 text-center text-slate-600 font-bold font-mono">${item.qty}</td>
+                        <td class="p-3 text-right text-slate-600 font-mono">RM ${item.unit}</td>
+                        <td class="p-3 text-right font-black text-neutral-950 font-mono">RM ${item.total}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('zk-subtotal').textContent = `RM ${zkInfo.subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+            document.getElementById('zk-monthly-rate').textContent = `RM ${zkInfo.monthlyRate.toLocaleString('en-US', {minimumFractionDigits: 2})} / mo` + (rateMode === 'yearly' ? ' (Prepaid Equivalent)' : ' (Due Monthly)');
+            document.getElementById('zk-grand-total').textContent = `RM ${zkInfo.grandTotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+        }
+
+        // Programmatic PDF Generation with perfect A4 margins & high resolution
+        // Fixed context to handle seamless high fidelity printing from the sandbox
+        function downloadPDF() {
+            const element = document.getElementById(`wrapper-${currentTab}`);
+            
+            const filenames = {
+                cubic: "Cubic_Tech_Web_SLA_Quotation_2026-2027.pdf",
+                damar: "Damar_Tanjung_Web_Quotation_2026-2027.pdf",
+                zk: "ZK_Global_Web_Quotation_2026-2027.pdf"
+            };
+            
+            const opt = {
+                margin:       0,
+                filename:     filenames[currentTab],
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    letterRendering: true
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['css', 'legacy'] }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Initialize setup on page ready
+        window.onload = function() {
+            renderDates();
+            renderQuotationData();
+        };
+    </script>
+</body>
+</html>
