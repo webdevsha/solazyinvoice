@@ -42,7 +42,7 @@
             body {
                 background-color: white;
                 color: black;
-                font-size: 11pt;
+                font-size: 10pt;
             }
             .no-print {
                 display: none !important;
@@ -86,8 +86,8 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-slate-900">Solopreneur Strategic Coaching Agreement</h1>
-                    <p class="text-xs text-slate-500">A high-dignity contract balancing validation, career transition, and dynamic path-building</p>
+                    <h1 class="text-xl font-bold text-slate-900">Solopreneur Strategic Coaching Workspace</h1>
+                    <p class="text-xs text-slate-500">Refined for rapid validation, Ihsan business practices, and clear relational boundaries</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
@@ -120,7 +120,7 @@
                         1. Coach Setup
                     </button>
                     <button onclick="switchTab('tab-calculator')" id="btn-tab-calculator" class="flex-1 py-3 px-4 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition focus:outline-none">
-                        2. Performance Calculator
+                        2. Premium Calculator
                     </button>
                     <button onclick="switchTab('tab-invoice')" id="btn-tab-invoice" class="flex-1 py-3 px-4 font-semibold text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition focus:outline-none">
                         3. Invoice Maker
@@ -158,9 +158,9 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Incentive Share (%)</label>
+                                <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Success Premium (%)</label>
                                 <div class="relative">
-                                    <input type="number" id="revSharePercent" value="10" oninput="updateContractText(); syncCalculatorValues();" class="w-full pr-8 pl-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none">
+                                    <input type="number" id="revSharePercent" value="10" oninput="updateContractText(); syncCalculatorValues();" class="w-full pr-8 pl-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none" disabled>
                                     <span class="absolute right-3 top-2 text-slate-400 text-sm">%</span>
                                 </div>
                             </div>
@@ -172,8 +172,8 @@
                                 <input type="date" id="effectiveDate" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Max Hours/Month</label>
-                                <input type="number" id="monthlyCap" value="15" oninput="updateContractText()" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none">
+                                <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Monthly Base Cap</label>
+                                <input type="number" id="monthlyCap" value="10" oninput="updateContractText()" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none">
                             </div>
                         </div>
 
@@ -182,11 +182,17 @@
                             <input type="text" id="governingLaw" value="Selangor, Malaysia" oninput="updateContractText()" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-100 focus:border-brand-600 focus:outline-none">
                         </div>
 
-                        <div class="pt-2 border-t border-slate-100">
+                        <div class="pt-4 space-y-2 border-t border-slate-100">
+                            <label class="flex items-start gap-2.5 cursor-pointer">
+                                <input type="checkbox" id="includeRomantic" checked onchange="toggleRomanticSection()" class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
+                                <span class="text-xs text-slate-600 leading-tight">
+                                    Include <strong>Section 7: Romantic Relationship Priority &amp; Safeguards</strong> (Highly recommended to establish professional/personal separation).
+                                </span>
+                            </label>
                             <label class="flex items-start gap-2.5 cursor-pointer">
                                 <input type="checkbox" id="includeRelational" checked onchange="toggleRelationalSection()" class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500">
                                 <span class="text-xs text-slate-600 leading-tight">
-                                    Include <strong>Relational Safeguards for Transitioning Founders</strong> (Keeps criticism strictly professional &amp; protects your bond).
+                                    Include <strong>General Solopreneur Safeguards</strong> (Feedback protocols, anti-charity frameworks).
                                 </span>
                             </label>
                         </div>
@@ -194,8 +200,8 @@
 
                     <!-- TAB 2: CALCULATOR -->
                     <div id="tab-calculator" class="space-y-4 hidden">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Coaching &amp; Incentive Calculator</h3>
-                        <p class="text-xs text-slate-500">Track and calculate compensation based on active coaching sessions and validated success milestones (like secured grants or closed consulting gigs).</p>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Coaching &amp; Premium Calculator</h3>
+                        <p class="text-xs text-slate-500">Includes the RM 50,000 revenue cap on launch milestones and the standard 10% premium calculation.</p>
                         
                         <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-4">
                             <div>
@@ -208,15 +214,15 @@
                                 <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">Select Milestone Success Stream</label>
                                 <select id="milestoneType" onchange="updateMilestonePlaceholder()" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm mb-2 focus:outline-none focus:border-brand-600">
                                     <option value="grant">Secured Grant / Non-Dilutive Capital</option>
-                                    <option value="consulting">Closed Part-time / Consulting Contract</option>
-                                    <option value="venture">Venture / Project Direct Revenue</option>
+                                    <option value="consulting">Closed Consulting Contract / Retainer</option>
+                                    <option value="venture">Venture Revenue (Capped at 10% of first RM 50k)</option>
                                 </select>
                                 
                                 <div class="relative">
                                     <span class="absolute left-3 top-2 text-slate-400 text-sm">RM</span>
                                     <input type="number" id="calcRevenue" value="8000" oninput="calculatePayout()" class="w-full pl-9 pr-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-brand-600">
                                 </div>
-                                <p class="text-[10px] text-slate-400 mt-1">Calculated as a <span class="calc-rev-pct-label">10</span>% success incentive share</p>
+                                <p class="text-[10px] text-slate-400 mt-1" id="calc-pct-description">Calculated as a 10% success incentive share</p>
                             </div>
                         </div>
 
@@ -226,7 +232,7 @@
                                 <span class="font-semibold text-slate-900">RM <span id="outBaseFee">1,000.00</span></span>
                             </div>
                             <div class="flex justify-between text-xs text-slate-600">
-                                <span>Success Fee / Performance Premium:</span>
+                                <span>Success Premium Milestone Payment:</span>
                                 <span class="font-semibold text-slate-900">RM <span id="outRevPayout">800.00</span></span>
                             </div>
                             <div class="border-t border-brand-200 pt-2 flex justify-between text-sm font-bold text-slate-900">
@@ -243,10 +249,10 @@
                     <!-- TAB 3: INVOICE GENERATOR -->
                     <div id="tab-invoice" class="space-y-4 hidden">
                         <div class="flex justify-between items-center">
-                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Professional Invoice Maker</h3>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Ihsan Invoice Maker</h3>
                             <button onclick="clearInvoice()" class="text-xs text-slate-500 hover:text-red-500 font-semibold">Clear</button>
                         </div>
-                        <p class="text-xs text-slate-500">Helps R immediately issue clean, professional invoices built to validate and match this exact coaching agreement model.</p>
+                        <p class="text-xs text-slate-500">Ensures swift billing tracking. General base invoices are due within 3 days (Ihsan Practice); Premiums due in 30 days.</p>
                         
                         <div class="space-y-3">
                             <div class="grid grid-cols-2 gap-2">
@@ -281,16 +287,16 @@
             <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-xl p-5 shadow space-y-4">
                 <h4 class="text-sm font-bold text-brand-100 flex items-center gap-2">
                     <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
-                    Why the Coaching Frame Fits Best
+                    The Ihsan Business Approach
                 </h4>
                 <p class="text-xs text-slate-300 leading-relaxed">
-                    Transitioning as a solopreneur is a high-cognitive-load experience. By framing R as your **Strategic Coach**, you define his role around active listening, objective validation, and focus stewardship.
+                    By implementing a 3-day invoicing turnaround for hourly base work, you respect the immediacy of active labor. Separating success premium invoices with a 30-day payout allows your transitional cashflow to stay liquid during key funding moments.
                 </p>
                 <div class="border-t border-slate-700 pt-3 text-[11px] text-slate-400 space-y-1">
-                    <span class="font-bold text-slate-200">The Power of the 10% Premium:</span>
-                    <p>Instead of just buying his time, this aligns his incentive with your execution momentum. If he helps you refine a grant proposal or negotiate a part-time retainer, he directly shares the reward of that success.</p>
+                    <span class="font-bold text-slate-200 font-sans">Romantic Safety Firewall:</span>
+                    <p>Work issues must not cross-contaminate personal weekends or intimacy. Use Section 7's Work-Free Zones to build long-term safety for your partnership.</p>
                 </div>
             </div>
 
@@ -305,7 +311,7 @@
         <!-- Right Side: Agreement Preview -->
         <section class="lg:col-span-7 flex flex-col">
             
-            <div id="contract-view" class="bg-white rounded-xl shadow border border-slate-200 p-8 md:p-12 font-serif text-[14.5px] leading-relaxed text-slate-800 relative select-text print-container overflow-hidden">
+            <div id="contract-view" class="bg-white rounded-xl shadow border border-slate-200 p-8 md:p-12 font-serif text-[14px] leading-relaxed text-slate-800 relative select-text print-container overflow-hidden">
                 
                 <!-- Print Only Header -->
                 <div class="print-only hidden mb-8 text-center">
@@ -375,35 +381,53 @@
                             <p class="mt-1 text-slate-700">
                                 To establish a clear, high-dignity professional transaction while protecting the early-phase cash flow of a transitioning solopreneur, the fee structure is balanced as follows:
                             </p>
-                            <div class="bg-slate-50 p-4 rounded-lg mt-2 space-y-2 border border-slate-100 font-sans text-sm">
-                                <p><strong>A. Hourly Coaching Base:</strong> The Coach shall bill at a rate of <strong>RM <span id="txt-hourlyRate">100</span> per hour</strong> for structured coaching, strategy reviews, and alignment calls. Hours will be logged transparently and invoiced on a monthly basis. To safeguard budget limits, base hours are capped at <strong><span id="txt-monthlyCap">15</span> hours per month</strong> unless explicitly agreed otherwise in writing.</p>
-                                <p><strong>B. Success-Linked Performance Premium:</strong> To fully align focus, the Coach shall receive a <strong><span id="txt-revSharePercent">10</span>% premium share</strong> on success milestones directly navigated, co-developed, or secured during this engagement, including:</p>
-                                <ul class="list-disc pl-5 space-y-1 mt-1 text-xs text-slate-600">
-                                    <li>Approved grant funding or non-dilutive capital secured with the strategic input of the Coach.</li>
-                                    <li>Closed consulting contracts, retainers, or part-time work arrangements negotiated using the Coach's framework.</li>
-                                    <li>Direct software or advisory revenue generated by validated startup platforms under the portfolio.</li>
-                                </ul>
+                            <div class="bg-slate-50 p-4 rounded-lg mt-2 space-y-3 border border-slate-100 font-sans text-xs">
+                                <p><strong>A. Hourly Coaching Base:</strong> The Coach shall bill at a rate of <strong>RM <span id="txt-hourlyRate">100</span> per hour</strong> for structured coaching, strategy reviews, and alignment calls. Base hours are capped at <strong><span id="txt-monthlyCap">10</span> hours per month</strong> unless explicitly agreed otherwise in writing. If the Client requires additional hours beyond the monthly cap, the Coach will notify the Client before proceeding, and additional hours will be billed at the same RM 100/hour rate.</p>
+                                
+                                <p><strong>B. Success-Linked Performance Premium:</strong> To align focus and reward measurable impact, the Coach shall receive a <strong>10% success premium</strong> on the following success milestones, subject to the attribution criteria outlined below:</p>
+                                
+                                <div class="pl-4 space-y-2 border-l border-brand-200 text-[11px] text-slate-600">
+                                    <p><strong>Eligible Success Milestones:</strong></p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>Grant funding or non-dilutive capital secured during this engagement, where the Coach provided direct input on the proposal (narrative review, alignment strategy, or submission planning).</li>
+                                        <li>Consulting contracts or retainers closed during this engagement, where the Coach provided direct input on pricing, positioning, or negotiation strategy.</li>
+                                        <li>First-year launch revenue from validated startup platforms (Cetalabs, Kinder, or other portfolio ventures) launched or relaunched during this engagement, where the Coach provided direct input on GTM strategy, positioning, or business model design. This direct launch revenue share is strictly capped at 10% of the first RM 50,000 in revenue per platform (representing a maximum of RM 5,000 per platform).</li>
+                                    </ul>
+                                    
+                                    <p class="font-semibold text-slate-800">Attribution Criteria:</p>
+                                    <ul class="list-disc pl-4 space-y-1">
+                                        <li>The success premium applies only to milestones where the Coach provided documented strategic input (via coaching sessions, written feedback, or recorded strategy calls).</li>
+                                        <li>If the Client independently secures a milestone without the Coach's direct involvement, no premium applies.</li>
+                                        <li>In cases of ambiguous attribution, the Client and Coach will mutually agree on a fair premium amount (0-10%) based on the level of involvement.</li>
+                                        <li>The success premium is one-time per milestone (not recurring). For example, a RM 50,000 grant yields a one-time RM 5,000 premium.</li>
+                                    </ul>
+
+                                    <p><strong>Premium Cap:</strong> To protect against disproportionate upside, the total success premium in any 12-month period is capped at <strong>RM 25,000</strong>, unless mutually agreed otherwise in writing.</p>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Relational Safeguard -->
-                        <div id="relational-safeguard-section" class="border-t border-b border-slate-100 py-4 my-2">
-                            <h3 class="text-base font-bold font-sans text-slate-900 text-brand-800">3. Relational Safeguards &amp; Collaborative Trust</h3>
-                            <p class="mt-1 text-slate-700 italic">
-                                Successful coaching depends on mutual trust, ultimate transparency, and absolute safety. We establish the following guidelines to protect both our professional alignment and personal friendship:
+                        <!-- Relational Safeguard (General) -->
+                        <div id="relational-safeguard-section" class="border-t border-slate-100 pt-4">
+                            <h3 class="text-base font-bold font-sans text-slate-900 text-brand-800">3. Solopreneur Safeguards &amp; Collaborative Trust</h3>
+                            <p class="mt-1 text-slate-700 italic text-sm">
+                                Successful coaching depends on mutual trust, ultimate transparency, and absolute safety:
                             </p>
                             <ul class="list-disc pl-5 mt-2 space-y-1.5 text-slate-700 text-sm">
                                 <li><strong>Dignity of Exchange:</strong> This is a professional collaboration founded on real strategic capability, not a patronizing assistance model. The Coach's feedback delivers objective value, and compensation is paid for professional services.</li>
-                                <li><strong>The Feedback Guardrail:</strong> Coaching requires radical, unfiltered truth. Tough critiques regarding grant narratives, business models, or pricing structures must be delivered constructively and received as professional course-corrections, entirely separate from personal friendship.</li>
+                                <li><strong>The Feedback Guardrail:</strong> Coaching requires radical, unfiltered truth. Tough critiques regarding grant narratives, business models, or pricing structures must be delivered constructively and received as professional course-corrections.</li>
                                 <li><strong>Capacity &amp; Blueprint Building:</strong> This framework serves as a model. The Coach is actively encouraged to package this exact dynamic (Strategic Path-Validation Coaching for Transitioning Founders) as a template to capture more high-value consulting clients.</li>
                             </ul>
                         </div>
 
                         <!-- Section 4 -->
                         <div>
-                            <h3 class="text-base font-bold font-sans text-slate-900">4. Invoicing Protocols</h3>
+                            <h3 class="text-base font-bold font-sans text-slate-900">4. Invoicing Protocols &amp; Payment Terms</h3>
                             <p class="mt-1 text-slate-700">
-                                The Coach shall submit an invoice on the last day of each calendar month detailing completed coaching hours, key takeaways, and calculated milestone performance payouts. Verified invoices are payable within ten (10) business days.
+                                The Coach shall submit monthly invoices for deposit and completed coaching hours. Success premiums shall be invoiced separately upon confirmation of milestone achievement (e.g., grant approval notification, contract signing, first revenue receipt).
+                            </p>
+                            <p class="mt-2 text-slate-700 font-semibold bg-brand-50 p-2.5 rounded-lg border border-brand-100 text-xs font-sans">
+                                💡 Ihsan Invoicing Terms: Standard monthly base invoices are payable within three (3) calendar days of receipt to honor swift labor compensation. Success premium invoices are payable within thirty (30) calendar days of milestone confirmation.
                             </p>
                         </div>
 
@@ -422,6 +446,131 @@
                                 This framework shall be governed by, and interpreted in accordance with, the laws of <span id="txt-governingLaw" class="font-semibold underline text-slate-900 font-sans">Selangor, Malaysia</span>.
                             </p>
                         </div>
+
+                        <!-- Section 7: Romantic Relationship Safeguards -->
+                        <div id="romantic-safeguards-block" class="border-t border-b border-brand-100 py-6 my-4 bg-slate-50/50 p-6 rounded-xl">
+                            <h3 class="text-base font-bold font-sans text-slate-900 flex items-center gap-2">
+                                <span class="text-rose-500">❤️</span>
+                                7. Romantic Relationship Priority &amp; Boundary Protocols
+                            </h3>
+                            <p class="mt-1 text-slate-600 text-xs italic leading-relaxed">
+                                This professional coaching engagement exists within the context of an active romantic relationship between the Client and the Coach. To protect the health, intimacy, and longevity of the personal relationship, the following safeguards are hereby established:
+                            </p>
+
+                            <div class="mt-4 space-y-4 text-xs text-slate-700 leading-relaxed font-sans">
+                                <div>
+                                    <p class="font-bold text-slate-900">A. Relationship-First Principle</p>
+                                    <p class="mt-1">
+                                        The romantic relationship takes precedence over this professional engagement. If at any point the professional dynamic threatens the health of the personal relationship, either party may immediately:
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li>Pause the engagement for a defined period (1 week to 1 month) to allow the relationship to stabilize.</li>
+                                        <li>Terminate the engagement without penalty, financial obligation beyond already-completed work, or relational consequence.</li>
+                                        <li>Renegotiate terms (scope, hours, communication style) to restore relational health.</li>
+                                    </ul>
+                                    <p class="mt-1 italic text-slate-500">
+                                        Neither party shall hold resentment, guilt, or leverage related to pausing or terminating this professional arrangement. The relationship is more important than the contract.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">B. Work-Free Zones (Time Boundaries)</p>
+                                    <p class="mt-1">
+                                        To prevent professional obligations from consuming personal time and intimacy, the following work-free zones are established:
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li>No work discussions after 8:00 PM on weekdays unless mutually agreed in advance for urgent deadlines.</li>
+                                        <li>Fridays after Maghrib through Saturday evening are designated relationship-only time — no coaching sessions, no invoice discussions, no grant reviews.</li>
+                                        <li>During meals together, date nights, or designated quality time, work topics are off-limits unless the Client explicitly requests strategic input in the moment.</li>
+                                    </ul>
+                                    <p class="mt-1">
+                                        <strong>Violation of work-free zones:</strong> If either party repeatedly brings work into protected time, the other party may invoke a 24-hour work silence — no professional communication for one full day to reset boundaries.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">C. Feedback Firewall (Emotional Safety)</p>
+                                    <p class="mt-1">
+                                        Professional feedback (critiques of grant proposals, strategic misalignments, missed deliverables) must be compartmentalized from personal worth or romantic evaluation.
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li><strong>Professional critiques are not personal attacks:</strong> If the Client provides tough feedback on the Coach's strategic input, the Coach agrees not to internalize this as rejection or inadequacy in the relationship.</li>
+                                        <li><strong>Romantic reassurance after tough feedback:</strong> If a coaching session involves hard critiques, the session ends with relational affirmation — a simple acknowledgment: <em>"That was tough feedback, but it doesn't change how I feel about you."</em></li>
+                                        <li><strong>Separate "work frustration" from "relationship frustration":</strong> If the Client is frustrated with a missed deadline or vague deliverable, that frustration stays in the professional lane. It does not spill into relational conflict.</li>
+                                        <li><strong>Cooling-off protocol:</strong> If professional feedback triggers defensiveness, hurt, or conflict, either party may call a 2-hour pause before continuing the conversation to allow emotional regulation.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">D. Power Dynamic Neutralization</p>
+                                    <p class="mt-1">
+                                        To prevent the Client from becoming "the boss" and the Coach from becoming "the subordinate" in the romantic relationship:
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li>Invoicing and payment are transactional, not relational. The Coach submits invoices professionally (no guilt, no hedging). The Client pays on time (no power plays, no withholding). Neither party uses payment as leverage in personal conflicts.</li>
+                                        <li>The Coach retains full professional autonomy. The Client may provide feedback and strategic input, but the Coach is not obligated to follow directives. This is a coaching partnership, not an employer-employee relationship.</li>
+                                        <li>Reciprocal vulnerability: The Client actively seeks areas where the Coach can coach, advise, or support her (even outside this formal scope) to maintain relational balance (e.g. personal goals or relationship dynamics).</li>
+                                        <li>No "boss tone" in personal contexts. If the Client finds herself using a directive or managerial tone outside of scheduled work sessions, she commits to pausing and resetting to a relational tone.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">E. Success Premium Gratitude Ritual (Joy Reclamation)</p>
+                                    <p class="mt-1">
+                                        When a success premium is triggered (grant secured, contract closed, revenue milestone hit), the payout is celebrated together as a shared win, not just a transactional payment.
+                                    </p>
+                                    <p class="mt-1">
+                                        <strong>Required ritual:</strong> Within 7 days of a success milestone, the Client and Coach will:
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li>Share a celebratory meal or date to honor the collaborative effort.</li>
+                                        <li>Acknowledge each other's contributions (not just the Coach's strategic input, but also the Client's execution, resilience, and vision).</li>
+                                        <li>Redirect a portion of the success premium (at the Coach's discretion) toward a shared relationship investment — a weekend trip, a special experience, or a meaningful gift for both.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">F. Conflict Escalation Safeguard</p>
+                                    <p class="mt-1">
+                                        If a professional disagreement escalates into a personal conflict (yelling, stonewalling, blame, contempt):
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li>Immediate 24-hour pause on all professional and relationship discussions. Both parties take space.</li>
+                                        <li>Third-party mediation option: Either party may request a neutral third-party conversation facilitator (therapist, trusted mutual friend, or relationship coach) to help navigate the conflict before resuming professional work.</li>
+                                        <li><strong>Auto-termination trigger:</strong> If three (3) professional conflicts escalate into damaging personal conflicts within a 6-month period, the professional engagement auto-terminates to protect the relationship. All completed work is settled with no relational penalty.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">G. Regular Relationship Check-Ins (Separate from Work)</p>
+                                    <p class="mt-1">
+                                        To ensure the professional engagement isn't eroding intimacy, the Client and Coach commit to:
+                                    </p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li><strong>Monthly relationship health check-ins (15-30 minutes)</strong> exploring:
+                                            <ul class="list-[circle] pl-4 mt-1 space-y-1">
+                                                <li>Are we spending too much time in "work mode" and not enough in "us mode"?</li>
+                                                <li>Is one of us feeling more like a boss/employee than a partner?</li>
+                                                <li>Are we celebrating wins together, or is the work creating distance?</li>
+                                                <li>Do we need to adjust boundaries, hours, or communication style?</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>Quarterly "pause and assess"</strong> — Every 3 months, both parties explicitly ask: <em>"Should we continue this professional engagement, or is it time to wind down to protect the relationship?"</em></li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <p class="font-bold text-slate-900">H. Exit Strategy with Relational Grace</p>
+                                    <ul class="list-disc pl-4 mt-1 space-y-1">
+                                        <li><strong>No residual resentment:</strong> Both parties agree that ending the professional work does not mean the relationship failed. It means prioritizing the romantic bond over the business arrangement.</li>
+                                        <li><strong>Gratitude over grievance:</strong> The final professional conversation includes mutual acknowledgment of what worked, what was learned, and appreciation for the effort.</li>
+                                        <li><strong>Clean financial closure:</strong> All outstanding invoices are settled within 30 days to protect relational trust.</li>
+                                        <li><strong>Re-engagement option:</strong> If the relationship stabilizes and both parties want to try the professional engagement again later, they may do so only after a minimum 3-month gap to ensure the relationship has fully reset.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Signatures -->
@@ -454,8 +603,8 @@
             <div id="invoice-output-container" class="hidden mt-8 bg-white border border-slate-200 rounded-xl p-8 shadow-md no-print font-sans">
                 <div class="flex justify-between items-start border-b border-slate-100 pb-4 mb-6">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 uppercase">PROFESSIONAL INVOICE</h3>
-                        <p class="text-xs text-slate-500">Structured Coaching &amp; Transition Alignment</p>
+                        <h3 class="text-lg font-bold text-slate-900 uppercase" id="inv-header-type">PROFESSIONAL BASE INVOICE</h3>
+                        <p class="text-xs text-slate-500">Ihsan Payment Practice: Standard Base Invoices are due in 3 days. Premiums are due in 30 days.</p>
                     </div>
                     <button onclick="hideInvoice()" class="text-slate-400 hover:text-slate-600">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -486,30 +635,16 @@
                             <th class="py-2 text-right">Amount</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr>
-                            <td class="py-3">
-                                <p class="font-semibold text-slate-800">Strategic Coaching Base Hours</p>
-                                <p class="text-[10px] text-slate-400" id="inv-out-deliv">Weekly strategy and thought partnership sessions</p>
-                            </td>
-                            <td class="py-3 text-right" id="inv-out-hours">10 hours</td>
-                            <td class="py-3 text-right" id="inv-out-rate">RM 100.00</td>
-                            <td class="py-3 text-right font-semibold" id="inv-out-base">RM 1,000.00</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3">
-                                <p class="font-semibold text-slate-800">Transitional Success Incentive Payout</p>
-                                <p class="text-[10px] text-slate-400" id="inv-out-rev-desc">Secured Grant / Non-Dilutive Capital Milestone</p>
-                            </td>
-                            <td class="py-3 text-right" id="inv-out-rev-base">RM 8,000.00</td>
-                            <td class="py-3 text-right" id="inv-out-rev-pct">10%</td>
-                            <td class="py-3 text-right font-semibold" id="inv-out-rev">RM 800.00</td>
-                        </tr>
+                    <tbody class="divide-y divide-slate-100" id="invoice-tbody">
+                        <!-- Dynamic rows injected here -->
                     </tbody>
                 </table>
 
-                <div class="border-t border-slate-200 pt-4 flex justify-between items-center bg-slate-50 p-3 rounded-lg">
-                    <span class="text-xs font-bold text-slate-700">TOTAL DUE FOR PAYMENT:</span>
+                <div class="border-t border-slate-200 pt-4 flex flex-col sm:flex-row justify-between items-center bg-slate-50 p-3 rounded-lg gap-2">
+                    <div class="text-xs">
+                        <span class="block font-bold text-slate-700">TOTAL DUE FOR PAYMENT:</span>
+                        <span class="text-[10px] text-brand-700 font-semibold" id="inv-out-payment-term">Ihsan Terms: Due within 3 Days</span>
+                    </div>
                     <span class="text-base font-bold text-brand-700" id="inv-out-total">RM 1,800.00</span>
                 </div>
                 
@@ -566,9 +701,8 @@
             const advisor = document.getElementById('advisorName').value || 'R';
             const ventures = document.getElementById('ventureNames').value || 'Cetalabs, Kinder, Grant Applications, and Consulting';
             const rate = document.getElementById('hourlyRate').value || '100';
-            const revShare = document.getElementById('revSharePercent').value || '10';
             const rawDate = document.getElementById('effectiveDate').value;
-            const textCap = document.getElementById('monthlyCap').value || '15';
+            const textCap = document.getElementById('monthlyCap').value || '10';
             const law = document.getElementById('governingLaw').value || 'Selangor, Malaysia';
 
             let formattedDate = '[Effective Date]';
@@ -583,7 +717,6 @@
             document.getElementById('txt-ventureNames1').innerText = ventures;
             document.getElementById('txt-hourlyRate').innerText = rate;
             document.getElementById('txt-monthlyCap').innerText = textCap;
-            document.getElementById('txt-revSharePercent').innerText = revShare;
             document.getElementById('txt-governingLaw').innerText = law;
 
             document.getElementById('sig-clientName').innerText = client;
@@ -592,45 +725,57 @@
 
         function syncCalculatorValues() {
             const rate = document.getElementById('hourlyRate').value || '100';
-            const revShare = document.getElementById('revSharePercent').value || '10';
-            
             document.querySelectorAll('.calc-hourly-rate-label').forEach(el => el.innerText = rate);
-            document.querySelectorAll('.calc-rev-pct-label').forEach(el => el.innerText = revShare);
-            
             calculatePayout();
         }
 
         function toggleRelationalSection() {
             const section = document.getElementById('relational-safeguard-section');
             const checkbox = document.getElementById('includeRelational');
-            if (checkbox.checked) {
-                section.style.display = 'block';
-            } else {
-                section.style.display = 'none';
-            }
+            section.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function toggleRomanticSection() {
+            const block = document.getElementById('romantic-safeguards-block');
+            const checkbox = document.getElementById('includeRomantic');
+            block.style.display = checkbox.checked ? 'block' : 'none';
         }
 
         function updateMilestonePlaceholder() {
             const select = document.getElementById('milestoneType').value;
             const input = document.getElementById('calcRevenue');
+            const desc = document.getElementById('calc-pct-description');
+            
             if (select === 'grant') {
-                input.value = "10000"; // Typical mock grant
+                input.value = "10000"; // Sample grant amount
+                desc.innerText = "Calculated as a 10% premium (uncapped).";
             } else if (select === 'consulting') {
-                input.value = "5000"; // Typical contract value
+                input.value = "5000"; // Sample consulting project value
+                desc.innerText = "Calculated as a 10% premium (uncapped).";
             } else {
-                input.value = "2500"; // Direct sales
+                input.value = "60000"; // Above capped RM 50k to demonstrate rule
+                desc.innerText = "Calculated as 10% of first RM 50,000 per platform (Max RM 5,000).";
             }
             calculatePayout();
         }
 
         function calculatePayout() {
             const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
-            const revPct = parseFloat(document.getElementById('revSharePercent').value) || 0;
             const hours = parseFloat(document.getElementById('calcHours').value) || 0;
             const revenue = parseFloat(document.getElementById('calcRevenue').value) || 0;
+            const milestone = document.getElementById('milestoneType').value;
 
             const baseFee = hours * rate;
-            const revPayout = (revPct / 100) * revenue;
+            let revPayout = 0;
+
+            if (milestone === 'grant' || milestone === 'consulting') {
+                revPayout = 0.10 * revenue;
+            } else {
+                // Venture direct revenue capped at first 50,000
+                const eligibleRevenue = Math.min(revenue, 50000);
+                revPayout = 0.10 * eligibleRevenue;
+            }
+
             const total = baseFee + revPayout;
 
             document.getElementById('outBaseFee').innerText = baseFee.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -652,16 +797,33 @@
             const advisor = document.getElementById('advisorName').value || 'R';
             const num = document.getElementById('invNumber').value || 'INV-COACHING-001';
             const rawDate = document.getElementById('invDate').value;
-            const deliv = document.getElementById('invDeliverables').value || 'Weekly path validation consulting & proposal drafting support.';
+            const deliv = document.getElementById('invDeliverables').value || 'Weekly strategic coaching, path validation alignment, and milestone planning.';
             
             const rate = parseFloat(document.getElementById('hourlyRate').value) || 0;
-            const revPct = parseFloat(document.getElementById('revSharePercent').value) || 0;
             const hours = parseFloat(document.getElementById('calcHours').value) || 0;
             const revenue = parseFloat(document.getElementById('calcRevenue').value) || 0;
             const milestone = document.getElementById('milestoneType').value;
 
             const baseFee = hours * rate;
-            const revPayout = (revPct / 100) * revenue;
+            let revPayout = 0;
+
+            let milestoneLabel = "Transitional Success Incentive Premium";
+            let limitNotice = "";
+            if (milestone === 'grant') {
+                milestoneLabel = "Success Premium: Secured Grant Milestone";
+                revPayout = 0.10 * revenue;
+            } else if (milestone === 'consulting') {
+                milestoneLabel = "Success Premium: Closed Consulting Contract";
+                revPayout = 0.10 * revenue;
+            } else if (milestone === 'venture') {
+                milestoneLabel = "Success Premium: Venture Launch Revenue";
+                const eligibleRevenue = Math.min(revenue, 50000);
+                revPayout = 0.10 * eligibleRevenue;
+                if (revenue > 50000) {
+                    limitNotice = " (Capped at 10% of RM 50,000)";
+                }
+            }
+
             const total = baseFee + revPayout;
 
             let formattedDate = 'N/A';
@@ -670,29 +832,51 @@
                 formattedDate = new Date(rawDate).toLocaleDateString('en-US', opt);
             }
 
-            let milestoneLabel = "Success Incentive Payout";
-            if (milestone === 'grant') {
-                milestoneLabel = "Incentive: Secured Grant Milestone";
-            } else if (milestone === 'consulting') {
-                milestoneLabel = "Incentive: Closed Consulting Contract";
-            } else if (milestone === 'venture') {
-                milestoneLabel = "Incentive: Venture / Project Direct Revenue";
-            }
-
+            // Set up dynamic layout
             document.getElementById('inv-from').innerText = advisor;
             document.getElementById('inv-out-num').innerText = num;
             document.getElementById('inv-out-date').innerText = formattedDate;
-            document.getElementById('inv-out-deliv').innerText = deliv;
-            document.getElementById('inv-out-hours').innerText = hours + " hours";
-            document.getElementById('inv-out-rate').innerText = "RM " + rate.toFixed(2);
-            document.getElementById('inv-out-base').innerText = "RM " + baseFee.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            
-            // Success Milestone
-            const baseRow = document.getElementById('inv-out-rev-base').parentNode;
-            baseRow.querySelector('td p.font-semibold').innerText = milestoneLabel;
-            document.getElementById('inv-out-rev-base').innerText = "RM " + revenue.toLocaleString('en-US', { minimumFractionDigits: 2 });
-            document.getElementById('inv-out-rev-pct').innerText = revPct + "%";
-            document.getElementById('inv-out-rev').innerText = "RM " + revPayout.toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+            // Generate customized rows
+            const tbody = document.getElementById('invoice-tbody');
+            tbody.innerHTML = "";
+
+            // Base Hours Row
+            let baseRow = `
+                <tr>
+                    <td class="py-3">
+                        <p class="font-semibold text-slate-800">Strategic Coaching Base Hours</p>
+                        <p class="text-[10px] text-slate-400">${deliv}</p>
+                    </td>
+                    <td class="py-3 text-right">${hours} hours</td>
+                    <td class="py-3 text-right">RM ${rate.toFixed(2)}</td>
+                    <td class="py-3 text-right font-semibold">RM ${baseFee.toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                </tr>
+            `;
+            tbody.innerHTML += baseRow;
+
+            // Premium Row if applicable
+            if (revPayout > 0) {
+                let premiumRow = `
+                    <tr>
+                        <td class="py-3">
+                            <p class="font-semibold text-slate-800">${milestoneLabel}</p>
+                            <p class="text-[10px] text-slate-400">Coached milestone attribution criteria met${limitNotice}.</p>
+                        </td>
+                        <td class="py-3 text-right">RM ${revenue.toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                        <td class="py-3 text-right">10%</td>
+                        <td class="py-3 text-right font-semibold">RM ${revPayout.toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += premiumRow;
+                
+                document.getElementById('inv-header-type').innerText = "SUCCESS PREMIUM INVOICE";
+                document.getElementById('inv-out-payment-term').innerText = "Premium Term: Payable within 30 Days of milestone confirmation";
+            } else {
+                document.getElementById('inv-header-type').innerText = "PROFESSIONAL BASE INVOICE";
+                document.getElementById('inv-out-payment-term').innerText = "Ihsan terms: Standard base labor payable within 3 Days of receipt";
+            }
+
             document.getElementById('inv-out-total').innerText = "RM " + total.toLocaleString('en-US', { minimumFractionDigits: 2 });
 
             document.getElementById('invoice-output-container').classList.remove('hidden');
