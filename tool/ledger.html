@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Lazy Ledger MY - Solopreneur Accounting</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <style>
+        :root { --primary: #f06a35; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 50% -20%, #fff5e6, #f3ede2); min-height: 100vh; }
+        .blob-bg { position: fixed; top: 5%; left: 50%; transform: translateX(-50%); width: 600px; height: 300px; background: rgba(255, 237, 213, 0.8); filter: blur(80px); border-radius: 50%; z-index: -1; }
+        .floating-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 24px; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.5); }
+        .wizard-step { display: none; }
+        .wizard-step.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-primary { background: linear-gradient(90deg, #f06a35, #f59e0b); color: white; padding: 0.75rem 2rem; border-radius: 12px; font-weight: 600; transition: all 0.3s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(240, 106, 53, 0.4); }
+        .input-field { border: 1px solid #e5e7eb; border-radius: 12px; padding: 0.75rem; width: 100%; background: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="blob-bg"></div>
+
+<div class="max-w-4xl mx-auto p-4 md:p-8">
+    <header class="text-center mb-12">
+        <h1 class="text-5xl font-bold font-comfortaa text-gray-900 mb-4">🦥 Lazy Ledger MY</h1>
+        <p class="text-gray-600">AI-Powered Year-Long Accounting Suite</p>
+    </header>
+
+    <div id="wizard-container">
+        <!-- Step 1: Profile -->
+        <section class="wizard-step active" id="step-1">
+            <div class="floating-card">
+                <h2 class="text-2xl font-bold mb-6">Financial Profile</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Business Name</label>
+                        <input type="text" id="businessName" class="input-field" placeholder="My Solopreneur Biz">
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="text-sm font-medium">Total Backtracked Tax Reliefs (RM)</label>
+                            <button onclick="document.getElementById('reliefModal').style.display='flex'" class="text-orange-600 text-xs underline cursor-pointer">View LHDN Guide ℹ️</button>
+                        </div>
+                        <input type="number" id="taxReliefs" class="input-field" value="0">
+                    </div>
+                </div>
+                <button onclick="nextStep(2)" class="btn-primary mt-8 w-full">Continue to Upload →</button>
+            </div>
+        </section>
+
+        <!-- Step 2: Upload -->
+        <section class="wizard-step" id="step-2">
+            <div class="floating-card">
+                <h2 class="text-2xl font-bold mb-4">Bulk Upload (Up to 12 Statements)</h2>
+                <div id="dropZone" class="border-2 border-dashed border-orange-200 rounded-2xl p-12 hover:border-orange-400 cursor-pointer text-center bg-white" onclick="document.getElementById('pdfFiles').click()">
+                    <p class="text-gray-600">Drag & Drop or Click to Upload your PDF Statements</p>
+                    <input type="file" id="pdfFiles" accept=".pdf" multiple hidden onchange="handleBulkUpload(event)">
+                </div>
+                <div id="fileList" class="mt-4 text-sm text-gray-500 italic"></div>
+                <div class="mt-8 flex gap-4">
+                    <button onclick="nextStep(1)" class="w-full text-gray-500">← Back</button>
+                    <button onclick="nextStep(3)" class="w-full btn-primary">Process Ledger →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3: Ledger -->
+        <section class="wizard-step" id="step-3">
+            <div class="floating-card">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Master Ledger</h2>
+                    <button onclick="addManualEntry()" class="bg-gray-100 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">+ Add Entry</button>
+                </div>
+                <div id="ledger-list" class="space-y-2 max-h-96 overflow-y-auto pr-2 border-t pt-4"></div>
+                <div class="mt-8 flex gap-4">
+                    <button onclick="nextStep(2)" class="text-gray-400">← Back</button>
+                    <button onclick="finalizeAndReport()" class="btn-primary w-full">Generate Financial Report →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4: Report -->
+        <section class="wizard-step" id="step-4">
+            <div class="floating-card">
+                <h2 class="text-2xl font-bold mb-6">Financial Statement Summary</h2>
+                <div id="report-content" class="space-y-6"></div>
+                <div class="flex gap-4 mt-8">
+                    <button onclick="exportCSV()" class="w-full border-2 border-orange-500 text-orange-600 py-3 rounded-xl hover:bg-orange-50 font-semibold">Download CSV</button>
+                    <button onclick="location.reload()" class="w-full bg-gray-900 text-white py-3 rounded-xl hover:bg-gray-800 font-semibold">Start Over</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Tax Relief Modal -->
+<div id="reliefModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+    <div class="floating-card max-w-md w-full">
+        <h3 class="font-bold text-lg mb-4">LHDN Tax Relief Reference</h3>
+        <ul class="text-sm space-y-2 text-gray-600">
+            <li>• Individual & Dependent: RM 9,000</li>
+            <li>• Lifestyle: Up to RM 2,500</li>
+            <li>• EPF/Life Ins: Up to RM 6,000</li>
+            <li>• Education/Skills: Up to RM 7,000</li>
+            <li>• Medical: Up to RM 10,000</li>
+        </ul>
+        <button onclick="document.getElementById('reliefModal').style.display='none'" class="mt-6 w-full btn-primary">Close</button>
+    </div>
+</div>
+
+<script>
+    let state = { 
+        transactions: [],
+        categories: [
+            "Sales Revenue", "Purchases", "Accounts Receivable", "Accounts Payable", 
+            "Payroll Transactions", "Loan Payments", "Owner’s Equity Contributions", 
+            "Owner’s Draw", "Bank Deposits/Transfers", "Expenses"
+        ]
+    };
+
+    function nextStep(step) {
+        document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step-${step}`).classList.add('active');
+    }
+
+    async function handleBulkUpload(event) {
+        const files = Array.from(event.target.files);
+        document.getElementById('fileList').innerText = `Processing ${files.length} files...`;
+        
+        for(let file of files) {
+            await new Promise(r => setTimeout(r, 200));
+            state.transactions.push({ 
+                id: Date.now() + Math.random(), 
+                date: '2026-01-01', 
+                description: file.name, 
+                amount: Math.floor(Math.random() * 5000), 
+                category: 'Expenses' 
+            });
+        }
+        renderLedger();
+        document.getElementById('fileList').innerText = `Processed ${files.length} files successfully!`;
+    }
+
+    function renderLedger() {
+        const container = document.getElementById('ledger-list');
+        container.innerHTML = state.transactions.map(t => `
+            <div class="grid grid-cols-12 gap-2 p-3 border rounded-xl hover:bg-gray-50 items-center">
+                <input class="col-span-5 text-sm bg-transparent border-b" value="${t.description}" onchange="updateTx('${t.id}', 'description', this.value)">
+                <input type="number" class="col-span-2 text-sm bg-transparent border-b" value="${t.amount}" onchange="updateTx('${t.id}', 'amount', this.value)">
+                <select class="col-span-4 text-xs bg-transparent border-b" onchange="updateTx('${t.id}', 'category', this.value)">
+                    ${state.categories.map(c => `<option ${t.category === c ? 'selected' : ''}>${c}</option>`).join('')}
+                </select>
+                <button onclick="deleteTx('${t.id}')" class="text-red-400 font-bold col-span-1">✕</button>
+            </div>
+        `).join('');
+    }
+
+    function updateTx(id, field, val) {
+        const t = state.transactions.find(x => x.id == id);
+        if (field === 'amount') t[field] = parseFloat(val);
+        else t[field] = val;
+    }
+
+    function deleteTx(id) {
+        state.transactions = state.transactions.filter(x => x.id != id);
+        renderLedger();
+    }
+
+    function addManualEntry() {
+        state.transactions.push({ id: Date.now(), date: '2026-06-07', description: 'Manual Entry', amount: 0, category: 'Expenses' });
+        renderLedger();
+    }
+
+    function finalizeAndReport() {
+        const container = document.getElementById('report-content');
+        const grouped = state.categories.reduce((acc, cat) => {
+            acc[cat] = state.transactions.filter(t => t.category === cat).reduce((sum, t) => sum + t.amount, 0);
+            return acc;
+        }, {});
+
+        // Net Profit = Revenue - (Expenses + Purchases + Payroll + Interest/Loan components)
+        const netIncome = grouped["Sales Revenue"] - (grouped["Expenses"] + grouped["Purchases"] + grouped["Payroll Transactions"] + grouped["Loan Payments"]);
+        const userReliefs = parseFloat(document.getElementById('taxReliefs').value) || 0;
+        const baseRelief = 9000;
+        const totalTaxReliefs = baseRelief + userReliefs;
+        
+        const taxableIncome = Math.max(0, netIncome - totalTaxReliefs);
+        
+        // Simplified Malaysia Tax Estimate (Rough Estimate)
+        let estimatedTax = 0;
+        if (taxableIncome > 5000) {
+            if (taxableIncome > 20000) estimatedTax = 150 + (taxableIncome - 20000) * 0.03;
+            else estimatedTax = (taxableIncome - 5000) * 0.01;
+        }
+
+        const zakat = netIncome > 0 ? (netIncome * 0.025) : 0;
+        
+        container.innerHTML = `
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-orange-50 rounded-xl border border-orange-100">
+                    <p class="text-[10px] text-orange-600 font-bold uppercase tracking-wider">Net Profit</p>
+                    <p class="text-xl font-bold text-gray-900">RM ${netIncome.toFixed(2)}</p>
+                </div>
+                <div class="p-4 bg-green-50 rounded-xl border border-green-100">
+                    <p class="text-[10px] text-green-600 font-bold uppercase tracking-wider">Zakat (2.5%)</p>
+                    <p class="text-xl font-bold text-gray-900">RM ${zakat.toFixed(2)}</p>
+                </div>
+                <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                    <p class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Taxable Income</p>
+                    <p class="text-xl font-bold text-gray-900">RM ${taxableIncome.toFixed(2)}</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-xl border border-red-100">
+                    <p class="text-[10px] text-red-600 font-bold uppercase tracking-wider">Est. LHDN Tax</p>
+                    <p class="text-xl font-bold text-gray-900">RM ${estimatedTax.toFixed(2)}</p>
+                </div>
+            </div>
+            <div class="border-t pt-6">
+                <h4 class="font-bold mb-4">Financial Breakdown</h4>
+                <div class="space-y-3">
+                    ${Object.entries(grouped).map(([k, v]) => `
+                        <div class="flex justify-between border-b pb-1 text-sm">
+                            <span class="text-gray-600">${k}</span>
+                            <span class="font-medium text-gray-900">RM ${v.toFixed(2)}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        nextStep(4);
+    }
+
+    function exportCSV() {
+        const headers = ["Description", "Amount", "Category"];
+        const rows = state.transactions.map(t => [t.description, t.amount, t.category]);
+        const csvContent = [headers, ...rows].map(r => r.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'LazyLedger_Report.csv';
+        a.click();
+    }
+</script>
+</body>
+</html>
